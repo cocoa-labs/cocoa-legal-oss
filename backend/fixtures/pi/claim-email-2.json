@@ -1,0 +1,21 @@
+{
+    "id": "fixture-claim-email-2",
+    "threadId": "fixture-thread-claim-2",
+    "from": "Sample Casualty Claims <claims@samplecasualty.test>",
+    "to": ["intake@samplefirm.example.com"],
+    "cc": [],
+    "subject": "Claims SCC-26-887701 and SCC-26-887702 — Response to Policy Limits Demand — Claimant: Jordan Sample",
+    "date": "2026-07-10T16:03:44.000Z",
+    "snippet": "This letter responds to your time-limited policy limits demand dated July 1, 2026 regarding the above-referenced claims.",
+    "bodyText": "RE: Claim Number: SCC-26-887701 (Bodily Injury Liability)\nClaim Number: SCC-26-887702 (Uninsured Motorist)\nClaimant: Jordan Sample\nDate of Loss: 03/14/2026\n\nCounsel:\n\nThis letter responds to your time-limited policy limits demand dated July 1, 2026 regarding the above-referenced claims. Your demand and the enclosed materials are under review by our coverage team.\n\nWe request an extension of the response deadline to August 15, 2026. Please confirm by August 1, 2026 whether the extension is agreeable; absent your confirmation we will respond by the original deadline stated in your demand.\n\nBoth claims arise from the same loss and are handled by this office: SCC-26-887701 (bodily injury liability) and SCC-26-887702 (uninsured motorist). Please reference both claim numbers in all future correspondence regarding this matter.\n\nClaims Department\nSample Casualty\n(800) 555-0175\n\n[SYNTHETIC TEST FIXTURE — every name, number, and amount in this message is invented]",
+    "bodyHtml": null,
+    "messageIdHeader": "<fixture-claim-email-2@rehearsal.example.com>",
+    "inReplyTo": null,
+    "references": [],
+    "autoSubmitted": null,
+    "precedence": null,
+    "listId": null,
+    "listUnsubscribe": null,
+    "labelIds": ["INBOX"],
+    "attachments": []
+}

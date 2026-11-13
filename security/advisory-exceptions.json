@@ -1,0 +1,5 @@
+{
+  "version": 1,
+  "schema": "Moderate entries require package, directory (backend/frontend), reason, and expires_at (ISO-8601).",
+  "moderate": []
+}

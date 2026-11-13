@@ -1,0 +1,25 @@
+name: CodeQL
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  actions: read
+  contents: read
+  security-events: write
+
+jobs:
+  analyze:
+    # Code scanning on private repositories needs paid GitHub Code Security;
+    # public repositories get it free, so the job runs once the repo is public.
+    if: ${{ !github.event.repository.private }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: github/codeql-action/init@v4
+        with:
+          languages: javascript-typescript
+      - uses: github/codeql-action/autobuild@v4
+      - uses: github/codeql-action/analyze@v4

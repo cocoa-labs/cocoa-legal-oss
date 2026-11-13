@@ -1,0 +1,21 @@
+{
+    "id": "fixture-nonmatch-email",
+    "threadId": "fixture-thread-nonmatch",
+    "from": "Sam at Example Marketing <sam@marketing.example.com>",
+    "to": ["intake@samplefirm.example.com"],
+    "cc": [],
+    "subject": "Quick question about Sample & Example LLP's intake process",
+    "date": "2026-07-09T09:30:00.000Z",
+    "snippet": "I help personal injury firms convert more signed cases from the leads they already have.",
+    "bodyText": "Hi there,\n\nI help personal injury firms convert more signed cases from the leads they already have. Most firms we work with see a lift within the first month — no new ad spend, just faster follow-up.\n\nWould you be open to a 15-minute call next week? I promise to keep it short.\n\nBest,\nSam\nExample Marketing (this is a synthetic test fixture — not a real company or offer)",
+    "bodyHtml": null,
+    "messageIdHeader": "<fixture-nonmatch-email@rehearsal.example.com>",
+    "inReplyTo": null,
+    "references": [],
+    "autoSubmitted": null,
+    "precedence": null,
+    "listId": null,
+    "listUnsubscribe": null,
+    "labelIds": ["INBOX"],
+    "attachments": []
+}

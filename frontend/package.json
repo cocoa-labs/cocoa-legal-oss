@@ -1,0 +1,79 @@
+{
+    "name": "coco-legal-frontend",
+    "version": "0.1.0",
+    "private": true,
+    "engines": {
+        "node": "24.x"
+    },
+    "scripts": {
+        "dev": "next dev -p 3003",
+        "build": "next build",
+        "test:document-reliability": "node --import tsx src/app/components/doc-review/documentReliability.test.ts && node --import tsx src/app/components/doc-review/deriveConversationDoc.test.ts && node --import tsx src/app/components/authoring/documentPacketState.test.ts && node --import tsx src/app/lib/appVersionState.test.ts && node --import tsx src/app/lib/protectedDownload.test.ts && node --import tsx --test src/app/lib/documentJobPolling.test.ts src/app/components/assistant/AssistantMessage.documentPackets.test.ts",
+        "test:assistant-stream": "node --import tsx src/app/lib/assistantStreamAccumulator.test.ts",
+        "test:public-settings": "node --import tsx src/app/lib/deploymentLinks.test.ts && node --import tsx src/app/lib/signatureConsentCopy.test.ts && node --import tsx src/app/lib/betaPolicyGate.test.ts",
+        "start": "next start",
+        "lint": "eslint",
+        "preview": "opennextjs-cloudflare build && opennextjs-cloudflare preview",
+        "deploy": "opennextjs-cloudflare build && opennextjs-cloudflare deploy",
+        "upload": "opennextjs-cloudflare build && opennextjs-cloudflare upload",
+        "cf-typegen": "wrangler types --env-interface CloudflareEnv cloudflare-env.d.ts"
+    },
+    "dependencies": {
+        "@radix-ui/react-dropdown-menu": "^2.1.24",
+        "@radix-ui/react-icons": "^1.3.2",
+        "@radix-ui/react-slot": "^1.2.4",
+        "@sentry/nextjs": "^10.69.0",
+        "@supabase/supabase-js": "^2.117.2",
+        "@tiptap/pm": "^3.30.5",
+        "@tiptap/react": "^3.30.5",
+        "@tiptap/starter-kit": "^3.30.5",
+        "class-variance-authority": "^0.7.1",
+        "clsx": "^2.1.1",
+        "docx-preview": "^0.3.7",
+        "exceljs": "^4.4.0",
+        "katex": "^0.16.27",
+        "lucide-react": "^0.553.0",
+        "marked": "^17.0.1",
+        "next": "16.4.6",
+        "pdfjs-dist": "4.10.38",
+        "react": "19.3.0",
+        "react-dom": "19.3.0",
+        "react-markdown": "^10.1.0",
+        "rehype-katex": "^7.0.1",
+        "remark-gfm": "^4.0.1",
+        "remark-math": "^6.0.0",
+        "tailwind-merge": "^3.7.0",
+        "tiptap-markdown": "^0.9.0"
+    },
+    "devDependencies": {
+        "@opennextjs/cloudflare": "^1.20.5",
+        "@tailwindcss/postcss": "^4.3.3",
+        "@types/marked": "^5.0.2",
+        "@types/node": "^20",
+        "@types/react": "^19.3.0",
+        "@types/react-dom": "^19.3.0",
+        "babel-plugin-react-compiler": "1.0.0",
+        "baseline-browser-mapping": "^2.11.27",
+        "eslint": "^9",
+        "eslint-config-next": "16.3.8",
+        "tailwindcss": "^4.3.3",
+        "tsx": "^4.23.13",
+        "tw-animate-css": "^1.4.0",
+        "typescript": "^5",
+        "wrangler": "^4.146.0"
+    },
+    "overrides": {
+        "browserslist": "4.28.8",
+        "markdown-it": "14.3.3",
+        "brace-expansion@<1.1.21": "1.1.21",
+        "brace-expansion@>=2.0.0 <2.1.7": "2.1.7",
+        "brace-expansion@>=4.0.0 <5.0.12": "5.0.12",
+        "fast-uri@>=3.0.0 <3.1.8": "3.1.8",
+        "exceljs": {
+            "tmp": "0.2.7",
+            "uuid": "11.1.1"
+        },
+        "linkify-it@<=5.0.1": "5.0.2"
+    },
+    "license": "AGPL-3.0-only"
+}

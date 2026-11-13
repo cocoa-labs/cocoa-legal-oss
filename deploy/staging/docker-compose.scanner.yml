@@ -1,0 +1,22 @@
+services:
+  clamav:
+    image: clamav/clamav:1.5.4-debian
+    restart: unless-stopped
+    expose:
+      - "3310"
+    networks:
+      - scanner-private
+    healthcheck:
+      test: ["CMD", "clamdscan", "--ping", "1"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+    volumes:
+      - clamav-signatures:/var/lib/clamav
+
+networks:
+  scanner-private:
+    internal: true
+
+volumes:
+  clamav-signatures:

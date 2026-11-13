@@ -1,0 +1,28 @@
+{
+    "id": "fixture-claim-email-1",
+    "threadId": "fixture-thread-claim-1",
+    "from": "Example Mutual Claims <claims@examplemutual.test>",
+    "to": ["intake@samplefirm.example.com"],
+    "cc": [],
+    "subject": "Claim 26-4400123 — Acknowledgement of Representation — Our Insured: Dana Specimen",
+    "date": "2026-07-08T14:21:05.000Z",
+    "snippet": "We acknowledge receipt of your letter of representation on behalf of your client, Jordan Sample, regarding the above-referenced claim.",
+    "bodyText": "RE: Claim Number: 26-4400123\nOur Insured: Dana Specimen\nYour Client: Jordan Sample\nDate of Loss: 03/14/2026\n\nCounsel:\n\nWe acknowledge receipt of your letter of representation on behalf of your client, Jordan Sample, regarding the above-referenced claim. This claim has been assigned to adjuster Taylor Mock in our Bodily Injury Unit.\n\nA copy of the policy declarations page for policy 904412345 is attached for your records. Bodily injury limits are 25/50 ($25,000 each person / $50,000 each accident); the property damage limit is $25,000 each accident.\n\nPlease direct future correspondence to the undersigned and reference claim number 26-4400123 in all communications.\n\nTaylor Mock\nClaims Adjuster, Bodily Injury Unit\nExample Mutual — Claims\n(800) 555-0142\ntaylor.mock@claims.examplemutual.test\n\n[SYNTHETIC TEST FIXTURE — every name, number, and amount in this message is invented]",
+    "bodyHtml": null,
+    "messageIdHeader": "<fixture-claim-email-1@rehearsal.example.com>",
+    "inReplyTo": null,
+    "references": [],
+    "autoSubmitted": null,
+    "precedence": null,
+    "listId": null,
+    "listUnsubscribe": null,
+    "labelIds": ["INBOX"],
+    "attachments": [
+        {
+            "attachmentId": "dec-page.pdf",
+            "filename": "dec-page.pdf",
+            "contentType": "application/pdf",
+            "size": 2694
+        }
+    ]
+}

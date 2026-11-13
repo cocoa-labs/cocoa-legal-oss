@@ -1,0 +1,78 @@
+# Every push to main and every pull request type-checks both packages, runs the
+# hermetic backend test suites (no database, network or secrets) and lints and
+# builds the frontend. No deploys, no secrets, no scheduled jobs.
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  backend:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: backend
+    steps:
+      - uses: actions/checkout@v7
+      - name: Install real DOCX rendering dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libreoffice-writer libreoffice-calc libreoffice-impress fonts-liberation fonts-dejavu-core
+          soffice --version
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: backend/package-lock.json
+      - run: npm ci
+      # Informational: advisories appear in the log without failing the build,
+      # because nobody maintains this repository to respond to them.
+      - run: node ../security/check-production-audit.mjs .
+        continue-on-error: true
+      - run: npx tsc --noEmit
+      - run: npm run build
+      - run: npm run test:document-reliability
+      - run: npm run test:reliability
+      - run: npm test
+
+  frontend:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: frontend
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          # Match Vercel's configured runtime; Supabase needs native WebSocket
+          # when these browser components are imported during SSR and tests.
+          node-version: 24
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+      - run: npm ci
+      # Informational: advisories appear in the log without failing the build,
+      # because nobody maintains this repository to respond to them.
+      - run: node ../security/check-production-audit.mjs .
+        continue-on-error: true
+      - run: npx tsc --noEmit
+      - run: npm run test:document-reliability
+      - run: npm run test:public-settings
+      # Plain invocation on purpose: errors fail the build, warnings don't.
+      # Do not weaken this gate to accommodate pre-existing errors — fix them.
+      - run: npx eslint src
+      # Next evaluates the browser Supabase client while prerendering. CI does
+      # not receive Vercel's public runtime values, so provide inert build-only
+      # placeholders; no request is made during static generation.
+      - run: npm run build
+        env:
+          NEXT_PUBLIC_SUPABASE_URL: https://ci-placeholder.supabase.co
+          NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY: ci-placeholder-key

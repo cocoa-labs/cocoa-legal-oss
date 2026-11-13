@@ -1,0 +1,21 @@
+{
+    "id": "fixture-invoice-email-2",
+    "threadId": "fixture-thread-invoice-2",
+    "from": "ChartExample <no-reply@chartexample.test>",
+    "to": ["intake@samplefirm.example.com"],
+    "cc": [],
+    "subject": "ChartExample Invoice CE-778812 — Records Request — Casey Example",
+    "date": "2026-07-06T13:12:31.000Z",
+    "snippet": "A new invoice is available for your records request.",
+    "bodyText": "A new invoice is available for your records request.\n\nInvoice Number: CE-778812\nInvoice Date: 07/06/2026\nRequested Records: Sample Medical Group — billing records\nPatient / Matter: Casey Example\nAmount Due: $64.50\n\nSign in to your ChartExample account to download the records and remit payment.\n\nChartExample Support\n\n[SYNTHETIC TEST FIXTURE — every name, number, and amount in this message is invented]",
+    "bodyHtml": null,
+    "messageIdHeader": "<fixture-invoice-email-2@rehearsal.example.com>",
+    "inReplyTo": null,
+    "references": [],
+    "autoSubmitted": null,
+    "precedence": null,
+    "listId": null,
+    "listUnsubscribe": null,
+    "labelIds": ["INBOX"],
+    "attachments": []
+}

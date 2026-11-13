@@ -1,0 +1,23 @@
+# Railway builds this service with Nixpacks (railway.json pins
+# builder = "NIXPACKS"; Railpack ignores this file entirely).
+
+[phases.setup]
+# `libreoffice` on its own yields a binary that starts and reports a version
+# but cannot render anything usable: the image ships no fontconfig data and
+# not one font file. That produced both halves of the production PDF bug —
+#   1. soffice wrote `Fontconfig error: Cannot load default config file` to
+#      stderr, and the old libreoffice-convert dependency read any stderr
+#      containing "error" as a failed conversion, and
+#   2. there was no font to render with anyway: the document generator
+#      hardcodes "Times New Roman" (src/lib/docxAssembly.ts).
+# Liberation Serif is the metric-compatible face fontconfig substitutes for
+# Times New Roman, so it is the one that actually matters here; DejaVu is for
+# broader glyph coverage. Noto is deliberately left out — 100 MB+ of image
+# growth for marginal benefit on these documents.
+nixPkgs = ["...", "libreoffice", "fontconfig", "liberation_ttf", "dejavu_fonts"]
+# Deliberate redundancy rather than a duplicate of the line above: nix-store
+# fonts sometimes need extra fontconfig path wiring on the Ubuntu base image,
+# while apt-installed fonts always register under /etc/fonts. Whichever tree
+# LibreOffice's fontconfig ends up consulting, a Times New Roman substitute
+# resolves.
+aptPkgs = ["fontconfig", "fonts-liberation", "fonts-dejavu-core"]

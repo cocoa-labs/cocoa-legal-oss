@@ -1,0 +1,28 @@
+{
+    "id": "fixture-invoice-email-1",
+    "threadId": "fixture-thread-invoice-1",
+    "from": "Example Case Funding Billing <billing@examplecasefunding.test>",
+    "to": ["intake@samplefirm.example.com"],
+    "cc": [],
+    "subject": "Invoice INV-002417 — Policy Limits Request — Casey Example",
+    "date": "2026-07-02T18:45:12.000Z",
+    "snippet": "Please find attached invoice INV-002417 for the policy limits request completed on the matter referenced below.",
+    "bodyText": "Hello,\n\nPlease find attached invoice INV-002417 for the policy limits request completed on the matter referenced below.\n\nMatter Reference: Casey Example — policy limits request\nInvoice Number: INV-002417\nInvoice Date: 07/02/2026\nTotal Due: $1,850.00\n\nPayment is due within 30 days of the invoice date. The invoice PDF is attached for your records.\n\nBilling Team\nExample Case Funding\n\n[SYNTHETIC TEST FIXTURE — every name, number, and amount in this message is invented]",
+    "bodyHtml": null,
+    "messageIdHeader": "<fixture-invoice-email-1@rehearsal.example.com>",
+    "inReplyTo": null,
+    "references": [],
+    "autoSubmitted": null,
+    "precedence": null,
+    "listId": null,
+    "listUnsubscribe": null,
+    "labelIds": ["INBOX"],
+    "attachments": [
+        {
+            "attachmentId": "invoice.pdf",
+            "filename": "invoice.pdf",
+            "contentType": "application/pdf",
+            "size": 1958
+        }
+    ]
+}

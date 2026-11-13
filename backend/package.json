@@ -1,0 +1,93 @@
+{
+    "name": "coco-legal-backend",
+    "version": "1.0.0",
+    "private": true,
+    "engines": {
+        "node": ">=20"
+    },
+    "scripts": {
+        "test:reliability": "node --import tsx src/lib/assistantCompletionPolicy.test.ts && node --import tsx src/lib/assistantResponseIntegrity.test.ts && node --import tsx src/lib/llm/models.test.ts && node --import tsx src/lib/llm/claude.test.ts && node --import tsx src/lib/llm/gemini.test.ts && node --import tsx src/lib/llm/openai.test.ts && node --import tsx src/lib/llm/openrouter.test.ts && node --import tsx src/lib/workers/modelConformance.test.ts && node --import tsx src/lib/documentGeneration/outlinePlanning.test.ts && node --import tsx src/lib/documentGeneration/chunkedDrafting.test.ts && node --import tsx src/lib/documentGeneration/worker.test.ts && node --import tsx src/lib/documentGeneration/renderRecovery.test.ts && node --import tsx src/lib/access.test.ts && node --import tsx src/lib/matterTasks.test.ts && node --import tsx src/lib/uploadSecurity.test.ts && node --import tsx src/lib/betaPolicy.test.ts && node --import tsx src/lib/privacy.test.ts && node --import tsx src/lib/betaSchemaContract.test.ts && node --import tsx src/lib/composeExposure.test.ts",
+        "test:conversation-memory": "tsx src/lib/conversationContext.test.ts && tsx src/lib/conversationSummary/worker.test.ts && tsx src/lib/chatMessages.test.ts",
+        "test:document-reliability": "node --import tsx src/lib/displayedDocument.test.ts && node --import tsx src/lib/documentActionState.test.ts && node --import tsx src/lib/documentEditContract.test.ts && npm run test:document-generation",
+        "rehearse:document-reliability": "node --import tsx src/scripts/documentReliabilityRehearsal.ts",
+        "backfill:document-layout-qa": "node --import tsx src/scripts/backfillDocumentLayoutQa.ts",
+        "migrate": "node --import tsx src/scripts/migrate.ts",
+        "seed:firm": "node --import tsx scripts/seedFirm.ts",
+        "migrate:verify": "node --import tsx src/scripts/migrate.ts --verify",
+        "backup:database": "node --import tsx src/scripts/databaseBackup.ts",
+        "backup:objects": "node --import tsx src/scripts/objectMirror.ts",
+        "restore:drill": "node --import tsx src/scripts/restoreDrill.ts",
+        "load:beta": "node --import tsx src/scripts/betaLoadTest.ts",
+        "dev": "tsx watch src/index.ts",
+        "test:email-attachments": "node --import tsx src/lib/email/attachments.test.ts && node --import tsx src/lib/email/send.test.ts && node --import tsx src/lib/connectors/email/mime.test.ts",
+        "pretest": "tsx src/lib/docxLayout.test.ts && tsx src/lib/documentLayoutQa.test.ts",
+        "test": "tsx src/lib/docxTrackedChanges.test.ts && tsx src/lib/docxHighlights.test.ts && tsx src/lib/documentVersions.test.ts && tsx src/lib/documentCleanCopies.test.ts && tsx src/lib/legalCapabilities/index.test.ts && tsx src/lib/legalCapabilities/riskMap.test.ts && tsx src/lib/legalCapabilities/runLabel.test.ts && tsx src/lib/legalCapabilities/generalCapabilities.test.ts && tsx src/lib/legalCapabilities/run.test.ts && tsx src/lib/legalCapabilities/intent.test.ts && tsx src/lib/systemPrompt/capability-fragments.test.ts && tsx src/lib/legalCapabilities/commercialRealEstate.test.ts && tsx src/lib/legalCapabilities/documentAuthoring.test.ts && tsx src/lib/legalCapabilities/personalInjury.test.ts && tsx src/lib/legalCapabilities/recordingsCapability.test.ts && tsx src/lib/legalCapabilities/calendarCapability.test.ts && tsx src/lib/legalIntentRouter.test.ts && tsx src/lib/legalIntentRouter.shipped.test.ts && tsx src/lib/intentDetection.test.ts && tsx src/lib/chatSuggestions.test.ts && tsx src/lib/playbooks.test.ts && tsx src/lib/memory.test.ts && tsx src/lib/systemPrompt/index.test.ts && tsx src/lib/systemPrompt/temporalContext.test.ts && tsx src/lib/systemPrompt/substitute.test.ts && tsx src/lib/systemPrompt/firmContext.test.ts && tsx src/lib/uploadTypes.test.ts && tsx src/lib/htmlSanitize.test.ts && tsx src/lib/libreoffice.test.ts && tsx src/lib/libreofficeWarmup.test.ts && tsx src/lib/documentExtraction.test.ts && tsx src/lib/storage.test.ts && tsx src/lib/creClassifier.test.ts && tsx src/lib/piClassifier.test.ts && tsx src/lib/builtinWorkflows.test.ts && tsx src/lib/creAbstractFormat.test.ts && tsx src/lib/creReliability.test.ts && tsx src/lib/connectors/email/mime.test.ts && tsx src/lib/connectors/calendar/googleCalendar.test.ts && tsx src/lib/calendar/store.test.ts && tsx src/lib/calendar/apply.test.ts && tsx src/lib/calendar/tools.test.ts && tsx src/lib/matters/tools.test.ts && tsx src/lib/calendar/deadlines.test.ts && tsx src/lib/calendar/reminderScheduler.test.ts && tsx src/lib/signatures/hash.test.ts && tsx src/lib/signatures/tokens.test.ts && tsx src/lib/signatures/pdf.test.ts && tsx src/lib/signatures/certGen.test.ts && tsx src/lib/signatures/cert.test.ts && tsx src/lib/signatures/certificate.test.ts && tsx src/lib/signatures/store.test.ts && tsx src/routes/signatures.send.test.ts && tsx src/routes/chat.search.test.ts && tsx src/lib/signatures/anchors.test.ts && tsx src/lib/signatures/emailTemplates.test.ts && tsx src/lib/versionContext.test.ts && tsx src/lib/provenance.test.ts && tsx src/lib/enrichWithPriorEvents.test.ts && tsx src/lib/email/autoReplyGate.test.ts && tsx src/lib/email/threadLink.test.ts && tsx src/lib/email/inboxRead.test.ts && tsx src/lib/email/access.test.ts && tsx src/lib/operationSideEffects.test.ts && tsx src/lib/templates.test.ts && tsx src/lib/docxAssembly.test.ts && tsx src/lib/templateAssembly.test.ts && tsx src/lib/authoringQa.test.ts && tsx src/lib/authoringExecute.test.ts && tsx src/lib/chatTools.test.ts && tsx src/lib/chatMessages.test.ts && tsx src/lib/conversationContext.test.ts && tsx src/lib/conversationSummary/worker.test.ts && tsx src/lib/envValidation.test.ts && tsx src/lib/firmSeedArgs.test.ts && tsx src/lib/concurrency.test.ts && tsx src/lib/userLookup.test.ts && tsx src/lib/llm/models.test.ts && tsx src/lib/llm/claude.test.ts && tsx src/lib/llm/openrouterCatalog.test.ts && tsx src/lib/llm/openrouter.test.ts && tsx src/lib/llm/structured.test.ts && tsx src/lib/llm/openai.test.ts && tsx src/lib/llm/openaiAudio.test.ts && tsx src/lib/llm/openaiImage.test.ts && tsx src/lib/images/sourceImage.test.ts && tsx src/lib/images/imageTools.test.ts && tsx src/lib/pi/store.test.ts && tsx src/lib/pi/csvImport.test.ts && tsx src/lib/email/store.test.ts && tsx src/lib/email/branding.test.ts && tsx src/lib/email/send.test.ts && tsx src/lib/automation/types.test.ts && tsx src/lib/automation/runsStore.test.ts && tsx src/lib/automation/env.test.ts && tsx src/lib/automation/scheduler.test.ts && tsx src/lib/automation/ackTemplate.test.ts && tsx src/lib/automation/classify.test.ts && tsx src/lib/automation/verify.test.ts && tsx src/lib/automation/pdfInputs.test.ts && tsx src/lib/automation/match.test.ts && tsx src/lib/automation/pipeline.test.ts && tsx src/lib/automation/stageApprove.test.ts && tsx src/lib/automation/caseWrites.test.ts && tsx src/lib/automation/rehearsalFixtures.test.ts && tsx src/lib/recordings/env.test.ts && tsx src/lib/recordings/store.test.ts && tsx src/lib/recordings/assemblyai.test.ts && tsx src/lib/recordings/summarize.test.ts && tsx src/lib/recordings/transcriptPdf.test.ts && tsx src/lib/recordings/postToChat.test.ts && tsx src/lib/recordings/pipeline.test.ts && tsx src/lib/recordings/scheduler.test.ts && tsx src/lib/recordings/briefing.test.ts && tsx src/lib/recordings/timelineImage.test.ts && tsx src/lib/recordings/emailDraft.test.ts && npm run test:document-generation && npm run test:email-attachments && npm run test:email-ingestion",
+        "build": "tsc",
+        "start": "node dist/index.js",
+        "test:document-generation": "node --import tsx --test src/lib/documentGeneration/status.test.ts src/lib/documentGeneration/lease.test.ts src/lib/documentGeneration/draftBudget.test.ts src/lib/documentGeneration/responseGuard.test.ts src/lib/documentGeneration/conversation.test.ts src/lib/documentGeneration/sourceContext.test.ts",
+        "test:email-ingestion": "node --import tsx --test src/lib/email/inboundAttachments.test.ts",
+        "repair:email-attachments": "node --import tsx src/scripts/repairEmailAttachments.ts"
+    },
+    "dependencies": {
+        "@anthropic-ai/sdk": "^0.104.1",
+        "@aws-sdk/client-s3": "^3.1142.0",
+        "@aws-sdk/s3-request-presigner": "^3.1142.0",
+        "@google/genai": "^1.50.1",
+        "@napi-rs/canvas": "^0.1.97",
+        "@pdf-lib/fontkit": "^1.1.1",
+        "@sentry/node": "^10.69.0",
+        "@signpdf/placeholder-pdf-lib": "^3.2.4",
+        "@signpdf/signer-p12": "^3.2.4",
+        "@signpdf/signpdf": "^3.2.4",
+        "@supabase/supabase-js": "^2.49.4",
+        "cors": "^2.8.5",
+        "docx": "^9.8.1",
+        "dotenv": "^17.4.1",
+        "express": "^4.21.2",
+        "express-async-errors": "^3.1.1",
+        "fast-diff": "^1.3.0",
+        "fast-xml-parser": "^5.11.1",
+        "googleapis": "^174.0.1",
+        "helmet": "^8.3.0",
+        "jszip": "^3.10.2",
+        "mammoth": "^1.13.0",
+        "marked": "^18.0.14",
+        "multer": "^2.4.0",
+        "node-forge": "1.4.3",
+        "pdf-lib": "^1.17.1",
+        "pdfjs-dist": "^4.10.38",
+        "pg": "^8.23.0",
+        "resend": "^4.5.1",
+        "sanitize-html": "^2.17.7"
+    },
+    "devDependencies": {
+        "@types/cors": "^2.8.17",
+        "@types/express": "^4.17.21",
+        "@types/multer": "^2.3.0",
+        "@types/node": "^22.14.1",
+        "@types/node-forge": "^1.3.11",
+        "@types/pg": "^8.23.1",
+        "@types/sanitize-html": "^2.16.2",
+        "prettier": "^3.9.6",
+        "tsx": "^4.23.13",
+        "typescript": "^5.8.3"
+    },
+    "overrides": {
+        "node-forge": "$node-forge",
+        "brace-expansion@>=2.0.0 <2.1.7": "2.1.7",
+        "@google/genai": {
+            "protobufjs": "7.6.5"
+        },
+        "express": {
+            "body-parser": "1.20.9",
+            "qs": "6.17.1"
+        },
+        "express-rate-limit": {
+            "ip-address": "10.4.0"
+        },
+        "sanitize-html": {
+            "postcss": "8.5.25"
+        }
+    },
+    "license": "AGPL-3.0-only"
+}
