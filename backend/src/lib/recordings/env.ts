@@ -71,9 +71,9 @@ export function recordingsMaxRetries(env: Env = process.env): number {
 
 /**
  * Model the pipeline's LLM stages (summary, action items, briefing script) run
- * on: RECORDINGS_MODEL when set, otherwise the product runtime default (see
- * the CLAUDE.md model policy — DEFAULT_MAIN_MODEL is the single source of
- * truth; never hardcode Opus).
+ * on: RECORDINGS_MODEL when set, otherwise the product runtime default
+ * (DEFAULT_MAIN_MODEL in llm/models.ts is the single source of truth; never
+ * hardcode Opus).
  */
 export function recordingsModel(env: Env = process.env): string {
     const raw = env.RECORDINGS_MODEL?.trim();

@@ -86,7 +86,7 @@ At least one model provider key (`ANTHROPIC_API_KEY`, `GEMINI_API_KEY`, `OPENAI_
 
 Each executed PDF carries a cryptographic signature from one certificate, supplied as `SIGNING_CERT_P12_BASE64` and `SIGNING_CERT_PASSPHRASE` and validated at boot. Without them the backend uses an ephemeral development certificate that changes on every restart and logs a warning.
 
-1. Run `npx tsx scripts/generateSigningCert.ts` in `backend/`. It creates a five-year RSA-4096 certificate and writes both values into `backend/.env`; it won't overwrite an existing identity without `--force`.
+1. Run `npx tsx scripts/generateSigningCert.ts` in `backend/`. It creates a five-year RSA-4096 certificate and writes both values into `backend/.env`; it won't overwrite an existing identity without `--force`. The certificate is named for Coco Legal unless you pass your own, for example `--cn="Example Law LLP Document Signing" --org="Example Law LLP"`.
 2. Back up both values in a password manager. Your host must not be the only holder of the signing identity.
 3. Deploy, restart once, and confirm the boot log shows the same certificate serial both times.
 

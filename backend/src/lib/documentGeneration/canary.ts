@@ -63,8 +63,8 @@ export function runDocumentGenerationCanary(): Promise<DocumentGenerationCanaryS
                         level: 1,
                         pageBreak: true,
                         content: [
-                            "Treas. Reg. 1.1031(k)-1(g)(4), 26 U.S.C. § 1031(a)(3), and identifier XYZ-EXAMPLE-MARKETS-LLC-REGISTRATION-READINESS-2026 must remain legible.",
-                            "• Confirm access to https://www.example.com/registration-membership/who-has-to-register/overview.html?source=quill-document-generation-readiness-canary",
+                            "Treas. Reg. 1.1031(k)-1(g)(4), 26 U.S.C. § 1031(a)(3), and identifier XYZ-EXAMPLE-HOLDING-LLC-VERIFICATION-READINESS-2026 must remain legible.",
+                            "• Confirm access to https://www.example.com/verification-references/how-to-read-samples/overview.html?source=quill-document-generation-readiness-canary",
                             "(a) Preserve supplied legal numbering and use a hanging indent.",
                             "    (i) Allow long tokens and URLs to wrap without leaving the printable page.",
                         ].join("\n"),

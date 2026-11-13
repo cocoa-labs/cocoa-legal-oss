@@ -166,7 +166,7 @@ async function checkSchema(db: Db, ownerUserId: string): Promise<void> {
         if (error) {
             if (isMissingAutomationSchema(error)) {
                 die(
-                    `the "${table}" table is missing — apply backend/migrations/023_pi_cases_automation.sql via the Supabase SQL editor first.`,
+                    `the "${table}" table is missing — run `npm run migrate` (it applies 023_pi_cases_automation.sql) first.`,
                 );
             }
             die(`cannot reach "${table}": ${error.message}`);

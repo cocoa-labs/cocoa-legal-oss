@@ -39,7 +39,7 @@ const CARRY_OVER = [
     "USER_API_KEYS_ENCRYPTION_SECRET",
     // E-signature signing identity (scripts/generateSigningCert.ts). Rotating
     // changes the identity on every future envelope — visible on completion
-    // certificates and signing_cert_* attribution. See DEPLOYING.md.
+    // certificates and signing_cert_* attribution. See DEPLOY.md.
     "SIGNING_CERT_P12_BASE64",
     "SIGNING_CERT_PASSPHRASE",
     "ANTHROPIC_API_KEY",

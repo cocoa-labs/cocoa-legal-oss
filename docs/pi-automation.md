@@ -10,12 +10,12 @@ Nothing executes without a human. Approving a run applies the case writes; the a
 
 ## 2. Apply migrations
 
-Apply **023 then 024** by pasting each file into the Supabase dashboard **SQL editor** (repo convention — the startup hook only inspects, never auto-applies). Both are idempotent and safe to re-run.
+`npm run migrate` applies **023 and 024** with every other migration (see the README).
 
 1. `backend/migrations/023_pi_cases_automation.sql` — PI case tables + the `automation_runs` state machine + `email_messages.reply_to_address`.
 2. `backend/migrations/024_pi_playbook_seed.sql` — the 10 `pi.*` playbook defaults (registries, guidance, ack template, thresholds).
 
-**Verify (SQL editor):**
+**Verify (any SQL client):**
 
 ```sql
 -- 5 rows: the 023 tables exist

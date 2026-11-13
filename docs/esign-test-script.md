@@ -1,6 +1,6 @@
 # Native E-Signature — Test Script
 
-A manual QA pass for the in-app cryptographic e-signature engine. **This is not DocuSign** — it's a homegrown engine that flattens a document to PDF, emails per-signer magic links from the agent mailbox (the agent mailbox (`GMAIL_AGENT_ADDRESS`)), captures a typed/drawn signature, embeds a real **PKCS#7 cryptographic signature** + SHA-256 integrity hashes, and emits a Certificate of Completion.
+A manual QA pass for the in-app cryptographic e-signature engine. **This is not DocuSign** — it's a homegrown engine that flattens a document to PDF, emails per-signer magic links from the agent mailbox (`GMAIL_AGENT_ADDRESS`), captures a typed/drawn signature, embeds a real **PKCS#7 cryptographic signature** + SHA-256 integrity hashes, and emits a Certificate of Completion.
 
 Two things to know up front:
 - **You start it from chat, not a button** — the agent's `send_for_signature` tool. There is no "Send for signature" action on a document.
@@ -8,7 +8,7 @@ Two things to know up front:
 
 ## Setup
 - Backend (`:3001` by default; `:3004` under `restart-dev.sh`) + frontend (`:3003`) running; you signed in (your Supabase email = your signer identity).
-- Migrations **011 + 012 applied**. If the tool ever says *"e-signature isn't set up,"* they aren't (the store silently no-ops on missing schema).
+- Migrations applied with `npm run migrate` (011 and 012 create the e-signature tables). If the tool ever says *"e-signature isn't set up,"* they aren't (the store silently no-ops on missing schema).
 - Use a non-sensitive **DOCX** for the primary smoke test so the same
   LibreOffice conversion path used by production signing is exercised. Repeat
   with a PDF only when validating the passthrough path separately.
@@ -18,7 +18,7 @@ Two things to know up front:
 ## Happy-path test
 1. **Initiate** — in a chat with a PDF attached: *"Send this for signature to Alice <your-other-email> and to me to countersign."* → the agent calls `send_for_signature` → an in-chat **Approval card** appears (envelope = `pending_approval`; nothing sent yet).
 2. **Approve & send** — click **Approve & Send for signature** → **Confirm**. → Alice receives a **real email** from the agent mailbox (`GMAIL_AGENT_ADDRESS`) with the sign link; **you do not** (self-signers sign in-app). The card switches to a **live status** view (polls ~6s). *(Negative: if Gmail creds were missing, approve returns 503.)*
-3. **External signer** — open Alice's link → branded page, PDF in an iframe → **type or draw** a signature, tick the **ESIGN/UETA consent** box (required — submit is disabled without it), **Sign**. → Alice flips to **Signed** within ~6s.
+3. **External signer** — open Alice's link → branded page, PDF in an iframe → **type or draw** a signature, tick the **consent** box (required — submit is disabled without it; in controlled-beta mode it records a nonbinding test signature), **Sign**. → Alice flips to **Signed** within ~6s.
 4. **You countersign** — your row now shows **"It's your turn — Sign"** → sign + consent **in-app**. You're the last signer → **completion fires automatically**.
 5. **Completion** — envelope → `completed`; an **executed.pdf** (stamped + crypto-signed) and a **Certificate of Completion** are generated; an email with **both PDFs attached** goes to all signers + owner; the card shows **View signed PDF** + **Certificate**.
 6. **Verify** — open the **Certificate**: both SHA-256 hashes (original vs executed differ), the signer table (emails, signed times, IPs, consent), the full audit trail (sent/viewed/signed/completed), and the **Signer identity** block — the mode wording (ephemeral dev / org self-signed / CA-issued) plus the certificate CN, issuer, serial, expiry, and SHA-256 fingerprint, which must match the boot log's `[signing] identity:` line. Open **executed.pdf** in Acrobat/Preview: a signature is present (`/Sig`); *"validity unknown"* is expected until an AATL cert is installed.
@@ -32,7 +32,7 @@ Two things to know up front:
 ## Expected in dev (not bugs)
 - Non-AATL cert → "untrusted / validity unknown" in PDF viewers (only a purchased AATL certificate clears it).
 - **Without `SIGNING_CERT_P12_BASE64` set, the dev cert regenerates on every backend restart** → the signing identity changes across `tsx watch` reloads. With it set (via `scripts/generateSigningCert.ts`), the serial in the boot log must be stable across restarts.
-- External recipients can't open `localhost` links (prod public URL pending).
+- External recipients can't open `localhost` links. For real signers, set `SIGN_PUBLIC_BASE_URL` to your public frontend origin.
 - **Inbound** email / reply ingestion is manual only (`POST /email/inbound/refresh`, authed) — no Gmail push/auto-pull yet.
 - Completion email + executed-doc registration are best-effort (a Gmail/R2 hiccup won't roll back `completed`).
 - Signing order is **not** enforced (parallel signing); there's no decline endpoint wired in the router.
@@ -45,4 +45,4 @@ the full approve→sign→complete HTTP flow or the Gmail send, so the manual pa
 above is the end-to-end validation.
 
 ## "DocuSign" note
-If you specifically want the DocuSign SaaS, that's a different thing — a separate `legal:docusign` connector (MCP) + a `legal:signature-request` skill exist in the environment. This in-app feature is your own native engine; the two are not wired together.
+This is a native engine, not DocuSign, and there is no DocuSign integration.

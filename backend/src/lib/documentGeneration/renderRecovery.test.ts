@@ -195,7 +195,7 @@ test("attempt persistence failures are not mislabeled or retried as QA outages",
 });
 
 const LONG_URL =
-    "https://www.example.com/registration-membership/who-has-to-register/overview.html?identifier=XYZ-EXAMPLE-MARKETS-LLC-2026-REGULATORY-READINESS";
+    "https://www.example.com/verification-references/how-to-read-samples/overview.html?identifier=XYZ-EXAMPLE-HOLDING-LLC-2026-REGULATORY-READINESS";
 
 function memorandumFixture(): DocxSection[] {
     return Array.from({ length: 12 }, (_, index) => ({

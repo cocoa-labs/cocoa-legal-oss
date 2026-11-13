@@ -43,9 +43,8 @@ export const CLAUDE_LOW_MODELS = ["claude-haiku-4-5"] as const;
 export const GEMINI_LOW_MODELS = ["gemini-3.1-flash-lite-preview"] as const;
 export const OPENAI_LOW_MODELS = ["gpt-5.6-luna", "gpt-5.4-nano"] as const;
 
-// Project directive: the product runtime default is claude-sonnet-5
-// (cost-effective) for all server-side LLM applications — main, title, and
-// tabular. See CLAUDE.md at the repo root for the policy. Opus 5, Fable 5, and
+// The product runtime default is claude-sonnet-5 (cost-effective) for all
+// server-side LLM applications — main, title, and tabular. Opus 5, Fable 5, and
 // the other tiers remain selectable for users who explicitly opt in via
 // account settings / the client picker.
 export const DEFAULT_MAIN_MODEL = "claude-sonnet-5";

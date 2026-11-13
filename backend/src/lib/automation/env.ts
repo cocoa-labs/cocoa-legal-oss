@@ -65,8 +65,8 @@ export function automationLlmClassifyEnabled(env: Env = process.env): boolean {
 
 /**
  * Model the pipeline's LLM stages run on: AUTOMATION_MODEL when set,
- * otherwise the product runtime default (see the CLAUDE.md model policy —
- * DEFAULT_MAIN_MODEL is the single source of truth).
+ * otherwise the product runtime default (DEFAULT_MAIN_MODEL in llm/models.ts
+ * is the single source of truth).
  */
 export function automationModel(env: Env = process.env): string {
     const raw = env.AUTOMATION_MODEL?.trim();

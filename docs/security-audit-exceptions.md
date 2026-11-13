@@ -12,4 +12,4 @@ No high or critical production advisories in either package. These moderate find
 | frontend | `glob`, `minimatch`, `@sentry/bundler-plugins`, `@sentry/webpack-plugin`, `@sentry/nextjs` | same `glob`/`minimatch` findings | Sentry's Next.js build plugin | Build time only. |
 | frontend | `fast-uri`, `ajv`, `schema-utils`, `webpack`, `minimizer-webpack-plugin` | fast-uri scheme spoofing via percent-encoding | webpack option validation | Build time only. |
 
-Before deploying, upgrade the parents once fixes ship, or record each accepted finding in `security/advisory-exceptions.json` with an owner, a bounded rationale and an expiry date. An exception never covers a high or critical finding.
+Before deploying, upgrade the parents once fixes ship, or record each accepted finding under `moderate` in `security/advisory-exceptions.json` with `package`, `directory` (`backend` or `frontend`), `reason` and an ISO-8601 `expires_at`. An exception never covers a high or critical finding.

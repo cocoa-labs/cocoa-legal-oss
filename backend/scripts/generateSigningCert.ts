@@ -80,7 +80,7 @@ function main() {
     const stamp = new Date().toISOString();
     const block =
         `\n# E-signature signing identity — generated ${stamp} by scripts/generateSigningCert.ts\n` +
-        `# Serial ${minted.serialHex} · expires ${minted.notAfter.toISOString()} · DO NOT rotate casually (see docs/deploy/DEPLOYING.md)\n` +
+        `# Serial ${minted.serialHex} · expires ${minted.notAfter.toISOString()} · DO NOT rotate casually (see DEPLOY.md)\n` +
         `SIGNING_CERT_P12_BASE64="${minted.p12.toString("base64")}"\n` +
         `SIGNING_CERT_PASSPHRASE="${passphrase}"\n`;
 

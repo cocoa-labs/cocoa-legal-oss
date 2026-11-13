@@ -2,7 +2,7 @@
 
 Coco Legal is an agentic legal document review platform: matter-centered document analysis, guided drafting and review, legal research, tracked-change editing, e-signature and an auditable chain of custody for every AI-driven change. Lawyers chat with their documents through **Quill**, the built-in assistant, which reads, highlights, drafts, edits and proposes changes. Every change that touches a document goes through an approval-and-undo ledger.
 
-> **Community release.** Cocoa Labs built Coco Legal and has released it as-is for anyone to run, study and change. It is **not maintained**: issues are closed, pull requests may go unreviewed, and there is no support. Fork it and make it yours.
+> **Community release.** Cocoa Labs built Coco Legal and gives it away as-is for anyone to run, study and change. Cocoa Labs **no longer maintains or supports it**: issues are closed, pull requests won't be reviewed, and security reports may go unanswered. Fork it and make it yours.
 
 ## What it does
 
@@ -72,7 +72,7 @@ You need Docker (with about 6 GB of memory available), Node.js 20 or newer, and 
    docker compose run --rm --no-deps -e DATABASE_URL=postgresql://postgres:postgres@host.docker.internal:54322/postgres backend npm run migrate
    ```
 
-5. **Allow your email to sign up** and create the firm. This writes nothing without `--apply`, so run it once without to preview:
+5. **Allow your email to sign up** and create the firm. This writes nothing without `--apply`, so run it once without to preview. On a fresh install `--admin` only allowlists you (see [Known limitations](#known-limitations)):
 
    ```bash
    docker compose run --rm --no-deps backend npm run seed:firm -- --name "Example Law LLP" --admin you@example.com --apply
@@ -105,7 +105,7 @@ npm run dev --prefix backend    # http://localhost:3001
 npm run dev --prefix frontend   # http://localhost:3003
 ```
 
-For this mode, point the backend at RustFS and ClamAV on localhost in `backend/.env` (`R2_ENDPOINT_URL=http://localhost:9000`, the `S3_ACCESS_KEY`/`S3_SECRET_KEY` from `.env`, `R2_BUCKET_NAME=coco-legal`, `CLAMAV_HOST=localhost`) and create `frontend/.env.local` from `frontend/.env.local.example`. You need LibreOffice installed locally for document conversion.
+For this mode, point the backend at RustFS and ClamAV on localhost in `backend/.env` (`R2_ENDPOINT_URL=http://localhost:9000`, the `S3_ACCESS_KEY`/`S3_SECRET_KEY` from `.env`, `R2_BUCKET_NAME=coco-legal`, `CLAMAV_HOST=localhost`) and create `frontend/.env.local` from `frontend/.env.local.example`. You need LibreOffice installed locally for document conversion. Uploads return 503 until ClamAV has loaded its signature database, which takes a few minutes after its first start.
 
 ## Controlled-beta mode
 
@@ -140,6 +140,19 @@ The firm is identified by `FIRM_ID`, which defaults to `pilot-firm`, the slug th
 
 `backend/schema.sql` is a reference snapshot of an older schema. Create databases with `npm run migrate`, not with that file.
 
+## Known limitations
+
+Nobody will fix these upstream. They are listed so you can decide what to change in your fork.
+
+- **`seed:firm --admin` on a fresh install.** Since migration 034, sign-up only claims explicit invitations, so the seed script can grant firm membership only to accounts that already exist. On a fresh install it allowlists you, and your account gets a personal workspace when you create your first matter. Re-run it after people sign up to make `--admin` accounts firm owners; `--allow` accounts then become firm lawyers, a role that can't create matters in the firm organization.
+- **Firm memory has no approval screen.** Suggested firm-wide memory can only be reviewed through the `/firm-memory` API.
+- **Any signed-in user can edit firm playbooks.**
+- **Containers run as root.** Both Dockerfiles keep the base image's root user, so LibreOffice converts uploads as root. Add a non-root user before you expose a deployment.
+- **Fixed product wording.** The login and sign-up pages always call Coco Legal "a demo service" (`frontend/src/app/login/page.tsx`, `frontend/src/app/signup/page.tsx`), and signed PDFs name the signature "Coco Legal Signing" (`backend/src/lib/signatures/pdf.ts`).
+- **The Source code link is only in the account menu.** If you run a modified version for other people, the AGPL asks you to offer its source to every remote user, including signers on the public signing page.
+- **Old migration headers.** Some files in `backend/migrations/` say to apply them by hand in the Supabase SQL editor. Use `npm run migrate` instead: it records each migration in the checksum ledger that the readiness check verifies. Never edit a migration after a deployment has applied it.
+- **The strict dependency check fails today.** `node security/check-production-audit.mjs` reports the moderate advisories listed in [docs/security-audit-exceptions.md](docs/security-audit-exceptions.md) until you upgrade those packages or record exceptions.
+
 ## Deploying
 
 See [DEPLOY.md](DEPLOY.md) for Supabase Cloud, storage, the backend on Docker or Railway, and the frontend on Docker or Vercel.
@@ -147,8 +160,8 @@ See [DEPLOY.md](DEPLOY.md) for Supabase Cloud, storage, the backend on Docker or
 ## Development
 
 ```bash
-cd backend && npm test && npm run test:reliability && npm run test:document-reliability
-cd frontend && npx tsc --noEmit && npx eslint src && npm run test:public-settings
+(cd backend && npm test && npm run test:reliability && npm run test:document-reliability)
+(cd frontend && npx tsc --noEmit && npx eslint src && npm run test:public-settings)
 ```
 
 Backend tests are hermetic: no database or network. Some document tests use LibreOffice when it is installed and skip otherwise. CI runs the same checks on every pull request. See [CONTRIBUTING.md](CONTRIBUTING.md) and [AGENTS.md](AGENTS.md).

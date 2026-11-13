@@ -9,8 +9,12 @@
 //   1. the firm's organizations row
 //   2. the firm's firm_playbooks container
 //   3. allowed_emails rows (028's trigger rejects any sign-up not listed)
-//   4. organization_memberships for existing accounts (027's trigger only
-//      enrolls NEW sign-ups, so earlier accounts need this or /firm-memory 403s)
+//   4. organization_memberships, but only for accounts that ALREADY exist.
+//      Since migration 034, sign-up claims only explicit invitations, so on a
+//      fresh install this step grants nothing: new accounts get a personal
+//      workspace when they create their first matter. Re-run after people sign
+//      up to make --admin accounts firm owners (and --allow accounts firm
+//      lawyers, a role that cannot create matters in the firm organization).
 //
 // Dry run by default; nothing is written without --apply:
 //   npm run seed:firm -- --name "Example Law LLP" --admin you@example.com --allow colleague@example.com
@@ -131,8 +135,8 @@ async function main() {
         }
     }
 
-    // 4. Membership backfill. 027's trigger is AFTER INSERT on auth.users, so it
-    //    only fires for NEW signups — existing accounts need this explicitly or
+    // 4. Membership backfill for accounts that already exist. Sign-up (034's
+    //    handle_new_user) claims only explicit invitations, so without this
     //    authorizeFirm() denies and /firm-memory returns 403.
     const { data: page, error: userErr } = await db.auth.admin.listUsers({
         page: 1,

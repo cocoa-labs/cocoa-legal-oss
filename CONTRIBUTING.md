@@ -1,13 +1,13 @@
 # Contributing
 
-Coco Legal is a community release and is not maintained by Cocoa Labs. Issues are closed and pull requests may go unreviewed. The best way to build on it is to **fork it** and run your own version.
+Coco Legal is a community release, and Cocoa Labs no longer maintains it. Issues are closed and pull requests won't be reviewed or merged. The way to build on it is to **fork it** and run your own version.
 
-If you do open a pull request:
+If you maintain a fork:
 
 - Keep it focused on one bug, feature or cleanup.
 - Update docs and `.env.example` files when you change setup, configuration or user-facing behavior.
 - Never commit secrets, API keys, real documents, client data or `.env` files.
-- Run the checks below and include what you ran in the description.
+- Run the checks below before you ship a change.
 
 ## Checks
 

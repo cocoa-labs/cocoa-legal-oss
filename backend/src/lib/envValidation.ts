@@ -181,7 +181,7 @@ export function validateCriticalEnv(
       "SIGNING_CERT_P12_BASE64 is not set — e-signatures will use an " +
         "ephemeral self-signed certificate whose identity changes on every " +
         "restart. Generate a persistent org certificate with " +
-        "scripts/generateSigningCert.ts (see docs/deploy/DEPLOYING.md).",
+        "scripts/generateSigningCert.ts (see DEPLOY.md).",
     );
   }
 

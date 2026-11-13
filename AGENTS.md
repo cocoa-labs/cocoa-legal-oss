@@ -13,11 +13,11 @@ Guidance for people and coding agents changing this codebase. User-facing setup 
 ## Commands
 
 ```bash
-cd backend && npm test                      # hermetic unit tests (tsx), no DB or network
-cd backend && npm run test:reliability      # reliability suites
-cd backend && npm run test:document-reliability
-cd frontend && npx tsc --noEmit && npx eslint src
-cd frontend && npm run test:public-settings # deployment-link and consent-copy tests
+(cd backend && npm test)                    # hermetic unit tests (tsx), no DB or network
+(cd backend && npm run test:reliability)    # reliability suites
+(cd backend && npm run test:document-reliability)
+(cd frontend && npx tsc --noEmit && npx eslint src)
+(cd frontend && npm run test:public-settings) # deployment-link and consent-copy tests
 ```
 
 New backend test files must be added to the `test` script in `backend/package.json`; they are not discovered automatically.

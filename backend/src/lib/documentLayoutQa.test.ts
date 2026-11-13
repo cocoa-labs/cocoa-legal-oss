@@ -19,12 +19,12 @@ import { reflowFramedDocx } from "./docxLayout";
 import { checkLibreOfficeReachable } from "./libreoffice";
 
 function testRejoinsOnlyExactWrappedLongTokens(): void {
-    const identifier = "XYZ-EXAMPLE-MARKETS-LLC-2026-REGULATORY-READINESS";
+    const identifier = "XYZ-EXAMPLE-HOLDING-LLC-2026-REGULATORY-READINESS";
     assert.deepEqual(
         rejoinWrappedLongTokens(
             [identifier, "remains", "visible"],
             [
-                "XYZ-EXAMPLE-MARKETS-",
+                "XYZ-EXAMPLE-HOLDING-",
                 "LLC-2026-REGULATORY-READINESS",
                 "remains",
                 "visible",
@@ -35,9 +35,9 @@ function testRejoinsOnlyExactWrappedLongTokens(): void {
     assert.deepEqual(
         rejoinWrappedLongTokens(
             [identifier],
-            ["XYZ-EXAMPLE-MARKETS-", "LLC-2026-REGULATORY-CHANGED"],
+            ["XYZ-EXAMPLE-HOLDING-", "LLC-2026-REGULATORY-CHANGED"],
         ),
-        ["XYZ-EXAMPLE-MARKETS-", "LLC-2026-REGULATORY-CHANGED"],
+        ["XYZ-EXAMPLE-HOLDING-", "LLC-2026-REGULATORY-CHANGED"],
     );
     assert.deepEqual(
         rejoinWrappedLongTokens(

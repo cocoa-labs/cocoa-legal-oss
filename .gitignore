@@ -21,3 +21,7 @@ coverage
 # Local output from repair and export scripts; may contain document content.
 /output/
 /tmp/
+
+# Supabase CLI local state
+supabase/.temp/
+supabase/.branches/

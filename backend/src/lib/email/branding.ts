@@ -64,7 +64,7 @@ export type BrandMode = "full" | "light";
  * Wrap TRUSTED inner HTML in the branded shell.
  *  - "full":  cream page, ❋ Coco Legal serif wordmark, white rounded card,
  *             footer. For new / standalone emails.
- *  - "light": the fragment plus a hairline rule, a small "❋ Quill · Coco Legal
+ *  - "light": the fragment plus a hairline rule, a small "❋ Quill · Coco
  *             Legal" sign-off, and the footer — no wordmark/page chrome, so it
  *             reads naturally inside an existing thread.
  * `innerHtml` is trusted and is NOT sanitized here.

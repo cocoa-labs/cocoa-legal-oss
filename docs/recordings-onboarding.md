@@ -1,10 +1,10 @@
 # Recordings & Transcription — onboarding runbook
 
-Feature: record (MacBook mic) or upload (mp3/wav/m4a/webm/ogg/flac) → AssemblyAI transcription with speaker labels → Quill summary + action items → on-demand voice briefing (OpenAI TTS), timeline image (`gpt-image-2`), and draft-then-approve email with the transcript PDF attached. Ships on `main` after the `feat/recordings-transcription` merge. Spec: `docs/superpowers/specs/2026-07-17-coco-legal-recordings-design.md`.
+Feature: record (MacBook mic) or upload (mp3/wav/m4a/webm/ogg/flac) → AssemblyAI transcription with speaker labels → Quill summary + action items → on-demand voice briefing (OpenAI TTS), timeline image (`gpt-image-2`), and draft-then-approve email with the transcript PDF attached.
 
 ## 1. One-time setup (required before anything works end-to-end)
 
-1. **Apply migration 025** in the Supabase dashboard SQL editor: paste `backend/migrations/025_recordings.sql` and run it (idempotent — safe to re-run). Note: 023 and 024 (PI automation) are also still pending; apply them in the same sitting if you haven't.
+1. **Migration 025** creates the recordings tables. `npm run migrate` applies it with every other migration (see the README).
 2. **Create an AssemblyAI account** (free tier is fine to start) at assemblyai.com → copy the API key → add to `backend/.env`:
    ```
    ASSEMBLYAI_API_KEY=<your key>

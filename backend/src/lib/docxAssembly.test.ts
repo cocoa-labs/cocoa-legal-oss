@@ -130,7 +130,7 @@ test("compatibility renderer tightens layout and suppresses optional page breaks
             heading: "Long Heading",
             level: 1,
             content:
-                "A long identifier XYZ-EXAMPLE-MARKETS-LLC-REGISTRATION-READINESS-2026 remains visible.",
+                "A long identifier XYZ-EXAMPLE-HOLDING-LLC-VERIFICATION-READINESS-2026 remains visible.",
             pageBreak: true,
         },
     ];

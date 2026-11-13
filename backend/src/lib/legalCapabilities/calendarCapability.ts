@@ -14,7 +14,7 @@
 // only surfaces on the firm-aware path (the persona.ts base prompt is never
 // touched, keeping the index.test.ts byte-equality snapshot intact).
 //
-// playbookKeys is EMPTY by design (CLAUDE.md: never reference a playbook key
+// playbookKeys is EMPTY by design (AGENTS.md: never reference a playbook key
 // without seeding it); the scheduling flow carries no firm playbook knobs. The
 // invite/Meet path is declared via connectorRequirements: ["calendar"].
 
@@ -66,7 +66,7 @@ export const calendarCapability: LegalCapability = {
         ].join(" "),
     },
     // No firm playbook knobs in the scheduling flow; nothing to seed, nothing to
-    // inline. (CLAUDE.md: never reference a playbook key without seeding it.)
+    // inline. (AGENTS.md: never reference a playbook key without seeding it.)
     playbookKeys: [],
     intentSignals: {
         keywords: [

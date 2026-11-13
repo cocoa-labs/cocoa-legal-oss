@@ -15,7 +15,7 @@
 // registered, so this only surfaces on the firm-aware path.
 //
 // playbookKeys is EMPTY by design: the recordings flow carries no firm
-// playbook knobs, and CLAUDE.md forbids referencing a playbook key without
+// playbook knobs, and AGENTS.md forbids referencing a playbook key without
 // seeding it — so the prompts inline none. Because there is no playbook email
 // TEMPLATE (the draft is assembled deterministically from the summary in
 // recordings/emailDraft.ts), outputs declares NO draft_email binding (that
@@ -70,7 +70,7 @@ export const recordingsCapability: LegalCapability = {
         ].join(" "),
     },
     // No firm playbook knobs in the recordings flow; nothing to seed, nothing
-    // to inline. (CLAUDE.md: never reference a playbook key without seeding it.)
+    // to inline. (AGENTS.md: never reference a playbook key without seeding it.)
     playbookKeys: [],
     intentSignals: {
         keywords: [
