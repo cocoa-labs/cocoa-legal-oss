@@ -309,7 +309,7 @@ projectChatRouter.post("/", requireAuth, async (req, res) => {
         db,
         anchor,
     );
-    if (chatId) await restoreChatEmailAttachments({ db, chatId, table: "project_chat_messages", userId, userEmail, docIndex, docStore });
+    if (chatId) await restoreChatEmailAttachments({ db, chatId, userId, userEmail, docIndex, docStore });
     const projectState = await getProjectActionState(db, projectId).catch(
         () => ({
             documents: [],

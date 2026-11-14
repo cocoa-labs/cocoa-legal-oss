@@ -119,14 +119,13 @@ export async function restoreEmailAttachmentContext(params: {
 export async function restoreChatEmailAttachments(params: {
   db: Db;
   chatId: string;
-  table?: "chat_messages" | "project_chat_messages";
   userId: string;
   userEmail?: string | null;
   docIndex: DocIndex;
   docStore: DocStore;
 }) {
   const { data, error } = await params.db
-    .from(params.table ?? "chat_messages")
+    .from("chat_messages")
     .select("content")
     .eq("chat_id", params.chatId)
     .eq("role", "assistant");
