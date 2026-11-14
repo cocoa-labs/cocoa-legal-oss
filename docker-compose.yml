@@ -1,4 +1,4 @@
-# Coco Legal on Docker Compose: backend, frontend, S3-compatible storage (RustFS)
+# Cocoa Legal on Docker Compose: backend, frontend, S3-compatible storage (RustFS)
 # and the upload virus scanner (ClamAV), for running on ONE machine (the README
 # quickstart). Every port is published on 127.0.0.1 only. This file is not a
 # production setup: for a server, follow DEPLOY.md.
@@ -13,7 +13,7 @@
 # Controlled-beta mode (the default in backend/.env.example) refuses uploads
 # unless ClamAV is healthy, so the backend waits for it. First start takes a few
 # minutes while ClamAV downloads its signature database.
-name: coco-legal
+name: cocoa-legal
 
 services:
   # S3-compatible storage for local use. RustFS is an Apache-2.0 object store;
@@ -21,7 +21,7 @@ services:
   rustfs:
     image: rustfs/rustfs:1.0.5
     environment:
-      RUSTFS_ACCESS_KEY: ${S3_ACCESS_KEY:-cocolegal}
+      RUSTFS_ACCESS_KEY: ${S3_ACCESS_KEY:-cocoalegal}
       RUSTFS_SECRET_KEY: ${S3_SECRET_KEY:?set S3_SECRET_KEY in .env (see compose.env.example)}
       RUSTFS_CONSOLE_ENABLE: "true"
     ports:
@@ -42,13 +42,13 @@ services:
       rustfs:
         condition: service_healthy
     environment:
-      AWS_ACCESS_KEY_ID: ${S3_ACCESS_KEY:-cocolegal}
+      AWS_ACCESS_KEY_ID: ${S3_ACCESS_KEY:-cocoalegal}
       AWS_SECRET_ACCESS_KEY: ${S3_SECRET_KEY:?set S3_SECRET_KEY in .env (see compose.env.example)}
       AWS_DEFAULT_REGION: us-east-1
     entrypoint:
       - /bin/sh
       - -c
-      - aws --endpoint-url http://rustfs:9000 s3api head-bucket --bucket coco-legal 2>/dev/null || aws --endpoint-url http://rustfs:9000 s3 mb s3://coco-legal
+      - aws --endpoint-url http://rustfs:9000 s3api head-bucket --bucket cocoa-legal 2>/dev/null || aws --endpoint-url http://rustfs:9000 s3 mb s3://cocoa-legal
     restart: "no"
 
   clamav:
@@ -78,9 +78,9 @@ services:
       PORT: "3001"
       R2_ENDPOINT_URL: http://rustfs:9000
       R2_PUBLIC_ENDPOINT_URL: ${R2_PUBLIC_ENDPOINT_URL:-http://localhost:9000}
-      R2_ACCESS_KEY_ID: ${S3_ACCESS_KEY:-cocolegal}
+      R2_ACCESS_KEY_ID: ${S3_ACCESS_KEY:-cocoalegal}
       R2_SECRET_ACCESS_KEY: ${S3_SECRET_KEY:?set S3_SECRET_KEY in .env (see compose.env.example)}
-      R2_BUCKET_NAME: coco-legal
+      R2_BUCKET_NAME: cocoa-legal
       CLAMAV_HOST: clamav
       CLAMAV_PORT: "3310"
       SUPABASE_URL: ${BACKEND_SUPABASE_URL:-http://host.docker.internal:54321}

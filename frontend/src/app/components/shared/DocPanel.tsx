@@ -15,9 +15,9 @@ import {
 } from "./types";
 import type {
     CitationQuote,
-    CocoLegalCitationAnnotation,
-    CocoLegalEditAnnotation,
-    CocoLegalHighlightAnnotation,
+    CocoaLegalCitationAnnotation,
+    CocoaLegalEditAnnotation,
+    CocoaLegalHighlightAnnotation,
 } from "./types";
 
 function isDocxFilename(name: string): boolean {
@@ -40,16 +40,16 @@ function isImageFilename(name: string): boolean {
  */
 export type DocPanelMode =
     | { kind: "document" }
-    | { kind: "citation"; citation: CocoLegalCitationAnnotation }
+    | { kind: "citation"; citation: CocoaLegalCitationAnnotation }
     | {
           kind: "highlight";
           title: string;
-          highlights: CocoLegalHighlightAnnotation[];
+          highlights: CocoaLegalHighlightAnnotation[];
           activeHighlightId?: string | null;
       }
     | {
           kind: "edit";
-          edit: CocoLegalEditAnnotation;
+          edit: CocoaLegalEditAnnotation;
           /**
            * True while an accept/reject request for this exact edit is in
            * flight. Scoped per-edit (not per-document) so sibling edits on
@@ -240,7 +240,7 @@ function CitationHeader({
     filename,
     isReloading,
 }: {
-    citation: CocoLegalCitationAnnotation;
+    citation: CocoaLegalCitationAnnotation;
     documentId: string;
     versionId: string | null;
     filename: string;
@@ -383,7 +383,7 @@ function EditResolveButtons({
     onResolved,
     onError,
 }: {
-    edit: CocoLegalEditAnnotation;
+    edit: CocoaLegalEditAnnotation;
     /**
      * True while an accept/reject for any edit on this document is in
      * flight (triggered from here, the inline EditCard, the bulk bar, or

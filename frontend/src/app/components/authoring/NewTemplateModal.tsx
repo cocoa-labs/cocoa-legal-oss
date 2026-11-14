@@ -9,7 +9,7 @@ import {
     Sparkles,
     X,
 } from "lucide-react";
-import { createTemplate, generateTemplate } from "@/app/lib/cocoLegalApi";
+import { createTemplate, generateTemplate } from "@/app/lib/cocoaLegalApi";
 import type {
     DocTemplateSection,
     DocTemplateVariable,
@@ -248,7 +248,7 @@ export function NewTemplateModal({
                                 <div className="flex items-center gap-2 rounded-lg border border-blue-100 bg-blue-50 px-3 py-2 text-xs text-blue-800">
                                     <FileText className="h-3.5 w-3.5 shrink-0" />
                                     Parameterizing from your uploaded sample —
-                                    Coco Legal will turn it into a reusable
+                                    Cocoa Legal will turn it into a reusable
                                     template.
                                 </div>
                             )}
@@ -340,7 +340,7 @@ export function NewTemplateModal({
                                 Draft a reusable template
                             </h2>
                             <p className="mt-2 max-w-xl text-sm leading-6 text-gray-500">
-                                Coco Legal will draft the section skeleton and a
+                                Cocoa Legal will draft the section skeleton and a
                                 variable intake schema from your brief
                                 {initialSampleDocumentId
                                     ? " and your uploaded sample"

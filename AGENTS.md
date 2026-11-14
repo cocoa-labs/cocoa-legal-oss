@@ -1,11 +1,11 @@
-# AGENTS.md — working on Coco Legal
+# AGENTS.md — working on Cocoa Legal
 
 Guidance for people and coding agents changing this codebase. User-facing setup lives in [README.md](README.md); deployment in [DEPLOY.md](DEPLOY.md).
 
 ## Layout
 
 - `backend/` — Express + TypeScript API. `src/routes/` (HTTP), `src/lib/` (domain logic, agent tools, LLM providers, documents, e-signature, email, calendar, automation), `migrations/` (numbered SQL), `scripts/` (operational scripts run with tsx).
-- `frontend/` — Next.js app. `src/app/(pages)/` routes, `src/app/components/` UI, `src/app/lib/cocoLegalApi.ts` the API client.
+- `frontend/` — Next.js app. `src/app/(pages)/` routes, `src/app/components/` UI, `src/app/lib/cocoaLegalApi.ts` the API client.
 - `fixtures/legal/` — fictional sample documents and their generator.
 - `docs/` — runbooks and test scripts for specific features.
 - `supabase/config.toml` — local Supabase CLI stack (Postgres + Auth only).

@@ -255,12 +255,12 @@ async function main(): Promise<void> {
             "calendarList.list": {
                 items: [
                     { id: "primary", summary: "legal@example.com", primary: true, accessRole: "owner" },
-                    { id: "firmcal@group.calendar.google.com", summary: "Coco Legal", accessRole: "owner" },
+                    { id: "firmcal@group.calendar.google.com", summary: "Cocoa Legal", accessRole: "owner" },
                 ],
             },
         });
         const c = new GoogleCalendarConnector(client as never);
-        const id = await c.ensureFirmCalendar("Coco Legal");
+        const id = await c.ensureFirmCalendar("Cocoa Legal");
         assert.equal(id, "firmcal@group.calendar.google.com");
         assert.equal(callOf(calls, "calendars.insert"), undefined, "no create when one already exists");
     });
@@ -271,12 +271,12 @@ async function main(): Promise<void> {
             "calendars.insert": { id: "newfirm@group.calendar.google.com" },
         });
         const c = new GoogleCalendarConnector(client as never);
-        const id = await c.ensureFirmCalendar("Coco Legal");
+        const id = await c.ensureFirmCalendar("Cocoa Legal");
         assert.equal(id, "newfirm@group.calendar.google.com");
         const insert = callOf(calls, "calendars.insert");
         assert.ok(insert, "calendars.insert called");
         const body = (insert!.args as { requestBody: { summary: string } }).requestBody;
-        assert.equal(body.summary, "Coco Legal");
+        assert.equal(body.summary, "Cocoa Legal");
     });
 
     // Restore env for any downstream test process reuse.

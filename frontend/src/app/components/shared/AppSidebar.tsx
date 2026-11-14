@@ -30,12 +30,12 @@ import { useUserProfile } from "@/contexts/UserProfileContext";
 import { useChatHistoryContext } from "@/app/contexts/ChatHistoryContext";
 import { useRouter, usePathname } from "next/navigation";
 import Link from "next/link";
-import { CocoLegalIcon } from "@/components/chat/coco-legal-icon";
+import { CocoaLegalIcon } from "@/components/chat/cocoa-legal-icon";
 import { SidebarChatItem } from "@/app/components/shared/SidebarChatItem";
 import { ThemeToggle } from "@/app/components/shared/ThemeToggle";
-import { listChats, listProjects } from "@/app/lib/cocoLegalApi";
+import { listChats, listProjects } from "@/app/lib/cocoaLegalApi";
 import { useSignatureSummary } from "@/app/components/legal/SignatureSummaryContext";
-import type { CocoLegalChat, CocoLegalProject } from "@/app/components/shared/types";
+import type { CocoaLegalChat, CocoaLegalProject } from "@/app/components/shared/types";
 import {
     getAccountDisplayName,
     getAccountInitial,
@@ -104,12 +104,12 @@ const RAIL_ITEMS: NavLeaf[] = [
 ];
 
 const STORAGE_KEYS = {
-    groups: "coco.sidebar.navGroups.v1",
-    recentMatters: "coco.sidebar.recentMattersCollapsed.v1",
-    assistantHistory: "coco.sidebar.assistantHistoryCollapsed.v1",
+    groups: "cocoa.sidebar.navGroups.v1",
+    recentMatters: "cocoa.sidebar.recentMattersCollapsed.v1",
+    assistantHistory: "cocoa.sidebar.assistantHistoryCollapsed.v1",
 } as const;
 
-function formatRecentMatterDate(project: CocoLegalProject) {
+function formatRecentMatterDate(project: CocoaLegalProject) {
     const raw = project.updated_at || project.created_at;
     const date = new Date(raw);
     if (Number.isNaN(date.getTime())) return "No activity";
@@ -149,7 +149,7 @@ export function AppSidebar({ isOpen, onToggle }: AppSidebarProps) {
     const [projectNames, setProjectNames] = useState<Record<string, string>>(
         {},
     );
-    const [recentProjects, setRecentProjects] = useState<CocoLegalProject[] | null>(
+    const [recentProjects, setRecentProjects] = useState<CocoaLegalProject[] | null>(
         null,
     );
     // Chat-history title search. Deliberately LOCAL view state: the results
@@ -157,7 +157,7 @@ export function AppSidebar({ isOpen, onToggle }: AppSidebarProps) {
     // is untouched and clearing the box restores it instantly.
     const [chatSearch, setChatSearch] = useState("");
     const [chatSearchResults, setChatSearchResults] = useState<
-        CocoLegalChat[] | null
+        CocoaLegalChat[] | null
     >(null);
     const [chatSearchLoading, setChatSearchLoading] = useState(false);
 
@@ -467,7 +467,7 @@ export function AppSidebar({ isOpen, onToggle }: AppSidebarProps) {
                             href="/assistant"
                             className="flex items-center gap-1.5 hover:opacity-80 transition-opacity"
                         >
-                            <CocoLegalIcon
+                            <CocoaLegalIcon
                                 size={22}
                                 style={{
                                     filter:
@@ -479,7 +479,7 @@ export function AppSidebar({ isOpen, onToggle }: AppSidebarProps) {
                                     shouldAnimate ? "sidebar-fade-in" : ""
                                 }`}
                             >
-                                Coco Legal
+                                Cocoa Legal
                             </span>
                         </Link>
                     </div>

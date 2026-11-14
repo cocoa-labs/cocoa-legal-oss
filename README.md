@@ -1,48 +1,137 @@
-# Coco Legal
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="docs/images/logo-dark.svg">
+    <img src="docs/images/logo.svg" width="96" height="96" alt="Cocoa Legal logo, a twelve-petal flower">
+  </picture>
+</p>
 
-Coco Legal is an agentic legal document review platform: matter-centered document analysis, guided drafting and review, legal research, tracked-change editing, e-signature and an auditable chain of custody for every AI-driven change. Lawyers chat with their documents through **Quill**, the built-in assistant, which reads, highlights, drafts, edits and proposes changes. Every change that touches a document goes through an approval-and-undo ledger.
+<h1 align="center">Cocoa Legal</h1>
 
-> **Community release.** Cocoa Labs built Coco Legal and gives it away as-is for anyone to run, study and change. Cocoa Labs **no longer maintains or supports it**: issues are closed, pull requests won't be reviewed, and security reports may go unanswered. Fork it and make it yours.
+<p align="center"><strong>An open-source legal workspace with an AI colleague that reads, cites, redlines and drafts, records every change it makes, and lets you undo its document edits.</strong></p>
 
-## What it does
+<p align="center">
+  <a href="LICENSE"><img alt="License: AGPL-3.0-only" src="https://img.shields.io/badge/license-AGPL--3.0--only-blue"></a>
+  <a href="https://github.com/cocoa-labs/cocoa-legal-oss/actions/workflows/ci.yml"><img alt="CI status" src="https://github.com/cocoa-labs/cocoa-legal-oss/actions/workflows/ci.yml/badge.svg"></a>
+</p>
 
-- **Quill, the assistant.** Free-form legal chat, matter-scoped chat with every document in context, and attachments (PDF, Word, images).
-- **Document review workspace.** Side-by-side document, chat and analysis panels; persistent highlights; tracked-change redlines; version history with forks and a clean-DOCX export that accepts pending changes.
-- **Tabular review.** Extract the same fields across many documents into a grid with citations.
+<p align="center">
+  <a href="#quickstart-local-docker">Quickstart</a> ·
+  <a href="#how-it-works">How it works</a> ·
+  <a href="docs/how-it-works.md">Deep dive</a> ·
+  <a href="#known-limitations">Known limitations</a>
+</p>
+
+> **Community release.** Cocoa Labs built Cocoa Legal and gives it away as-is for anyone to run, study and change. Cocoa Labs **no longer maintains or supports it**: issues are closed, pull requests won't be reviewed, and security reports may go unanswered. Fork it and make it yours.
+
+Cocoa Legal is an agentic legal document review platform. Lawyers organize work into matters, and **Quill**, the built-in assistant, can read every document in a matter, answer with citations, highlight and redline, draft new documents, and prepare emails, calendar invitations and signature requests. Review tables put the same questions to many documents at once. Document edits land as tracked changes in new versions you can undo; anything Quill sends to other people waits for a person to approve it.
+
+## A quick tour
+
+These screens come from a local run on the fictional sample documents in [`fixtures/legal/`](fixtures/legal/), with real answers from Quill. Screens with model output (Quill's answers and edits, the review table) need a model API key (Anthropic, Google, OpenAI or OpenRouter).
+
+### Ask Quill about a matter
+
+Quill looks through the matter's documents, finds and reads the relevant passages, and answers with numbered citations you can click through to the source.
+
+![A matter chat: on the left the sample office lease is open; on the right is a question about the lease's renewal options and rent escalation, and Quill's answer citing Article 19 with numbered references.](docs/images/tour-chat.png)
+
+### Redlines you can review and undo
+
+Ask for a change and Quill edits the document as tracked changes in a new version, so you review it like a colleague's markup. Every edit is recorded in a ledger and can be undone.
+
+![The sample lease in the document viewer, with Quill's tracked changes in Section 13.2 (assignment) and Section 14.1 (default cure period): insertions in green, deletions struck through in red.](docs/images/tour-redline.png)
+
+### Every version is kept
+
+Nothing is overwritten. The History view shows each version of a document, what produced it and which conversation it came from.
+
+![The History view for the sample lease: version 1 from the upload, then versions 2 and 3 from assistant edits made in a conversation.](docs/images/tour-versions.png)
+
+### Review tables across documents
+
+Ask the same questions of many documents at once. The model fills each cell, and most answers cite the passages they came from.
+
+![A review table over the three sample documents (an office lease, a purchase and sale agreement and a tenant estoppel certificate) with columns for document type, parties, and key dates and term; most of the parties and dates answers carry numbered citation markers.](docs/images/tour-tabular.png)
+
+### Outbound messages wait for your approval
+
+Anything Quill sends to other people (emails, signature requests and calendar invitations) waits in an approval card until a person approves it. Sending them needs the Google Workspace integration: the agent mailbox for email and signature requests, Google Calendar for invitations (see [Configuration](#configuration)).
+
+![The sample purchase and sale agreement open next to Quill's approval card for a signature request to two fictional signers at example.com, marked "Approval required".](docs/images/tour-esign.png)
+
+### Matters, with safeguards on
+
+The quickstart settings turn on [controlled-beta mode](#controlled-beta-mode): uploads are virus-scanned, an owner or admin accepts a data-handling policy before uploads and outbound email, and signature and calendar invitations go only to approved recipients.
+
+![The sample matter with its controlled-beta panel showing the accepted policy and approved recipient domain, the matter's task list, and its three documents.](docs/images/tour-matter.png)
+
+### Also included
+
+- **Document authoring.** Template-driven drafting with section assembly and layout checks, rendered to DOCX and PDF with LibreOffice.
+- **Clean copies.** One step accepts every tracked change into a clean DOCX, saved as a new version.
+- **Image attachments.** Attach PNG, JPEG, WebP or GIF images to a chat message.
 - **Workflows and capabilities.** Built-in and custom workflows plus structured legal capabilities: NDA triage, contract review against a firm playbook, compliance check, legal risk assessment, commercial real estate lease abstraction and a personal-injury email automation pipeline.
 - **Firm playbooks and memory.** Firm-wide positions and fallbacks that steer reviews, with suggest-then-approve shared memory.
-- **Document authoring.** Template-driven drafting with section assembly and layout checks, rendered to DOCX and PDF with LibreOffice.
 - **Legal research.** Hybrid web and authority search (Tavily, Exa, Firecrawl) with citations.
 - **E-signature.** A native signing engine: signer links, field placement, a certificate of completion and a cryptographic PDF signature. It has **not** been legally reviewed (see [Responsible use](#responsible-use)).
 - **Optional integrations.** Agent mailbox and calendar (Google Workspace), meeting recordings and transcription (AssemblyAI), image generation (OpenAI) and a model catalog via OpenRouter.
 - **Models.** Anthropic Claude, Google Gemini, OpenAI and OpenRouter, configured per instance or per user, with runtime failover.
 
+## How it works
+
+```mermaid
+flowchart LR
+    browser["Browser"] --> frontend["Frontend<br/>Next.js"]
+    frontend -->|"API calls, streamed replies"| backend["Backend<br/>Express + TypeScript"]
+    frontend -->|"sign-in"| auth["Supabase Auth"]
+    backend --> db[("Supabase Postgres<br/>matters, documents, chats,<br/>operations, audit trail")]
+    backend --> storage[("S3-compatible storage<br/>R2, S3 or RustFS")]
+    backend --> office["LibreOffice<br/>DOCX → PDF"]
+    backend --> clamav["ClamAV<br/>upload scanning"]
+    backend --> models["Model providers<br/>Anthropic, Google,<br/>OpenAI, OpenRouter"]
+    backend -.->|"optional"| extras["Search APIs, Gmail and<br/>Calendar, AssemblyAI"]
+```
+
+The Next.js frontend signs people in through Supabase Auth and talks to an Express backend, which does the real work: it calls the models, reads and edits documents, converts them with LibreOffice, scans uploads with ClamAV and keeps an audit trail in Postgres. Files live in S3-compatible storage.
+
+When you ask Quill something, the backend runs a tool loop of up to 10 rounds: the model asks for a tool (list the documents, find a passage, read it, edit, draft), the backend runs it and feeds the result back, and the reply streams to your screen as the model writes it.
+
+```mermaid
+sequenceDiagram
+    actor You
+    participant App as Frontend
+    participant API as Backend
+    participant Model as Model provider
+    participant Store as Postgres + storage
+    You->>App: Ask about a matter
+    App->>API: POST /projects/{id}/chat (streamed reply)
+    API->>Store: Load the matter's documents and history
+    loop Up to 10 rounds, until the answer is ready
+        API->>Model: Conversation + available tools
+        Model-->>API: Text, or a tool call
+        API->>Store: Run the tool (find, read, edit, draft…)
+        Store-->>API: Result
+    end
+    API-->>App: Streamed text, citations, tool cards
+    App-->>You: Rendered answer, edits and approval cards
+```
+
+**[Read the deep dive →](docs/how-it-works.md)** It covers the approval-and-undo ledger, e-signature, controlled-beta safeguards and what runs where.
+
+Where the code lives: `frontend/` (Next.js app), `backend/` (Express API and workers), `backend/migrations/` (database schema), `fixtures/legal/` (fictional sample documents), `docs/` (guides).
+
 ## Responsible use
 
 - AI output can be wrong. A qualified lawyer must review anything Quill produces before it is relied on. Nothing here is legal advice.
-- The e-signature engine has not been reviewed for ESIGN, UETA or eIDAS compliance. In the default controlled-beta mode, signatures are labelled **nonbinding test signatures**.
-- Fresh installs start in **controlled-beta mode**: uploads must pass a ClamAV virus scan, users accept a data-handling policy before uploading or emailing, and signature and calendar invitations go only to approved addresses. Use synthetic or redacted documents until you have done your own security and compliance review. See [Controlled-beta mode](#controlled-beta-mode).
+- The e-signature engine has not been reviewed for ESIGN, UETA or eIDAS compliance. In controlled-beta mode, signatures are labelled **nonbinding test signatures**.
+- `backend/.env.example` turns on **controlled-beta mode**: uploads must pass a ClamAV virus scan, an organization owner or admin accepts a data-handling policy before anyone uploads or emails, and signature and calendar invitations go only to approved addresses. Use synthetic or redacted documents until you have done your own security and compliance review. See [Controlled-beta mode](#controlled-beta-mode).
 - Sign-up is **invite-only**: a database trigger rejects any email not on the allowlist.
-
-## Architecture
-
-```
-Browser ──► Frontend (Next.js 16, React 19)          frontend/
-              │  HTTPS + Supabase session token
-              ▼
-            Backend (Express, TypeScript)              backend/
-              ├── Supabase: Postgres + Auth            backend/migrations/
-              ├── S3-compatible storage (R2, S3, RustFS)
-              ├── LibreOffice (DOCX/XLSX/PPTX → PDF)
-              ├── ClamAV (upload scanning)
-              └── Model providers, search, Google, AssemblyAI (each optional)
-```
 
 ## Quickstart (local, Docker)
 
 You need Docker (with about 6 GB of memory available), Node.js 20 or newer, and Git.
 
-> **One machine, test data only.** The quickstart is for trying Coco Legal on your own computer. Compose publishes its ports on 127.0.0.1 only, but the local Supabase stack listens on every network interface with well-known demo keys and the default database password. Run it on a network you trust, keep real client documents out of it, and follow [DEPLOY.md](DEPLOY.md) for a server.
+> **One machine, test data only.** The quickstart is for trying Cocoa Legal on your own computer. Compose publishes its ports on 127.0.0.1 only, but the local Supabase stack listens on every network interface with well-known demo keys and the default database password. Run it on a network you trust, keep real client documents out of it, and follow [DEPLOY.md](DEPLOY.md) for a server.
 
 1. **Start Supabase locally.** From the repository root:
 
@@ -105,20 +194,20 @@ npm run dev --prefix backend    # http://localhost:3001
 npm run dev --prefix frontend   # http://localhost:3003
 ```
 
-For this mode, point the backend at RustFS and ClamAV on localhost in `backend/.env` (`R2_ENDPOINT_URL=http://localhost:9000`, the `S3_ACCESS_KEY`/`S3_SECRET_KEY` from `.env`, `R2_BUCKET_NAME=coco-legal`, `CLAMAV_HOST=localhost`) and create `frontend/.env.local` from `frontend/.env.local.example`. You need LibreOffice installed locally for document conversion. Uploads return 503 until ClamAV has loaded its signature database, which takes a few minutes after its first start.
+For this mode, point the backend at RustFS and ClamAV on localhost in `backend/.env` (`R2_ENDPOINT_URL=http://localhost:9000`, the `S3_ACCESS_KEY`/`S3_SECRET_KEY` from `.env`, `R2_BUCKET_NAME=cocoa-legal`, `CLAMAV_HOST=localhost`) and create `frontend/.env.local` from `frontend/.env.local.example`. You need LibreOffice installed locally for document conversion. Uploads return 503 until ClamAV has loaded its signature database, which takes a few minutes after its first start.
 
 ## Controlled-beta mode
 
-`BETA_MODE=true` (the default in `backend/.env.example`) turns on safeguards for running with real people before you have reviewed the deployment yourself:
+`BETA_MODE=true` (set in `backend/.env.example`) turns on safeguards for running with real people before you have reviewed the deployment yourself:
 
 | Safeguard | Effect |
 |---|---|
 | Upload scanning | Uploads are refused unless ClamAV marks them clean (`UPLOAD_SCANNING_REQUIRED=true`). |
-| Data policy | Uploads and outbound email wait until the organization accepts the data-handling policy. |
+| Data policy | Uploads and outbound email wait until an organization owner or admin accepts the data-handling policy. |
 | Approved recipients | Signature and calendar invitations go only to listed addresses or domains. |
 | Signature label | Signatures are labelled nonbinding test signatures. |
 
-Set `BETA_MODE=false` to turn these off. Signature wording then becomes neutral; the app makes no claim either way about whether a signature is legally binding. Upload scanning stays on while `UPLOAD_SCANNING_REQUIRED=true`.
+Set `BETA_MODE=false`, or leave it unset, to turn these off. Signature wording then becomes neutral; the app makes no claim either way about whether a signature is legally binding. Upload scanning stays on while `UPLOAD_SCANNING_REQUIRED=true`.
 
 ## Configuration
 
@@ -148,7 +237,7 @@ Nobody will fix these upstream. They are listed so you can decide what to change
 - **Firm memory has no approval screen.** Suggested firm-wide memory can only be reviewed through the `/firm-memory` API.
 - **Any signed-in user can edit firm playbooks.**
 - **Containers run as root.** Both Dockerfiles keep the base image's root user, so LibreOffice converts uploads as root. Add a non-root user before you expose a deployment.
-- **Fixed product wording.** The login and sign-up pages always call Coco Legal "a demo service" (`frontend/src/app/login/page.tsx`, `frontend/src/app/signup/page.tsx`), and signed PDFs name the signature "Coco Legal Signing" (`backend/src/lib/signatures/pdf.ts`).
+- **Fixed product wording.** The login and sign-up pages always call Cocoa Legal "a demo service" (`frontend/src/app/login/page.tsx`, `frontend/src/app/signup/page.tsx`), and signed PDFs name the signature "Cocoa Legal Signing" (`backend/src/lib/signatures/pdf.ts`).
 - **The Source code link is only in the account menu.** If you run a modified version for other people, the AGPL asks you to offer its source to every remote user, including signers on the public signing page.
 - **Old migration headers.** Some files in `backend/migrations/` say to apply them by hand in the Supabase SQL editor. Use `npm run migrate` instead: it records each migration in the checksum ledger that the readiness check verifies. Never edit a migration after a deployment has applied it.
 - **CodeQL findings are untriaged.** GitHub's CodeQL scan of this release reports 163 open findings: 137 are routes without their own rate limiter, and the rest flag file paths, regular expressions, HTML sanitization helpers, link targets and the Helmet configuration. A spot check found the upload-path and link warnings to be false positives (server-generated temp file names, internal links), but nobody has reviewed the rest. Run the CodeQL workflow in your fork and review its results before you expose a deployment.
@@ -156,7 +245,25 @@ Nobody will fix these upstream. They are listed so you can decide what to change
 
 ## Deploying
 
-See [DEPLOY.md](DEPLOY.md) for Supabase Cloud, storage, the backend on Docker or Railway, and the frontend on Docker or Vercel.
+See [DEPLOY.md](DEPLOY.md) for Supabase Cloud, storage, the backend on Docker or Railway, and the frontend on Docker or Vercel. The local quickstart and a real deployment run the same pieces in different places:
+
+```mermaid
+flowchart LR
+    subgraph prod["A real deployment"]
+        direction TB
+        fe2["Frontend<br/>Vercel or a container"] --> be2["Backend with LibreOffice<br/>container or Railway"]
+        be2 --> sb2["Supabase Cloud"]
+        be2 --> s3b["R2 or S3"]
+        be2 --> av2["ClamAV service"]
+    end
+    subgraph local["Your computer"]
+        direction TB
+        fe1["Frontend :3003"] --> be1["Backend :3001<br/>with LibreOffice"]
+        be1 --> sb1["Supabase CLI<br/>API :54321, Postgres :54322"]
+        be1 --> s3a["RustFS :9000"]
+        be1 --> av1["ClamAV :3310"]
+    end
+```
 
 ## Development
 
@@ -173,6 +280,6 @@ See [SECURITY.md](SECURITY.md). Report vulnerabilities privately through GitHub 
 
 ## License
 
-Coco Legal is licensed under the [GNU Affero General Public License v3.0](LICENSE) (AGPL-3.0-only). If you run a modified version as a network service, the AGPL requires you to offer its source code to your users; the in-app **Source code** link points wherever `NEXT_PUBLIC_SOURCE_CODE_URL` says.
+Cocoa Legal is licensed under the [GNU Affero General Public License v3.0](LICENSE) (AGPL-3.0-only). If you run a modified version as a network service, the AGPL requires you to offer its source code to your users; the in-app **Source code** link points wherever `NEXT_PUBLIC_SOURCE_CODE_URL` says.
 
-Coco Legal began as a fork of Mike; see [NOTICE](NOTICE). Third-party components are listed in [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
+Cocoa Legal began as a fork of Mike; see [NOTICE](NOTICE). Third-party components are listed in [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).

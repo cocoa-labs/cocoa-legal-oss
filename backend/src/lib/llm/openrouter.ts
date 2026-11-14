@@ -17,7 +17,7 @@ import { isRetryableFinishReason } from "./types";
 // server-side thread, so the full message list is replayed each iteration.
 
 const OPENROUTER_CHAT_URL = "https://openrouter.ai/api/v1/chat/completions";
-const DEFAULT_APP_NAME = "Coco Legal";
+const DEFAULT_APP_NAME = "Cocoa Legal";
 
 /**
  * Attribution headers for OpenRouter's dashboards and leaderboards. The

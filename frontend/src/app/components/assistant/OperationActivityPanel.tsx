@@ -17,7 +17,7 @@ import {
     approveOperation,
     listOperations,
     undoOperation,
-} from "@/app/lib/cocoLegalApi";
+} from "@/app/lib/cocoaLegalApi";
 import type { AgentOperation } from "@/app/components/shared/types";
 
 function statusIcon(operation: AgentOperation) {

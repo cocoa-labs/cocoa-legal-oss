@@ -14,7 +14,7 @@ import {
     type CsvImportDryRunOut,
     type CsvImportExecuteOut,
     type CsvImportRowError,
-} from "@/app/lib/cocoLegalApi";
+} from "@/app/lib/cocoaLegalApi";
 import { formatDateOnly } from "./piShared";
 
 type WizardStep = "file" | "mapping" | "preview" | "results";

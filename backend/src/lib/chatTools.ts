@@ -1489,7 +1489,7 @@ export const TOOLS = [
                     title: {
                         type: "string",
                         description:
-                            "Short title for the highlight set, e.g. 'Coco Legal mentions' or 'Indemnity obligations'.",
+                            "Short title for the highlight set, e.g. 'Cocoa Legal mentions' or 'Indemnity obligations'.",
                     },
                     targets: {
                         type: "array",

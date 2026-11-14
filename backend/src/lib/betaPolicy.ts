@@ -287,7 +287,7 @@ export async function ensurePersonalBetaPolicyOrganization(
   const { data: organization, error: organizationError } = await db
     .from("organizations")
     .insert({
-      name: "Coco Legal workspace",
+      name: "Cocoa Legal workspace",
       slug: `workspace-${crypto.randomUUID().replaceAll("-", "").slice(0, 16)}`,
       created_by_user_id: input.userId,
     })

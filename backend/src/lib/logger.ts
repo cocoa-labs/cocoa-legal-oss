@@ -118,7 +118,7 @@ function emit(level: Level, args: unknown[]): void {
   const record = {
     timestamp: new Date().toISOString(),
     level,
-    service: "coco-legal-backend",
+    service: "cocoa-legal-backend",
     environment: process.env.NODE_ENV ?? "development",
     release: process.env.DEPLOYMENT_ID ?? process.env.RAILWAY_GIT_COMMIT_SHA ?? "local",
     message,

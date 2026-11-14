@@ -88,22 +88,22 @@ function Blades({ ids }: { ids: Record<string, string> }) {
     );
 }
 
-export function CocoLegalIcon({
+export function CocoaLegalIcon({
     spin = false,
     done = false,
     error = false,
-    cocoLegal = false,
+    cocoaLegal = false,
     size = 24,
     style,
 }: {
     spin?: boolean;
     done?: boolean;
     error?: boolean;
-    cocoLegal?: boolean;
+    cocoaLegal?: boolean;
     size?: number;
     style?: React.CSSProperties;
 }) {
-    void cocoLegal;
+    void cocoaLegal;
     const id = useId().replace(/:/g, "");
     const palette = error
         ? ERROR_PALETTE

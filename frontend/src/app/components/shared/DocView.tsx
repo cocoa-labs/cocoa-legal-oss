@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { ZoomIn, ZoomOut } from "lucide-react";
-import { CocoLegalIcon } from "@/components/chat/coco-legal-icon";
+import { CocoaLegalIcon } from "@/components/chat/cocoa-legal-icon";
 import { useFetchSingleDoc } from "@/app/hooks/useFetchSingleDoc";
 import { DocxView } from "./DocxView";
 import type { CitationQuote } from "./types";
@@ -608,7 +608,7 @@ export function DocView({
             >
                 {loading && (
                     <div className="flex h-full items-center justify-center">
-                        <CocoLegalIcon spin cocoLegal size={28} />
+                        <CocoaLegalIcon spin cocoaLegal size={28} />
                     </div>
                 )}
                 {(error || pdfError) && (

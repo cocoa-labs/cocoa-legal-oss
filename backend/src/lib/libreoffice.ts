@@ -155,7 +155,7 @@ function isTimeoutError(error: Error): boolean {
     );
 }
 
-const TEMP_DIR_PREFIX = "coco-soffice-";
+const TEMP_DIR_PREFIX = "cocoa-soffice-";
 const MAX_EXEC_BUFFER_BYTES = 8 * 1024 * 1024;
 const MAX_LOGGED_STDERR_CHARS = 500;
 

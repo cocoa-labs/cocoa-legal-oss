@@ -30,7 +30,7 @@ export const SANS =
  * Marker embedded in every branded shell — lets the send path detect html that
  * is ALREADY branded (e.g. a pre-rendered e-sign template) and skip re-wrapping.
  */
-export const BRAND_SENTINEL = "<!--coco-email v1-->";
+export const BRAND_SENTINEL = "<!--cocoa-email v1-->";
 
 /**
  * Default firm-wide footer: a confidentiality/privilege notice + sign-off.
@@ -46,7 +46,7 @@ export const DEFAULT_EMAIL_FOOTER =
     "and delete all copies; any review, use, disclosure, or distribution is " +
     "prohibited. This message was prepared with the assistance of Quill, an AI " +
     "legal assistant. It does not constitute legal advice and does not create an " +
-    "attorney-client relationship. &mdash; Sent by Quill &middot; Coco Legal";
+    "attorney-client relationship. &mdash; Sent by Quill &middot; Cocoa Legal";
 
 /** Escape a string for safe insertion into HTML text or a quoted attribute. */
 export function escapeHtml(value: string): string {
@@ -62,9 +62,9 @@ export type BrandMode = "full" | "light";
 
 /**
  * Wrap TRUSTED inner HTML in the branded shell.
- *  - "full":  cream page, ❋ Coco Legal serif wordmark, white rounded card,
+ *  - "full":  cream page, ❋ Cocoa Legal serif wordmark, white rounded card,
  *             footer. For new / standalone emails.
- *  - "light": the fragment plus a hairline rule, a small "❋ Quill · Coco
+ *  - "light": the fragment plus a hairline rule, a small "❋ Quill · Cocoa
  *             Legal" sign-off, and the footer — no wordmark/page chrome, so it
  *             reads naturally inside an existing thread.
  * `innerHtml` is trusted and is NOT sanitized here.
@@ -82,7 +82,7 @@ export function shell(
             BRAND_SENTINEL +
             innerHtml +
             `<hr style="border:none;border-top:1px solid ${BORDER};margin:20px 0 12px 0;" />` +
-            `<div style="font-family:${SERIF};font-size:14px;color:${INK};">&#10042; Quill &middot; Coco Legal</div>` +
+            `<div style="font-family:${SERIF};font-size:14px;color:${INK};">&#10042; Quill &middot; Cocoa Legal</div>` +
             `<div style="color:${MUTED};font-size:12px;margin-top:8px;line-height:1.5;">${footer}</div>` +
             `</div>`
         );
@@ -94,7 +94,7 @@ export function shell(
         `<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:${CREAM};padding:32px 12px;font-family:${SANS};">` +
         `<tr><td align="center">` +
         `<table role="presentation" cellpadding="0" cellspacing="0" width="560" style="max-width:560px;width:100%;background:#ffffff;border:1px solid ${BORDER};border-radius:14px;">` +
-        `<tr><td style="padding:22px 28px 0 28px;font-family:${SERIF};font-size:20px;color:${INK};">&#10042; Coco Legal</td></tr>` +
+        `<tr><td style="padding:22px 28px 0 28px;font-family:${SERIF};font-size:20px;color:${INK};">&#10042; Cocoa Legal</td></tr>` +
         `<tr><td style="padding:18px 28px 28px 28px;color:${INK};font-size:15px;line-height:1.55;font-family:${SANS};">${innerHtml}</td></tr>` +
         `</table>` +
         `<div style="max-width:560px;margin-top:14px;color:${MUTED};font-size:12px;font-family:${SANS};line-height:1.5;">${footer}</div>` +

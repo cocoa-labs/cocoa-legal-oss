@@ -10,7 +10,7 @@ import { SidebarContext } from "@/app/contexts/SidebarContext";
 import { AppSidebar } from "@/app/components/shared/AppSidebar";
 import { SignatureSummaryProvider } from "@/app/components/legal/SignatureSummaryContext";
 
-export default function CocoLegalLayout({
+export default function CocoaLegalLayout({
     children,
 }: {
     children: React.ReactNode;

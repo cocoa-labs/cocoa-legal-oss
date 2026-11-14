@@ -11,7 +11,7 @@ function isSelectableModelId(id: string): boolean {
     return ALLOWED_MODEL_IDS.has(id) || id.includes("/");
 }
 
-const STORAGE_KEY = "cocoLegal.selectedModel";
+const STORAGE_KEY = "cocoaLegal.selectedModel";
 const LEGACY_STORAGE_KEY = "mike.selectedModel";
 
 function readStored(): string {

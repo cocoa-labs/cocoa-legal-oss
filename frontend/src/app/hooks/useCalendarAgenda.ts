@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { listEvents, type AgendaResponse, type CalendarSource } from "@/app/lib/cocoLegalApi";
+import { listEvents, type AgendaResponse, type CalendarSource } from "@/app/lib/cocoaLegalApi";
 
 const REFRESH_MS = 60_000;
 

@@ -1,6 +1,6 @@
 # Third-party notices
 
-Coco Legal is licensed under AGPL-3.0-only (see [LICENSE](LICENSE) and [NOTICE](NOTICE)). It depends on the open-source packages below, installed from npm when you run `npm install`; this repository does not vendor their code. Each package is distributed under its own license, available in its source repository and in `node_modules/<package>/` after installation.
+Cocoa Legal is licensed under AGPL-3.0-only (see [LICENSE](LICENSE) and [NOTICE](NOTICE)). It depends on the open-source packages below, installed from npm when you run `npm install`; this repository does not vendor their code. Each package is distributed under its own license, available in its source repository and in `node_modules/<package>/` after installation.
 
 The lists cover production dependencies as resolved on 2026-11-13 (`license-checker-rseidelsohn --production`). Development-only tools are not listed. Platform-specific binaries are shown for the platform the list was generated on; other platforms install equivalent packages under the same licenses.
 

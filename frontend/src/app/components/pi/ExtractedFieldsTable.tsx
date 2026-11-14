@@ -3,7 +3,7 @@
 import { useCallback, useState } from "react";
 import { useRouter } from "next/navigation";
 import { AlertTriangle, Check, FileText, Loader2, Mail } from "lucide-react";
-import { getDocumentUrl, type AutomationRun } from "@/app/lib/cocoLegalApi";
+import { getDocumentUrl, type AutomationRun } from "@/app/lib/cocoaLegalApi";
 import {
     flattenExtractedFields,
     runSourceDocumentId,

@@ -1,4 +1,4 @@
-import type { CocoLegalChat, CocoLegalMessage } from "@/app/components/shared/types";
+import type { CocoaLegalChat, CocoaLegalMessage } from "@/app/components/shared/types";
 
 export interface ConversationDoc {
     documentId: string;
@@ -8,7 +8,7 @@ export interface ConversationDoc {
 
 // The document an assistant turn was working on: the last doc it
 // read / edited / created (these events carry document_id once persisted).
-function agentFocusDocId(events: CocoLegalMessage["events"]): string | null {
+function agentFocusDocId(events: CocoaLegalMessage["events"]): string | null {
     if (!events) return null;
     for (let j = events.length - 1; j >= 0; j--) {
         const e = events[j];
@@ -43,8 +43,8 @@ function agentFocusDocId(events: CocoLegalMessage["events"]): string | null {
  * and can be unit-tested directly with `tsx`.
  */
 export function deriveConversationDoc(
-    messages: Pick<CocoLegalMessage, "version_context" | "events">[],
-    chat?: Pick<CocoLegalChat, "anchor_document_id" | "anchor_version_id"> | null,
+    messages: Pick<CocoaLegalMessage, "version_context" | "events">[],
+    chat?: Pick<CocoaLegalChat, "anchor_document_id" | "anchor_version_id"> | null,
 ): ConversationDoc | null {
     for (let i = messages.length - 1; i >= 0; i--) {
         const m = messages[i];

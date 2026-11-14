@@ -11,7 +11,7 @@ import {
 } from "lucide-react";
 import { useState } from "react";
 import { API_BASE } from "@/app/lib/apiBase";
-import { retryFailedDocumentGenerationJob } from "@/app/lib/cocoLegalApi";
+import { retryFailedDocumentGenerationJob } from "@/app/lib/cocoaLegalApi";
 import { downloadProtectedFile } from "@/app/lib/protectedDownload";
 import { useDocumentGenerationJob } from "@/app/hooks/useDocumentGenerationJob";
 import { supabase } from "@/lib/supabase";

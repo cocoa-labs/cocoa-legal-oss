@@ -48,7 +48,7 @@ export async function createScopedProject(params: {
     const { data: org, error: orgError } = await params.db
       .from("organizations")
       .insert({
-        name: "Coco Legal workspace",
+        name: "Cocoa Legal workspace",
         slug: `workspace-${crypto.randomUUID().replaceAll("-", "").slice(0, 16)}`,
         created_by_user_id: params.userId,
       })

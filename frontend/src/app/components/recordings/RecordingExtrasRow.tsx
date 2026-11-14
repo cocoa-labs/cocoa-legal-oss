@@ -20,7 +20,7 @@ import {
     draftRecordingEmail,
     generateRecordingTimelineImage,
     generateRecordingVoiceBriefing,
-} from "@/app/lib/cocoLegalApi";
+} from "@/app/lib/cocoaLegalApi";
 import { useDocumentObjectUrl } from "@/app/hooks/useDocumentObjectUrl";
 import type { Recording } from "@/app/components/shared/types";
 

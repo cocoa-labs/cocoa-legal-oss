@@ -1,6 +1,6 @@
 # CRE Practice Mode — Test Script
 
-A manual QA pass for the Commercial Real Estate feature set, with deliberate variation to exercise every path. Budget ~20 minutes. Companion to `cre-demo-script.md` (this one is for *validating*; that one is for *showing*).
+A manual QA pass for the Commercial Real Estate feature set, with deliberate variation to exercise every path. Budget ~20 minutes.
 
 ## Pre-flight (30 sec)
 - Sanity-check SQL reads **`1 · 7 · 1`** (`represented_party` column, 7 `cre.*` keys, `013` enrichment applied).

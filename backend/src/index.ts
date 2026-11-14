@@ -249,7 +249,7 @@ app.use((req, res, next) => {
 
 // Drawn-signature data URLs ride JSON: the public signer POST /sign/:token
 // (frontend/src/app/sign/lib/signApi.ts → SignSubmitPayload.signature_png)
-// and the authed POST /signatures/:id/sign-self (cocoLegalApi.ts →
+// and the authed POST /signatures/:id/sign-self (cocoaLegalApi.ts →
 // SignSelfPayload.signature_png). A high-DPI canvas PNG as a base64 data URL
 // is typically well under 1mb, but a 413 here would eat a signer's completed
 // signature — 10mb leaves wide margin.
@@ -257,7 +257,7 @@ app.use(["/sign", "/signatures"], express.json({ limit: "10mb" }));
 
 // Chat endpoints resend the full message history every turn, and users paste
 // entire contracts into messages (streamChat / streamProjectChat / the
-// tabular chat in cocoLegalApi.ts — under /chat, /projects/:id/chat and
+// tabular chat in cocoaLegalApi.ts — under /chat, /projects/:id/chat and
 // /tabular-review/:id/chat). Long matters can plausibly exceed 1mb of text.
 app.use(
   ["/chat", "/projects", "/tabular-review"],
@@ -265,7 +265,7 @@ app.use(
 );
 
 // Firm template authoring POSTs the entire section skeleton as JSON
-// (createTemplate in cocoLegalApi.ts → skeleton: DocTemplateSection[]); a long
+// (createTemplate in cocoaLegalApi.ts → skeleton: DocTemplateSection[]); a long
 // lease template is hundreds of KB of text.
 app.use("/templates", express.json({ limit: "5mb" }));
 
@@ -480,7 +480,7 @@ process.on("uncaughtException", (err) => {
 });
 
 app.listen(PORT, () => {
-  console.log(`Coco Legal backend running on port ${PORT}`);
+  console.log(`Cocoa Legal backend running on port ${PORT}`);
   // Pull the OpenRouter catalog once at boot so the first picker load is warm.
   // Fire-and-forget by design: it never rejects, and every native provider
   // path works whether or not it ever succeeds.

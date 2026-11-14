@@ -10,7 +10,7 @@ import {
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { useUserProfile } from "@/contexts/UserProfileContext";
-import type { ApiKeyState } from "@/app/lib/cocoLegalApi";
+import type { ApiKeyState } from "@/app/lib/cocoaLegalApi";
 import { MODELS } from "@/app/components/assistant/ModelToggle";
 import { ModelPickerContent } from "@/app/components/assistant/ModelPickerContent";
 import { isModelAvailable } from "@/app/lib/modelAvailability";
@@ -82,7 +82,7 @@ export default function ModelsAndApiKeysPage() {
                 <p className="text-sm text-[var(--app-text-muted)] mb-4 max-w-xl">
                     You must provide your own API keys for the app to work or
                     add your API keys into the .env file if you are running your
-                    own instance of Coco Legal.
+                    own instance of Cocoa Legal.
                 </p>
                 <p className="text-xs text-[var(--app-text-subtle)] mb-4 max-w-xl">
                     Title generation automatically routes to the cheapest

@@ -4,7 +4,7 @@ import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { PenLine } from "lucide-react";
 import { useUserProfile } from "@/contexts/UserProfileContext";
 import { getGreetingName } from "@/lib/userIdentity";
-import { CocoLegalIcon } from "@/components/chat/coco-legal-icon";
+import { CocoaLegalIcon } from "@/components/chat/cocoa-legal-icon";
 import { ChatInput } from "./ChatInput";
 import { SelectAssistantProjectModal } from "./SelectAssistantProjectModal";
 import { NewDraftModal } from "@/app/components/authoring/NewDraftModal";
@@ -13,11 +13,11 @@ import {
     type OpenDraftDoc,
 } from "./OpenDraftInMatterModal";
 import { AppBackButton } from "@/app/components/shared/AppBackButton";
-import { CocoCommandBackdrop } from "@/app/components/shared/CocoCommandBackdrop";
-import type { CocoLegalMessage } from "../shared/types";
+import { CocoaCommandBackdrop } from "@/app/components/shared/CocoaCommandBackdrop";
+import type { CocoaLegalMessage } from "../shared/types";
 
 interface InitialViewProps {
-    onSubmit: (message: CocoLegalMessage) => void;
+    onSubmit: (message: CocoaLegalMessage) => void;
     /** Commit a composer mic capture / audio upload — `useAssistantChat.commitRecording`. */
     onRecordAudio?: (input: {
         blob: Blob;
@@ -58,7 +58,7 @@ export function InitialView({ onSubmit, onRecordAudio }: InitialViewProps) {
 
     return (
         <div className="relative flex h-full w-full overflow-hidden bg-[var(--app-shell)] px-6 text-[var(--app-text)]">
-            <CocoCommandBackdrop variant="hero" />
+            <CocoaCommandBackdrop variant="hero" />
             <AppBackButton
                 variant="dark"
                 className="absolute left-4 top-4 z-20 md:left-6 md:top-6"
@@ -78,7 +78,7 @@ export function InitialView({ onSubmit, onRecordAudio }: InitialViewProps) {
                                     "transform 900ms cubic-bezier(0.25, 0.46, 0.45, 0.94)",
                             }}
                         >
-                            <CocoLegalIcon
+                            <CocoaLegalIcon
                                 size={ICON_SIZE}
                                 style={{
                                     filter:

@@ -1,4 +1,4 @@
-// Centralized upload-type constants for Coco Legal (frontend).
+// Centralized upload-type constants for Cocoa Legal (frontend).
 //
 // SYNC: keep the document AND audio extension/MIME lists in lockstep with
 // backend/src/lib/uploadTypes.ts. Both files must list the SAME sets so the
@@ -8,7 +8,7 @@
 // If you add an extension or MIME here, also add it there (and vice versa).
 
 /**
- * Every file extension Coco Legal accepts as a first-class document.
+ * Every file extension Cocoa Legal accepts as a first-class document.
  * Matches backend/src/lib/uploadTypes.ts DOCUMENT_EXTENSIONS.
  */
 export const DOCUMENT_EXTENSIONS: readonly string[] = [

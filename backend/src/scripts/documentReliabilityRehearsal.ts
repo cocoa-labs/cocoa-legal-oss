@@ -60,7 +60,7 @@ async function main() {
         {
             pageBreak: true,
             content:
-                "IN WITNESS WHEREOF\n\n{{coco-sign:0}}\nParent A\nBy: ____________________\nDate: __________\n\n{{coco-sign:1}}\nParent B\nBy: ____________________\nDate: __________",
+                "IN WITNESS WHEREOF\n\n{{cocoa-sign:0}}\nParent A\nBy: ____________________\nDate: __________\n\n{{cocoa-sign:1}}\nParent B\nBy: ____________________\nDate: __________",
         },
     ]);
     if ("error" in rendered) throw new Error(rendered.error);

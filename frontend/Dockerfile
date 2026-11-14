@@ -1,6 +1,6 @@
-# Coco Legal frontend: Next.js production server (standalone output).
+# Cocoa Legal frontend: Next.js production server (standalone output).
 #
-#   docker build -t coco-legal-frontend \
+#   docker build -t cocoa-legal-frontend \
 #     --build-arg NEXT_PUBLIC_SUPABASE_URL=... \
 #     --build-arg NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY=... \
 #     ./frontend

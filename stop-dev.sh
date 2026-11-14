@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Stop the Coco Legal dev servers.
+# Stop the Cocoa Legal dev servers.
 #   Backend  (Express)  -> :3004
 #   Frontend (Next.js)  -> :3003
 # Surgical: only touches those two ports — never your other Node/Next apps.

@@ -18,33 +18,33 @@ import {
     PenLine,
     Trash2,
 } from "lucide-react";
-import type { CocoLegalDocument, CocoLegalFolder } from "@/app/components/shared/types";
+import type { CocoaLegalDocument, CocoaLegalFolder } from "@/app/components/shared/types";
 import { VersionChip } from "@/app/components/shared/VersionChip";
 import type {
     DerivedDocumentNode,
     DocumentTreeNode,
     DocumentVersionNode,
     ProjectDocumentTree,
-} from "@/app/lib/cocoLegalApi";
+} from "@/app/lib/cocoaLegalApi";
 import {
-    COCO_LEGAL_DOC_DRAG_TYPE,
-    COCO_LEGAL_FOLDER_DRAG_TYPE,
-    getCocoLegalDocDragData,
-    getCocoLegalFolderDragData,
-    hasCocoLegalDragPayload,
+    COCOA_LEGAL_DOC_DRAG_TYPE,
+    COCOA_LEGAL_FOLDER_DRAG_TYPE,
+    getCocoaLegalDocDragData,
+    getCocoaLegalFolderDragData,
+    hasCocoaLegalDragPayload,
 } from "@/app/lib/dragTypes";
 
 interface Props {
     projectName?: string | null;
-    documents: CocoLegalDocument[];
-    folders?: CocoLegalFolder[];
+    documents: CocoaLegalDocument[];
+    folders?: CocoaLegalFolder[];
     variant?: "light" | "dark";
     selectedDocId?: string | null;
     documentTree?: ProjectDocumentTree | null;
     revealDocumentId?: string | null;
-    onDocClick: (doc: CocoLegalDocument) => void;
+    onDocClick: (doc: CocoaLegalDocument) => void;
     onVersionClick?: (
-        doc: CocoLegalDocument,
+        doc: CocoaLegalDocument,
         version: DocumentVersionNode,
     ) => void;
     /**
@@ -52,12 +52,12 @@ interface Props {
      * affordance on version rows that carry provenance.
      */
     onVersionProvenanceClick?: (
-        doc: CocoLegalDocument,
+        doc: CocoaLegalDocument,
         version: DocumentVersionNode,
     ) => void;
     onDerivedDocumentClick?: (node: DerivedDocumentNode) => void;
-    onExportDocument?: (doc: CocoLegalDocument, versionId?: string | null) => void;
-    onSendForSignature?: (doc: CocoLegalDocument, versionId?: string | null) => void;
+    onExportDocument?: (doc: CocoaLegalDocument, versionId?: string | null) => void;
+    onSendForSignature?: (doc: CocoaLegalDocument, versionId?: string | null) => void;
     /**
      * Returns the current e-signature envelope status for a source document id
      * (e.g. "sent", "completed"), or undefined when the document isn't out for
@@ -319,7 +319,7 @@ export function ProjectExplorer({
     }
 
     function wouldCreateCycle(movingId: string, targetId: string): boolean {
-        let cur: CocoLegalFolder | undefined = folders.find((f) => f.id === targetId);
+        let cur: CocoaLegalFolder | undefined = folders.find((f) => f.id === targetId);
         while (cur) {
             if (cur.id === movingId) return true;
             if (!cur.parent_folder_id) break;
@@ -329,8 +329,8 @@ export function ProjectExplorer({
     }
 
     async function handleDropOnTarget(targetFolderId: string | null, e: React.DragEvent) {
-        const docId = getCocoLegalDocDragData(e.dataTransfer);
-        const movingFolderId = getCocoLegalFolderDragData(e.dataTransfer);
+        const docId = getCocoaLegalDocDragData(e.dataTransfer);
+        const movingFolderId = getCocoaLegalFolderDragData(e.dataTransfer);
 
         if (docId && onMoveDoc) {
             const doc = documents.find((d) => d.id === docId);
@@ -345,7 +345,7 @@ export function ProjectExplorer({
     }
 
     function isInternalDrag(e: React.DragEvent): boolean {
-        return hasCocoLegalDragPayload(e.dataTransfer);
+        return hasCocoaLegalDragPayload(e.dataTransfer);
     }
 
     function renderLevel(parentId: string | null, depth: number): React.ReactNode {
@@ -401,7 +401,7 @@ export function ProjectExplorer({
                             <div
                                 draggable
                                 onDragStart={(e) => {
-                                    e.dataTransfer.setData(COCO_LEGAL_FOLDER_DRAG_TYPE, folder.id);
+                                    e.dataTransfer.setData(COCOA_LEGAL_FOLDER_DRAG_TYPE, folder.id);
                                     e.dataTransfer.effectAllowed = "move";
                                     e.stopPropagation();
                                 }}
@@ -507,7 +507,7 @@ export function ProjectExplorer({
                             <div
                                 draggable
                                 onDragStart={(e) => {
-                                    e.dataTransfer.setData(COCO_LEGAL_DOC_DRAG_TYPE, doc.id);
+                                    e.dataTransfer.setData(COCOA_LEGAL_DOC_DRAG_TYPE, doc.id);
                                     e.dataTransfer.effectAllowed = "move";
                                 }}
                                 onDragOver={(e) => e.stopPropagation()} // don't let doc rows affect root drag state
@@ -731,7 +731,7 @@ export function ProjectExplorer({
                                             draggable
                                             onDragStart={(e) => {
                                                 e.dataTransfer.setData(
-                                                    COCO_LEGAL_DOC_DRAG_TYPE,
+                                                    COCOA_LEGAL_DOC_DRAG_TYPE,
                                                     node.document.id,
                                                 );
                                                 e.dataTransfer.effectAllowed =

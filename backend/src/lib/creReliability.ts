@@ -16,7 +16,7 @@
 //   2. emptyExtractionReason — a scanned / image-only PDF yields empty
 //      pdfjs text. The empty-extraction guard already red-flags the cell;
 //      this produces a DISTINGUISHED reason for that case so the user
-//      learns Coco Legal can't OCR, instead of the generic "empty content".
+//      learns Cocoa Legal can't OCR, instead of the generic "empty content".
 
 /**
  * Maximum number of characters of document text sent to the extraction
@@ -73,7 +73,7 @@ IMPORTANT — the document text below was truncated to a fixed character limit, 
 /**
  * Reason string for the empty-extraction guard. When the file is a PDF and
  * extraction came back empty, the PDF is almost certainly scanned /
- * image-only (no selectable text), so we tell the user Coco Legal can't OCR.
+ * image-only (no selectable text), so we tell the user Cocoa Legal can't OCR.
  * Every other (genuinely-empty, non-PDF) case keeps the generic message.
  */
 export function emptyExtractionReason(fileType: string | null | undefined): string {

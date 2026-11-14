@@ -19,7 +19,7 @@
 //   - The owning user for an inbound row is resolved from
 //     GMAIL_AGENT_OWNER_USER_ID when set; otherwise we fall back to the agent
 //     address string so the row is still captured. Mapping recipients to real
-//     Coco Legal users is a later improvement.
+//     Cocoa Legal users is a later improvement.
 
 import { persistDocumentUpload } from "../documentUpload";
 import { validateEmailAttachmentBytes } from "../upload";

@@ -32,7 +32,7 @@ export function ControlledBetaPolicySummary({
                 <li className="flex items-start gap-2">
                     <CheckCircle2 className="mt-0.5 h-3.5 w-3.5 shrink-0" />
                     <span>
-                        Verify redaction yourself; Coco Legal does not redact
+                        Verify redaction yourself; Cocoa Legal does not redact
                         documents automatically.
                     </span>
                 </li>

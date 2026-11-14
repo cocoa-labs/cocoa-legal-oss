@@ -8,7 +8,7 @@ import { Input } from "@/components/ui/input";
 import Link from "next/link";
 import { CheckCircle2 } from "lucide-react";
 import { useAuth } from "@/contexts/AuthContext";
-import { updateUserProfile } from "@/app/lib/cocoLegalApi";
+import { updateUserProfile } from "@/app/lib/cocoaLegalApi";
 import { privacyUrl, termsUrl } from "@/app/lib/deploymentLinks";
 import { MAX_DISPLAY_NAME_LENGTH } from "@/lib/userIdentity";
 import { AuthShell } from "@/app/components/auth/AuthShell";
@@ -93,7 +93,7 @@ export default function SignupPage() {
                 );
             setError(
                 blocked
-                    ? "This email isn't on the approved list for Coco Legal. Ask your administrator to add it, then try again."
+                    ? "This email isn't on the approved list for Cocoa Legal. Ask your administrator to add it, then try again."
                     : raw,
             );
         } finally {
@@ -300,7 +300,7 @@ export default function SignupPage() {
                     })()}
                 </div>
                 <p className="text-center text-xs text-[var(--app-text-subtle)] leading-relaxed px-2">
-                    Coco Legal is currently a demo service. Please do not
+                    Cocoa Legal is currently a demo service. Please do not
                     upload, submit, or store sensitive, confidential,
                     privileged, client, or personally identifiable documents.
                 </p>

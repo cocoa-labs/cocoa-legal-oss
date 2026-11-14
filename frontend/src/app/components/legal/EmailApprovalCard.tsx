@@ -23,7 +23,7 @@ import {
     updateEmailBetaPolicy,
     type EmailAttachmentManifestItem,
     type EmailBetaPolicyReadiness,
-} from "@/app/lib/cocoLegalApi";
+} from "@/app/lib/cocoaLegalApi";
 import type { AssistantEvent } from "../shared/types";
 import { ControlledBetaPolicySummary } from "./ControlledBetaPolicySummary";
 

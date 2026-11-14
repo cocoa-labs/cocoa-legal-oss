@@ -2,15 +2,15 @@
 
 import { useEffect, useState } from "react";
 import { AlertCircle, File, FileText, Image as ImageIcon, Library, Sparkles } from "lucide-react";
-import { fetchChatImageAttachment } from "@/app/lib/cocoLegalApi";
+import { fetchChatImageAttachment } from "@/app/lib/cocoaLegalApi";
 import type {
     CapabilityRunRecord,
-    CocoLegalMessageAttachment,
+    CocoaLegalMessageAttachment,
 } from "../shared/types";
 
 interface Props {
     content: string;
-    files?: CocoLegalMessageAttachment[];
+    files?: CocoaLegalMessageAttachment[];
     workflow?: { id: string; title: string };
     /** Set when this turn was a confirmed capability run (proposal chip). */
     capabilityRun?: CapabilityRunRecord | null;
@@ -20,7 +20,7 @@ interface Props {
 function ImageAttachmentPreview({
     attachment,
 }: {
-    attachment: Extract<CocoLegalMessageAttachment, { kind: "image" }>;
+    attachment: Extract<CocoaLegalMessageAttachment, { kind: "image" }>;
 }) {
     const [url, setUrl] = useState<string | null>(null);
     const [failed, setFailed] = useState(false);

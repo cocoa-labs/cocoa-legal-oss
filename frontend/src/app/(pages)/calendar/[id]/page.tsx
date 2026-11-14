@@ -3,7 +3,7 @@
 import { useParams, useSearchParams } from "next/navigation";
 import { EventDetailPanel } from "@/app/components/calendar/EventDetailPanel";
 import { AppBackButton } from "@/app/components/shared/AppBackButton";
-import type { CalendarSource } from "@/app/lib/cocoLegalApi";
+import type { CalendarSource } from "@/app/lib/cocoaLegalApi";
 
 export default function CalendarEventPage() {
     const params = useParams();

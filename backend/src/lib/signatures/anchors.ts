@@ -4,7 +4,7 @@
 // on the real signature line instead of a block at the bottom. Three sources,
 // in priority order:
 //
-//   1. Tokens   — Coco Legal-generated contracts embed `{{coco-sign:N}}` on each
+//   1. Tokens   — Cocoa Legal-generated contracts embed `{{cocoa-sign:N}}` on each
 //                 party's signature line (N = 0-based party order). Most
 //                 reliable; we also white out the marker so it never shows.
 //   2. Anchors  — any doc: we first narrow to the document's SIGNATURE REGION
@@ -36,7 +36,7 @@ export type PlacementMode = "token" | "anchor" | "fallback" | "mixed";
 export interface ResolvedPlacements {
     /** signerId → where to stamp. Missing signers fall back to bottom-stack. */
     placements: Map<string, StampPlacement>;
-    /** Token rects to white out so `{{coco-sign:N}}` markers never show. */
+    /** Token rects to white out so `{{cocoa-sign:N}}` markers never show. */
     coverRects: CoverRect[];
     mode: PlacementMode;
 }
@@ -62,7 +62,9 @@ interface Line {
     minX: number;
 }
 
-const TOKEN_RE = /\{\{coco-sign:(\d+)\}\}/i;
+// Also accepts the pre-rename `{{coco-sign:N}}` spelling, which documents
+// generated before the Cocoa Legal rename still carry.
+const TOKEN_RE = /\{\{cocoa?-sign:(\d+)\}\}/i;
 
 // Phrases that mark the start of a signature section. Region detection narrows
 // the anchor search to at/after the earliest of these (in reading order).
@@ -411,7 +413,7 @@ function assignSignersToBlocks(
 }
 
 /**
- * From a `{{coco-sign}}` token line, find the real signature line just below
+ * From a `{{cocoa-sign}}` token line, find the real signature line just below
  * it. The token is emitted on its own line *above* the party's "By:" line
  * (often with the party name in between), so the mark belongs on the nearest
  * qualifying signature line beneath the token, not on the token line itself.
@@ -464,7 +466,7 @@ export async function resolveSignerPlacements(
     const lines = groupLines(items);
 
     // 1) Tokens — match against whitespace-stripped line text so a token split
-    // across pdfjs items (e.g. "{{coco" + "-sign:0}}") still resolves. The
+    // across pdfjs items (e.g. "{{cocoa" + "-sign:0}}") still resolves. The
     // token marks WHICH party + roughly WHERE; the signature is snapped onto the
     // real "By:"/underscore line just below the token (the token sits on its own
     // line above it), falling back to the token line when none is found.

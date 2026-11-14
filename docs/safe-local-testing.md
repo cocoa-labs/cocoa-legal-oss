@@ -1,12 +1,12 @@
 # Safe Local Testing
 
-Coco Legal is a young legal AI project. Until you have reviewed your
+Cocoa Legal is a young legal AI project. Until you have reviewed your
 deployment and data flows, test it with disposable infrastructure and synthetic
 documents only.
 
 ## Use Disposable Test Resources
 
-Create separate test resources for Coco Legal:
+Create separate test resources for Cocoa Legal:
 
 - a throwaway Supabase project
 - a throwaway S3-compatible storage bucket, such as Cloudflare R2

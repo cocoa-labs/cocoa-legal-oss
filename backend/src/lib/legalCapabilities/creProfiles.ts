@@ -117,7 +117,7 @@ export function defaultRepresentedPartyForColumns(
  * DUAL SOURCE — keep BYTE-IDENTICAL with the frontend `builtin-us-commercial-lease`
  * pack in frontend/src/app/components/workflows/builtinWorkflows.ts. The
  * frontend tabular store is a separate hand-authored array (it carries the
- * full CocoLegalWorkflow shape the UI needs); this constant is the backend
+ * full CocoaLegalWorkflow shape the UI needs); this constant is the backend
  * capability source. The two MUST mirror the same column names / prompts /
  * formats / tags / indices 0-28. The P1b demo-polish pass sharpened the
  * high-value prompts (anchor-to-clause, grade-against-playbook with the

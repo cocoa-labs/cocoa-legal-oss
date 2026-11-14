@@ -51,11 +51,11 @@ test("validateTemplateShape rejects a body_md token not declared in the schema",
   assert.ok(res.errors.some((e) => e.includes("ghost")));
 });
 
-test("validateTemplateShape accepts body_md tokens that are all declared (and ignores {{coco-sign:N}})", () => {
+test("validateTemplateShape accepts body_md tokens that are all declared (and ignores {{cocoa-sign:N}})", () => {
   const res = validateTemplateShape(
     [
       { id: "s1", heading: "Parties", body_md: "{{var.landlord}} and {{var.tenant}}." },
-      { id: "sig", heading: "Signatures", body_md: "{{coco-sign:0}}\nBy: ____\n{{coco-sign:1}}\nBy: ____" },
+      { id: "sig", heading: "Signatures", body_md: "{{cocoa-sign:0}}\nBy: ____\n{{cocoa-sign:1}}\nBy: ____" },
     ],
     [
       { name: "landlord", label: "Landlord", type: "party", required: true },
@@ -116,7 +116,7 @@ test("resolveTemplate prefers the firm row over default-shared", async () => {
   const db = fakeDb({
     document_templates: [
       { id: "t-firm", firm_id: "user-1", slug: "commercial-lease", current_version_id: "v-firm", doc_type: "commercial_lease", title: "Firm Lease", practice: "Real Estate", jurisdiction: null, description: null, source_kind: "firm_parameterized", status: "active" },
-      { id: "t-def", firm_id: "default-shared", slug: "commercial-lease", current_version_id: "v-def", doc_type: "commercial_lease", title: "Default Lease", practice: "Real Estate", jurisdiction: null, description: null, source_kind: "coco_seed", status: "active" },
+      { id: "t-def", firm_id: "default-shared", slug: "commercial-lease", current_version_id: "v-def", doc_type: "commercial_lease", title: "Default Lease", practice: "Real Estate", jurisdiction: null, description: null, source_kind: "cocoa_seed", status: "active" },
     ],
     template_versions: [
       { id: "v-firm", version_number: 2, skeleton_json: [{ id: "s1" }], variable_schema_json: [], clause_slots_json: [], generation_notes_md: "" },
@@ -131,7 +131,7 @@ test("resolveTemplate prefers the firm row over default-shared", async () => {
 test("resolveTemplate falls back to default-shared when the firm has none", async () => {
   const db = fakeDb({
     document_templates: [
-      { id: "t-def", firm_id: "default-shared", slug: "loi", current_version_id: "v-def", doc_type: "loi", title: "LOI", practice: "Real Estate", jurisdiction: null, description: null, source_kind: "coco_seed", status: "active" },
+      { id: "t-def", firm_id: "default-shared", slug: "loi", current_version_id: "v-def", doc_type: "loi", title: "LOI", practice: "Real Estate", jurisdiction: null, description: null, source_kind: "cocoa_seed", status: "active" },
     ],
     template_versions: [
       { id: "v-def", version_number: 1, skeleton_json: [{ id: "d1" }], variable_schema_json: [], clause_slots_json: [], generation_notes_md: "" },
@@ -170,7 +170,7 @@ test("resolveTemplate still resolves a default-shared template by uuid", async (
   const sharedId = "22222222-2222-4222-8222-222222222222";
   const db = fakeDb({
     document_templates: [
-      { id: sharedId, firm_id: "default-shared", slug: "loi", current_version_id: "v-def", doc_type: "loi", title: "LOI", practice: "Real Estate", jurisdiction: null, description: null, source_kind: "coco_seed", status: "active" },
+      { id: sharedId, firm_id: "default-shared", slug: "loi", current_version_id: "v-def", doc_type: "loi", title: "LOI", practice: "Real Estate", jurisdiction: null, description: null, source_kind: "cocoa_seed", status: "active" },
     ],
     template_versions: [
       { id: "v-def", version_number: 1, skeleton_json: [{ id: "d1" }], variable_schema_json: [], clause_slots_json: [], generation_notes_md: "" },

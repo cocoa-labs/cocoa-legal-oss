@@ -1,6 +1,6 @@
-// Shared TypeScript types for Coco Legal legal assistant
+// Shared TypeScript types for Cocoa Legal legal assistant
 
-export interface CocoLegalFolder {
+export interface CocoaLegalFolder {
   id: string;
   project_id: string;
   user_id: string;
@@ -10,7 +10,7 @@ export interface CocoLegalFolder {
   updated_at: string;
 }
 
-export interface CocoLegalProject {
+export interface CocoaLegalProject {
   id: string;
   user_id: string;
   is_owner?: boolean;
@@ -28,14 +28,14 @@ export interface CocoLegalProject {
     | "viewer";
   created_at: string;
   updated_at: string;
-  documents?: CocoLegalDocument[];
-  folders?: CocoLegalFolder[];
+  documents?: CocoaLegalDocument[];
+  folders?: CocoaLegalFolder[];
   document_count?: number;
   chat_count?: number;
   review_count?: number;
 }
 
-export interface CocoLegalDocument {
+export interface CocoaLegalDocument {
   id: string;
   user_id?: string;
   project_id: string | null;
@@ -63,7 +63,7 @@ export interface StructureNode {
   children: StructureNode[];
 }
 
-export interface CocoLegalChat {
+export interface CocoaLegalChat {
   id: string;
   project_id: string | null;
   user_id: string;
@@ -77,7 +77,7 @@ export interface CocoLegalChat {
   branch_tip_version_id?: string | null;
 }
 
-export interface CocoLegalEditAnnotation {
+export interface CocoaLegalEditAnnotation {
   type?: "edit_data";
   kind?: "edit";
   edit_id: string;
@@ -96,7 +96,7 @@ export interface CocoLegalEditAnnotation {
   status: "pending" | "accepted" | "rejected";
 }
 
-export interface CocoLegalHighlightAnnotation {
+export interface CocoaLegalHighlightAnnotation {
   id: string;
   document_id: string;
   version_id: string | null;
@@ -254,7 +254,7 @@ export interface DocTemplate {
   practice: string;
   jurisdiction: string | null;
   description: string | null;
-  source_kind: "ai_generated" | "coco_seed" | "firm_parameterized";
+  source_kind: "ai_generated" | "cocoa_seed" | "firm_parameterized";
   status: string;
   current_version_id: string | null;
 }
@@ -478,7 +478,7 @@ export type AssistantEvent =
       title: string;
       total: number;
       groups: { label: string; count: number }[];
-      highlights: CocoLegalHighlightAnnotation[];
+      highlights: CocoaLegalHighlightAnnotation[];
       failed_matches: { label: string; query: string; reason: string }[];
       truncated: boolean;
       isStreaming?: boolean;
@@ -666,7 +666,7 @@ export type AssistantEvent =
       /** Per-document monotonic Vn written at emit time. */
       version_number?: number | null;
       download_url: string;
-      annotations: CocoLegalEditAnnotation[];
+      annotations: CocoaLegalEditAnnotation[];
       layout_reflowed?: boolean;
       layout_qa_status?: "passed" | "failed" | "unverified";
       error?: string;
@@ -877,7 +877,7 @@ export interface VersionContextSnapshot {
   }[];
 }
 
-export interface CocoLegalMessage {
+export interface CocoaLegalMessage {
   /** DB id of the persisted chat_messages row (absent while optimistic/streaming). */
   id?: string;
   /**
@@ -889,10 +889,10 @@ export interface CocoLegalMessage {
   version_context?: VersionContextSnapshot | null;
   role: "user" | "assistant";
   content: string;
-  files?: CocoLegalMessageAttachment[];
+  files?: CocoaLegalMessageAttachment[];
   workflow?: { id: string; title: string };
   model?: string;
-  annotations?: CocoLegalCitationAnnotation[];
+  annotations?: CocoaLegalCitationAnnotation[];
   events?: AssistantEvent[];
   /** Set on a user turn confirmed from a proposal chip (chat_messages.capability_run). */
   capability_run?: CapabilityRunRecord | null;
@@ -903,14 +903,14 @@ export interface CocoLegalMessage {
   error?: string;
 }
 
-export type CocoLegalDocumentAttachment = {
+export type CocoaLegalDocumentAttachment = {
   kind?: "document";
   filename: string;
   document_id?: string;
   attachment_id?: never;
 };
 
-export type CocoLegalImageAttachment = {
+export type CocoaLegalImageAttachment = {
   kind: "image";
   filename: string;
   attachment_id: string;
@@ -919,9 +919,9 @@ export type CocoLegalImageAttachment = {
   document_id?: never;
 };
 
-export type CocoLegalMessageAttachment =
-  | CocoLegalDocumentAttachment
-  | CocoLegalImageAttachment;
+export type CocoaLegalMessageAttachment =
+  | CocoaLegalDocumentAttachment
+  | CocoaLegalImageAttachment;
 
 export interface CitationQuote {
   page: number;
@@ -939,7 +939,7 @@ export interface CitationQuote {
  * like "41-42" and a `quote` containing the `[[PAGE_BREAK]]` sentinel at the
  * break point (text before is on page 41, text after is on page 42).
  */
-export interface CocoLegalCitationAnnotation {
+export interface CocoaLegalCitationAnnotation {
   type: "citation_data";
   ref: number;
   doc_id: string;
@@ -959,7 +959,7 @@ const PAGE_BREAK_SENTINEL = "[[PAGE_BREAK]]";
  * cross-page citation with page "N-M" and a `[[PAGE_BREAK]]` split yields two.
  */
 export function expandCitationToEntries(
-  a: CocoLegalCitationAnnotation,
+  a: CocoaLegalCitationAnnotation,
 ): CitationQuote[] {
   const rangeMatch =
     typeof a.page === "string" ? a.page.match(/^(\d+)\s*-\s*(\d+)$/) : null;
@@ -979,13 +979,13 @@ export function expandCitationToEntries(
 }
 
 /** Format the page(s) of a citation for display, e.g. "Page 3" or "Page 41-42". */
-export function formatCitationPage(a: CocoLegalCitationAnnotation): string {
+export function formatCitationPage(a: CocoaLegalCitationAnnotation): string {
   if (typeof a.page === "string") return `Page ${a.page}`;
   return `Page ${a.page}`;
 }
 
 /** Produce a reader-friendly version of the quote (replaces [[PAGE_BREAK]] with "..."). */
-export function displayCitationQuote(a: CocoLegalCitationAnnotation): string {
+export function displayCitationQuote(a: CocoaLegalCitationAnnotation): string {
   return a.quote.replaceAll(PAGE_BREAK_SENTINEL, "...");
 }
 
@@ -1052,7 +1052,7 @@ export interface TabularCell {
 
 // Workflows
 
-export interface CocoLegalWorkflow {
+export interface CocoaLegalWorkflow {
   id: string;
   user_id: string | null;
   title: string;
@@ -1129,13 +1129,13 @@ export interface Recording {
 
 // API helpers
 
-export interface CocoLegalChatDetailOut {
-  chat: CocoLegalChat;
-  messages: CocoLegalMessage[];
+export interface CocoaLegalChatDetailOut {
+  chat: CocoaLegalChat;
+  messages: CocoaLegalMessage[];
 }
 
 export interface TabularReviewDetailOut {
   review: TabularReview;
   cells: TabularCell[];
-  documents: CocoLegalDocument[];
+  documents: CocoaLegalDocument[];
 }

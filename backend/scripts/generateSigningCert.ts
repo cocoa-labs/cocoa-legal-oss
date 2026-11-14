@@ -8,7 +8,7 @@
 //   npx tsx scripts/generateSigningCert.ts
 //   npx tsx scripts/generateSigningCert.ts --force            # rotate (new identity!)
 //   npx tsx scripts/generateSigningCert.ts --key-bits=4096 --validity-years=5 \
-//       --cn="Coco Legal Document Signing" --org="Coco Legal" --country=US
+//       --cn="Cocoa Legal Document Signing" --org="Cocoa Legal" --country=US
 //
 // Safety properties:
 //   - Refuses to overwrite an existing SIGNING_CERT_* in .env unless --force:
@@ -39,8 +39,8 @@ function main() {
     const force = process.argv.includes("--force");
     const keyBits = Number(arg("key-bits") ?? 4096);
     const validityYears = Number(arg("validity-years") ?? 5);
-    const commonName = arg("cn") ?? "Coco Legal Document Signing";
-    const organization = arg("org") ?? "Coco Legal";
+    const commonName = arg("cn") ?? "Cocoa Legal Document Signing";
+    const organization = arg("org") ?? "Cocoa Legal";
     const country = arg("country") ?? "US";
 
     if (!existsSync(ENV_PATH)) {

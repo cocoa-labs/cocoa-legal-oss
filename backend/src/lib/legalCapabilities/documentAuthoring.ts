@@ -33,7 +33,7 @@ export const documentAuthoringCapability: LegalCapability = {
         prompt_md: [
             "You are drafting a U.S. commercial real estate document. Prefer template-anchored assembly: if a suitable template exists, collect the required variables and call assemble_document; if none exists, call generate_template first, then assemble from it.",
             "Expand any open clauses using the firm's standard positions in {{playbook:cre.lease.standard_positions}}, and avoid the non-negotiables in {{playbook:cre.lease.deal_breakers}}. For an estoppel apply {{playbook:cre.estoppel.requirements}}; for an SNDA apply {{playbook:cre.snda.requirements}}; for a purchase and sale agreement apply {{playbook:cre.psa.standard_positions}}.",
-            "Keep clause numbering automatic from 1 (never 0). End any contract with an unnumbered signature block on its own page, using 0-based {{coco-sign:N}} anchors. Assembled documents are produced as approval-gated drafts; refine them with edit_document (tracked changes) rather than regenerating.",
+            "Keep clause numbering automatic from 1 (never 0). End any contract with an unnumbered signature block on its own page, using 0-based {{cocoa-sign:N}} anchors. Assembled documents are produced as approval-gated drafts; refine them with edit_document (tracked changes) rather than regenerating.",
         ].join(" "),
     },
     systemPromptFragment: {
@@ -52,7 +52,7 @@ export const documentAuthoringCapability: LegalCapability = {
             "When expanding open clauses, use the firm's standard positions in {{playbook:cre.lease.standard_positions}} and steer clear of the non-negotiables in {{playbook:cre.lease.deal_breakers}}. Apply the document-type playbook where one fits — {{playbook:cre.estoppel.requirements}} for an estoppel, {{playbook:cre.snda.requirements}} for an SNDA, {{playbook:cre.psa.standard_positions}} for a purchase and sale agreement.",
 
             // Numbering + signature-block discipline (mirrors the base DOCX rules).
-            "Keep clause numbering automatic and starting from 1 (never 0). End any contract with an unnumbered signature block on its own page, using 0-based {{coco-sign:N}} anchors (the first party's block uses {{coco-sign:0}}). Refine an assembled draft with edit_document (tracked changes); never regenerate the whole document to make a change.",
+            "Keep clause numbering automatic and starting from 1 (never 0). End any contract with an unnumbered signature block on its own page, using 0-based {{cocoa-sign:N}} anchors (the first party's block uses {{cocoa-sign:0}}). Refine an assembled draft with edit_document (tracked changes); never regenerate the whole document to make a change.",
         ].join(" "),
     },
     // Reuse the canonical cre.* set verbatim — NO new playbook keys, so no

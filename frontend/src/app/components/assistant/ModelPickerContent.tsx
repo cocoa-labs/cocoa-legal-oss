@@ -7,8 +7,8 @@ import {
     DropdownMenuLabel,
     DropdownMenuSeparator,
 } from "@/components/ui/dropdown-menu";
-import type { ApiKeyState } from "@/app/lib/cocoLegalApi";
-import type { ModelHealthMetadata } from "@/app/lib/cocoLegalApi";
+import type { ApiKeyState } from "@/app/lib/cocoaLegalApi";
+import type { ModelHealthMetadata } from "@/app/lib/cocoaLegalApi";
 import { isModelAvailable } from "@/app/lib/modelAvailability";
 import { useModelsCatalog } from "@/app/hooks/useModelsCatalog";
 
@@ -88,7 +88,7 @@ export function ModelPickerContent({
     const selectModel = (id: string, health: ModelHealthMetadata) => {
         if (SHOW_MODEL_HEALTH && health.status !== "healthy") {
             const proceed = window.confirm(
-                `${HEALTH_LABEL[health.status]} model: Coco Legal has not recently verified this model for the complete streaming and tool workflow. It remains selectable, but may be less reliable. Continue?`,
+                `${HEALTH_LABEL[health.status]} model: Cocoa Legal has not recently verified this model for the complete streaming and tool workflow. It remains selectable, but may be less reliable. Continue?`,
             );
             if (!proceed) return;
         }

@@ -7,7 +7,7 @@ import {
     getVersionGraph,
     type VersionGraphForkNode,
     type VersionGraphNode,
-} from "@/app/lib/cocoLegalApi";
+} from "@/app/lib/cocoaLegalApi";
 import { matterDocReviewHref } from "@/app/lib/matterRoutes";
 import { MatterNav } from "@/app/components/projects/MatterNav";
 

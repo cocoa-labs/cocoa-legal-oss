@@ -7,7 +7,7 @@ import {
     ChevronRight,
     Plus,
 } from "lucide-react";
-import type { CalendarEvent, CalendarSource } from "@/app/lib/cocoLegalApi";
+import type { CalendarEvent, CalendarSource } from "@/app/lib/cocoaLegalApi";
 import { useCalendarAgenda } from "@/app/hooks/useCalendarAgenda";
 import {
     CALENDAR_COLORS,

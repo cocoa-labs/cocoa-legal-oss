@@ -6,7 +6,7 @@ import {
     getTemplate,
     getTemplateSchema,
     startAuthorDocument,
-} from "@/app/lib/cocoLegalApi";
+} from "@/app/lib/cocoaLegalApi";
 import { useAuthoringJob } from "@/app/hooks/useAuthoringJob";
 import type {
     DocTemplateVariable,

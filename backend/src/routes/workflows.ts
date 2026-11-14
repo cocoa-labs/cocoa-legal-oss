@@ -284,7 +284,7 @@ ${input.searchContext || "No external research context provided."}`;
   if (input.type === "assistant") {
     return `${shared}
 
-Create a production-ready Coco Legal assistant workflow prompt for lawyers. Return only JSON:
+Create a production-ready Cocoa Legal assistant workflow prompt for lawyers. Return only JSON:
 {
   "prompt_md": "markdown workflow prompt",
   "summary": "one sentence summary",

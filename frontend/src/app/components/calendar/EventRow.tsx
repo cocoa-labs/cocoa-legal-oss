@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { Users, Video, Flag } from "lucide-react";
-import type { CalendarEvent } from "@/app/lib/cocoLegalApi";
+import type { CalendarEvent } from "@/app/lib/cocoaLegalApi";
 import { CALENDAR_COLORS, formatEventTime } from "./calendarColors";
 
 /**

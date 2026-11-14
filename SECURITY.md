@@ -1,6 +1,6 @@
 # Security policy
 
-Coco Legal is a community release published as-is. Cocoa Labs no longer maintains it: a security report may never be read, and no fix will come from Cocoa Labs. If you run Coco Legal, you are responsible for reviewing, patching and operating your deployment.
+Cocoa Legal is a community release published as-is. Cocoa Labs no longer maintains it: a security report may never be read, and no fix will come from Cocoa Labs. If you run Cocoa Legal, you are responsible for reviewing, patching and operating your deployment.
 
 ## Reporting a vulnerability
 
@@ -9,7 +9,7 @@ Report suspected vulnerabilities privately through GitHub's private vulnerabilit
 ## Running it safely
 
 - **Keep controlled-beta mode on** (`BETA_MODE=true`) until you have done your own security and compliance review: it requires virus scanning of uploads, a data-handling acknowledgement, and an allowlist of signature and calendar recipients.
-- **Use synthetic or redacted documents** until you trust your deployment. Coco Legal sends document text to the model providers you configure; review their data-handling terms.
+- **Use synthetic or redacted documents** until you trust your deployment. Cocoa Legal sends document text to the model providers you configure; review their data-handling terms.
 - **The e-signature engine has not been legally reviewed.** Treat its signatures as nonbinding unless your own counsel concludes otherwise for your jurisdiction and use.
 - **Keep sign-up invite-only.** The `allowed_emails` trigger rejects any sign-up not on the list; add people with `npm run seed:firm`.
 - **Protect secrets.** `SUPABASE_SECRET_KEY` (service role), `DOWNLOAD_SIGNING_SECRET`, `USER_API_KEYS_ENCRYPTION_SECRET` and the signing certificate grant full access. Keep them out of the repository and rotate them if exposed.

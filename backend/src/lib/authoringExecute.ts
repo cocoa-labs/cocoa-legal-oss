@@ -128,7 +128,7 @@ export async function generateTemplateDraft(args: {
         "",
         "clauseSlots: an array of { key, title } for swappable clause positions; use [] if none are needed.",
         "",
-        "Signature section rule (REQUIRED): the FINAL section must be a signatures section with pageBreak: true. Its body_md is plain unnumbered signature-block text for each party, and on its own line directly above each party's signature line it MUST include the exact 0-BASED anchor token {{coco-sign:N}} — the first party uses {{coco-sign:0}}, the second {{coco-sign:1}}, and so on. Emit these tokens verbatim; do not number, letter, or explain them. This matches the e-signature placer convention.",
+        "Signature section rule (REQUIRED): the FINAL section must be a signatures section with pageBreak: true. Its body_md is plain unnumbered signature-block text for each party, and on its own line directly above each party's signature line it MUST include the exact 0-BASED anchor token {{cocoa-sign:N}} — the first party uses {{cocoa-sign:0}}, the second {{cocoa-sign:1}}, and so on. Emit these tokens verbatim; do not number, letter, or explain them. This matches the e-signature placer convention.",
         "",
         "Make the template practical, well-structured, and faithful to standard CRE drafting. Do not include commentary outside the JSON object.",
     ].join("\n");

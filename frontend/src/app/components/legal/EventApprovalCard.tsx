@@ -12,7 +12,7 @@ import {
     ShieldCheck,
     X,
 } from "lucide-react";
-import { approveCalendarWrite, cancelCalendarWrite } from "@/app/lib/cocoLegalApi";
+import { approveCalendarWrite, cancelCalendarWrite } from "@/app/lib/cocoaLegalApi";
 import type { AssistantEvent } from "../shared/types";
 
 type CalendarPending = Extract<AssistantEvent, { type: "calendar_pending" }>;
@@ -161,7 +161,7 @@ export function EventApprovalCard({ event }: { event: CalendarPending }) {
                 </Row>
                 {event.location && <Row label="Where">{event.location}</Row>}
                 <Row label="Calendar">
-                    {event.calendar === "firm" ? "Coco Legal (firm)" : "Quill"}
+                    {event.calendar === "firm" ? "Cocoa Legal (firm)" : "Quill"}
                 </Row>
             </dl>
 

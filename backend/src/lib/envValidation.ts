@@ -10,7 +10,7 @@
  *   lib/supabase.ts       → SUPABASE_URL, SUPABASE_SECRET_KEY
  *   lib/storage.ts        → R2_ENDPOINT_URL, R2_ACCESS_KEY_ID,
  *                           R2_SECRET_ACCESS_KEY
- *                           (R2_BUCKET_NAME defaults to "coco-legal" — not critical)
+ *                           (R2_BUCKET_NAME defaults to "cocoa-legal" — not critical)
  *   lib/downloadTokens.ts → DOWNLOAD_SIGNING_SECRET
  *
  * Pure function so the production/dev matrix is unit-testable without

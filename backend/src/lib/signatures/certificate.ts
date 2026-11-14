@@ -167,7 +167,7 @@ function sanitize(value: string): string {
         (value ?? "")
             // Map common typographic punctuation to ASCII first, so e.g. an
             // em/en dash renders as "-" instead of the catch-all "?" (U+2014 is
-            // outside WinAnsi). Otherwise "Coco Legal — …" became "Coco Legal ? …".
+            // outside WinAnsi). Otherwise "Cocoa Legal — …" became "Cocoa Legal ? …".
             .replace(/[—–]/g, "-")
             .replace(/[‘’]/g, "'")
             .replace(/[“”]/g, '"')
@@ -221,7 +221,7 @@ export async function buildCertificateOfCompletion(input: CertificateInput): Pro
 
     // Title.
     d.text("Certificate of Completion", { size: 20, font: d.fonts.bold, color: ACCENT });
-    d.text("Coco Legal — native e-signature engine", { size: 9, color: MUTED });
+    d.text("Cocoa Legal — native e-signature engine", { size: 9, color: MUTED });
     d.gap(6);
     d.rule();
 

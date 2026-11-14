@@ -73,9 +73,9 @@ async function pdfWithItems(
 async function testTokensPlaceAndCover() {
     const pdf = await pdfWith([
         { text: "Accepted and agreed:", y: 420 },
-        { text: "{{coco-sign:0}}", y: 360 },
+        { text: "{{cocoa-sign:0}}", y: 360 },
         { text: "Alex Sampleton, Partner   Date", y: 345 },
-        { text: "{{coco-sign:1}}", y: 300 },
+        { text: "{{cocoa-sign:1}}", y: 300 },
         { text: "Riley Testerson   Date", y: 285 },
     ]);
     const res = await resolveSignerPlacements(pdf, [signer("a", 0), signer("b", 1)]);
@@ -88,12 +88,26 @@ async function testTokensPlaceAndCover() {
     assert.ok(pa.yPct !== undefined && pa.yPct > 0.4 && pa.yPct < 0.5, `signer a near token0, yPct=${pa.yPct}`);
 }
 
+// Documents generated before the Cocoa Legal rename carry the old
+// {{coco-sign:N}} spelling; they must still place signers and hide the tokens.
+async function testLegacyTokenSpellingStillPlaces() {
+    const pdf = await pdfWith([
+        { text: "Accepted and agreed:", y: 420 },
+        { text: "{{coco-sign:0}}", y: 360 },
+        { text: "Alex Sampleton, Partner   Date", y: 345 },
+    ]);
+    const res = await resolveSignerPlacements(pdf, [signer("a", 0)]);
+    assert.ok(["token", "mixed"].includes(res.mode), `legacy token placed by token, got ${res.mode}`);
+    assert.ok(res.placements.has("a"), "signer placed from the legacy token");
+    assert.ok(res.coverRects.length >= 1, "the legacy token line is covered");
+}
+
 async function testSplitTokenStillResolves() {
     // Two adjacent draws on the same baseline emulate pdfjs splitting a token.
     const doc = await PDFDocument.create();
     const page = doc.addPage([612, 792]);
     const font = await doc.embedFont(StandardFonts.Helvetica);
-    page.drawText("{{coco", { x: 72, y: 300, size: 12, font });
+    page.drawText("{{cocoa", { x: 72, y: 300, size: 12, font });
     page.drawText("-sign:0}}", { x: 130, y: 300, size: 12, font });
     const pdf = Buffer.from(await doc.save());
     const res = await resolveSignerPlacements(pdf, [signer("a", 0)]);
@@ -270,7 +284,7 @@ async function testPartyNameMatch() {
 async function testTokenSnapsToByLine() {
     const pdf = await pdfWith([
         { text: "COMPANY:", y: 420 },
-        { text: "{{coco-sign:0}}", y: 400 },
+        { text: "{{cocoa-sign:0}}", y: 400 },
         { text: "EXAMPLE Holdings, LLC", y: 385 },
         { text: "By: ____________________", y: 340 },
         { text: "Name:", y: 320 },
@@ -362,6 +376,7 @@ async function main() {
     await testSinglePageBlockNoCue();
     await testSideBySideRow();
     await testPartyNameMatch();
+    await testLegacyTokenSpellingStillPlaces();
     console.log("anchors.test.ts: all passed");
 }
 

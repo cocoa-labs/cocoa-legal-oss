@@ -10,7 +10,7 @@ import {
     type CalendarSource,
     type EventInput,
     type CalendarWriteResult,
-} from "@/app/lib/cocoLegalApi";
+} from "@/app/lib/cocoaLegalApi";
 import { CALENDAR_COLORS } from "./calendarColors";
 
 const BROWSER_TZ =

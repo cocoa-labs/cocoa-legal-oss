@@ -39,7 +39,7 @@ import {
     uploadChatImageAttachment,
     uploadProjectDocument,
     uploadStandaloneDocument,
-} from "@/app/lib/cocoLegalApi";
+} from "@/app/lib/cocoaLegalApi";
 import { invalidateDirectoryCache } from "../shared/useDirectoryData";
 import {
     RecorderControl,
@@ -47,10 +47,10 @@ import {
 } from "../recordings/RecorderControl";
 import { ConsentConfirm } from "../recordings/ConsentConfirm";
 import type {
-    CocoLegalDocument,
-    CocoLegalImageAttachment,
-    CocoLegalMessage,
-    CocoLegalMessageAttachment,
+    CocoaLegalDocument,
+    CocoaLegalImageAttachment,
+    CocoaLegalMessage,
+    CocoaLegalMessageAttachment,
 } from "../shared/types";
 import { useAppVersionReloadBlocker } from "@/components/AppVersionGuard";
 import {
@@ -60,11 +60,11 @@ import {
 } from "@/app/lib/appVersionState";
 
 export interface ChatInputHandle {
-    addDoc: (doc: CocoLegalDocument) => void;
+    addDoc: (doc: CocoaLegalDocument) => void;
 }
 
 interface Props {
-    onSubmit: (message: CocoLegalMessage) => void;
+    onSubmit: (message: CocoaLegalMessage) => void;
     onCancel: () => void;
     isLoading: boolean;
     hideAddDocButton?: boolean;
@@ -73,7 +73,7 @@ interface Props {
     projectId?: string;
     projectName?: string;
     projectCmNumber?: string | null;
-    onDocumentsUploaded?: (documents: CocoLegalDocument[]) => void;
+    onDocumentsUploaded?: (documents: CocoaLegalDocument[]) => void;
     variant?: "default" | "command";
     /**
      * Commit a mic capture / audio upload into the conversation (locked
@@ -95,7 +95,7 @@ type AttachmentItem =
           localId: string;
           kind: "document";
           filename: string;
-          document?: CocoLegalDocument;
+          document?: CocoaLegalDocument;
           uploading: boolean;
           error?: string;
       }
@@ -103,10 +103,10 @@ type AttachmentItem =
           localId: string;
           kind: "image";
           filename: string;
-          mimeType: CocoLegalImageAttachment["mime_type"];
+          mimeType: CocoaLegalImageAttachment["mime_type"];
           sizeBytes: number;
           previewUrl: string;
-          attachment?: CocoLegalImageAttachment;
+          attachment?: CocoaLegalImageAttachment;
           uploading: boolean;
           error?: string;
       };
@@ -246,7 +246,7 @@ export const ChatInput = forwardRef<ChatInputHandle, Props>(function ChatInput(
     }, [revokePreview]);
 
     useImperativeHandle(ref, () => ({
-        addDoc: (doc: CocoLegalDocument) => {
+        addDoc: (doc: CocoaLegalDocument) => {
             setAttachments((prev) => {
                 if (
                     prev.some(
@@ -357,7 +357,7 @@ export const ChatInput = forwardRef<ChatInputHandle, Props>(function ChatInput(
                         kind: "image",
                         filename: file.name,
                         mimeType:
-                            file.type as CocoLegalImageAttachment["mime_type"],
+                            file.type as CocoaLegalImageAttachment["mime_type"],
                         sizeBytes: file.size,
                         previewUrl,
                         uploading: true,
@@ -496,7 +496,7 @@ export const ChatInput = forwardRef<ChatInputHandle, Props>(function ChatInput(
         }
 
         const files = readyAttachments
-            .map((item): CocoLegalMessageAttachment | null => {
+            .map((item): CocoaLegalMessageAttachment | null => {
                 if (item.kind === "image") return item.attachment ?? null;
                 if (!item.document) return null;
                 return {
@@ -505,7 +505,7 @@ export const ChatInput = forwardRef<ChatInputHandle, Props>(function ChatInput(
                     document_id: item.document.id,
                 };
             })
-            .filter((item): item is CocoLegalMessageAttachment => !!item);
+            .filter((item): item is CocoaLegalMessageAttachment => !!item);
 
         setValue("");
         persistComposerDraft(sessionStorage, draftStorageKey, "");

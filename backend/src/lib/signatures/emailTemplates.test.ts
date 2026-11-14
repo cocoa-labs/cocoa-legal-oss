@@ -25,8 +25,8 @@ function testSignRequestHasLinkAndButton() {
     });
     assert.ok(html.includes(link), "html contains the signing link");
     assert.ok(/Review &amp; Sign/.test(html), "html has the Review & Sign button");
-    assert.ok(html.includes("Coco Legal"), "html has the wordmark");
-    assert.ok(html.includes("Electronic signature request sent with Coco Legal"), "html has the e-sign footer");
+    assert.ok(html.includes("Cocoa Legal"), "html has the wordmark");
+    assert.ok(html.includes("Electronic signature request sent with Cocoa Legal"), "html has the e-sign footer");
     assert.doesNotMatch(html, /\bESIGN\b|\bUETA\b|\bcompliant\b/i, "no legal-compliance claim");
     assert.ok(text.includes(link), "plain text contains the link");
     assert.ok(text.includes("Hi there"), "plain text contains the message");

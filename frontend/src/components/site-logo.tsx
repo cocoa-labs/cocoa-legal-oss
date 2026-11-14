@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { CocoLegalIcon } from "@/components/chat/coco-legal-icon";
+import { CocoaLegalIcon } from "@/components/chat/cocoa-legal-icon";
 
 interface SiteLogoProps {
     size?: "sm" | "md" | "lg" | "xl";
@@ -35,8 +35,8 @@ export function SiteLogo({
                 animate ? "sidebar-fade-in" : ""
             } ${className}`}
         >
-            <CocoLegalIcon size={iconSizes[size]} />
-            <span>Coco Legal</span>
+            <CocoaLegalIcon size={iconSizes[size]} />
+            <span>Cocoa Legal</span>
         </h1>
     );
 

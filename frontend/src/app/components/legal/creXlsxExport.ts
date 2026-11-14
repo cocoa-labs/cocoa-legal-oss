@@ -1,7 +1,7 @@
 "use client";
 
 import ExcelJS from "exceljs";
-import type { ColumnConfig, CocoLegalDocument, TabularCell } from "../shared/types";
+import type { ColumnConfig, CocoaLegalDocument, TabularCell } from "../shared/types";
 import { preprocessCitations } from "../tabular/citation-utils";
 import type { CellFlag } from "./creShared";
 
@@ -100,7 +100,7 @@ function triggerDownload(buffer: ArrayBuffer, filename: string) {
 export async function buildLeaseAbstractWorkbook(
     columns: ColumnConfig[],
     cells: TabularCell[],
-    documents: CocoLegalDocument[] = [],
+    documents: CocoaLegalDocument[] = [],
 ): Promise<ExcelJS.Workbook> {
     const sortedCols = [...columns].sort((a, b) => a.index - b.index);
     const cellMap = new Map<string, TabularCell>();
@@ -180,7 +180,7 @@ export async function downloadLeaseAbstractWorkbook(params: {
     title: string;
     columns: ColumnConfig[];
     cells: TabularCell[];
-    documents?: CocoLegalDocument[];
+    documents?: CocoaLegalDocument[];
 }): Promise<void> {
     const wb = await buildLeaseAbstractWorkbook(
         params.columns,

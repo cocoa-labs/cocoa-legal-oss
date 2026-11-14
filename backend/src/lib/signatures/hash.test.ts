@@ -26,8 +26,8 @@ async function testAcceptsUint8ArrayAndArrayBuffer() {
 }
 
 async function testDeterministicAndLowerHex() {
-    const a = sha256Hex(Buffer.from("coco-legal"));
-    const b = sha256Hex(Buffer.from("coco-legal"));
+    const a = sha256Hex(Buffer.from("cocoa-legal"));
+    const b = sha256Hex(Buffer.from("cocoa-legal"));
     assert.equal(a, b);
     assert.match(a, /^[0-9a-f]{64}$/);
 }

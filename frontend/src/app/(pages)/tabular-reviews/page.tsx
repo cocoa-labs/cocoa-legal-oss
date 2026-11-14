@@ -11,8 +11,8 @@ import {
     createTabularReview,
     listProjects,
     updateTabularReview,
-} from "@/app/lib/cocoLegalApi";
-import type { TabularReview, CocoLegalProject } from "@/app/components/shared/types";
+} from "@/app/lib/cocoaLegalApi";
+import type { TabularReview, CocoaLegalProject } from "@/app/components/shared/types";
 import { ToolbarTabs } from "@/app/components/shared/ToolbarTabs";
 import { AddNewTRModal } from "@/app/components/tabular/AddNewTRModal";
 import { OwnerOnlyModal } from "@/app/components/shared/OwnerOnlyModal";
@@ -40,7 +40,7 @@ function formatDate(iso: string) {
 
 export default function TabularReviewsPage() {
     const [reviews, setReviews] = useState<TabularReview[]>([]);
-    const [projects, setProjects] = useState<CocoLegalProject[]>([]);
+    const [projects, setProjects] = useState<CocoaLegalProject[]>([]);
     const [loading, setLoading] = useState(true);
     const [creating, setCreating] = useState(false);
     const [newTROpen, setNewTROpen] = useState(false);

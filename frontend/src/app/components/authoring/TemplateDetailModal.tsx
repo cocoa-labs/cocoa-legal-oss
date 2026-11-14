@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 import { Loader2, MapPin, Scale, Trash2, X } from "lucide-react";
-import { deleteTemplate, getTemplate } from "@/app/lib/cocoLegalApi";
+import { deleteTemplate, getTemplate } from "@/app/lib/cocoaLegalApi";
 import type { DocTemplate, DocTemplateVersion } from "../shared/types";
 import { DOC_TYPE_LABELS } from "./builtinTemplates";
 import { TemplateVariableEditor } from "./TemplateVariableEditor";
@@ -18,7 +18,7 @@ interface Props {
     onDeleted?: () => void;
 }
 
-/** A coco_seed template is a shared default — not deletable. */
+/** A cocoa_seed template is a shared default — not deletable. */
 function isFirmOwned(t: DocTemplate): boolean {
     return (
         t.source_kind === "firm_parameterized" ||

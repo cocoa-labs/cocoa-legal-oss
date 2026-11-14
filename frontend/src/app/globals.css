@@ -4,7 +4,7 @@
 /* Signature font — the same Great Vibes (OFL) the backend embeds in the executed
    PDF, so the typed-signature preview matches the stamped result. */
 @font-face {
-    font-family: "Coco Legal Signature";
+    font-family: "Cocoa Legal Signature";
     src: url("/fonts/GreatVibes-Regular.ttf") format("truetype");
     font-weight: 400;
     font-style: normal;
@@ -120,7 +120,7 @@
     --app-accent-soft: rgba(14, 116, 144, 0.12);
     --app-warm: #b45309;
     --app-warm-soft: rgba(180, 83, 9, 0.12);
-    --app-backdrop-image: url("/brand/coco-legal-command-bg-light.png");
+    --app-backdrop-image: url("/brand/cocoa-legal-command-bg-light.png");
     --app-backdrop-opacity: 1;
     --app-backdrop-filter-auth: brightness(1.02) contrast(1.04) saturate(1.08);
     --app-backdrop-filter-hero: brightness(1.02) contrast(1.05) saturate(1.08);
@@ -192,7 +192,7 @@
     --app-accent-soft: rgba(103, 232, 249, 0.12);
     --app-warm: #fde68a;
     --app-warm-soft: rgba(251, 191, 36, 0.12);
-    --app-backdrop-image: url("/brand/coco-legal-command-bg.png");
+    --app-backdrop-image: url("/brand/cocoa-legal-command-bg.png");
     --app-backdrop-opacity: 1;
     --app-backdrop-filter-auth: brightness(1.05) contrast(1.04) saturate(1.08);
     --app-backdrop-filter-hero: brightness(1.22) contrast(1.16) saturate(1.2);
@@ -219,7 +219,7 @@
     }
 }
 
-@keyframes coco-legal-scan {
+@keyframes cocoa-legal-scan {
     0% {
         transform: translateY(12vh);
         opacity: 0;
@@ -236,11 +236,11 @@
     }
 }
 
-.coco-legal-scan {
-    animation: coco-legal-scan 8.5s ease-in-out infinite;
+.cocoa-legal-scan {
+    animation: cocoa-legal-scan 8.5s ease-in-out infinite;
 }
 
-@keyframes coco-legal-scan-slow {
+@keyframes cocoa-legal-scan-slow {
     0% {
         transform: translateX(18vw);
         opacity: 0;
@@ -257,17 +257,17 @@
     }
 }
 
-.coco-legal-scan-slow {
-    animation: coco-legal-scan-slow 13s ease-in-out infinite;
+.cocoa-legal-scan-slow {
+    animation: cocoa-legal-scan-slow 13s ease-in-out infinite;
 }
 
 @media (prefers-reduced-motion: reduce) {
-    .coco-legal-scan {
+    .cocoa-legal-scan {
         animation: none;
         opacity: 0;
     }
 
-    .coco-legal-scan-slow {
+    .cocoa-legal-scan-slow {
         animation: none;
         opacity: 0;
     }

@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { getAuthoringJob } from "@/app/lib/cocoLegalApi";
+import { getAuthoringJob } from "@/app/lib/cocoaLegalApi";
 import type { AuthoringJobStatus } from "@/app/components/shared/types";
 
 const POLL_INTERVAL_MS = 2500;

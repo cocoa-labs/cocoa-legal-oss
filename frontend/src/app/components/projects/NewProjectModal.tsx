@@ -6,11 +6,11 @@ import {
     addDocumentToProject,
     createProject,
     uploadProjectDocument,
-} from "@/app/lib/cocoLegalApi";
+} from "@/app/lib/cocoaLegalApi";
 import { useDirectoryData } from "../shared/useDirectoryData";
 import { FileDirectory } from "../shared/FileDirectory";
 import { EmailPillInput } from "../shared/EmailPillInput";
-import type { CocoLegalProject } from "../shared/types";
+import type { CocoaLegalProject } from "../shared/types";
 import { useAuth } from "@/contexts/AuthContext";
 import {
     DOCUMENT_ACCEPT_ATTR,
@@ -21,7 +21,7 @@ import {
 interface Props {
     open: boolean;
     onClose: () => void;
-    onCreated: (project: CocoLegalProject) => void;
+    onCreated: (project: CocoaLegalProject) => void;
 }
 
 export function NewProjectModal({ open, onClose, onCreated }: Props) {

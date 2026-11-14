@@ -2,7 +2,7 @@
 """Generate the CRE demo-polish sample documents as text-based .docx files.
 
 These fixtures stage the "US Commercial Lease Abstraction" / PSA / estoppel
-demo for the Coco Legal app. They are TEXT-BASED Word documents (selectable
+demo for the Cocoa Legal app. They are TEXT-BASED Word documents (selectable
 text, no scanned images) because the app has no OCR.
 
 The flagship lease is deliberately engineered to trip the four seeded

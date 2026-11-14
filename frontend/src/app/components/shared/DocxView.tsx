@@ -1,7 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { CocoLegalIcon } from "@/components/chat/coco-legal-icon";
+import { CocoaLegalIcon } from "@/components/chat/cocoa-legal-icon";
 import { useFetchDocxBytes } from "@/app/hooks/useFetchDocxBytes";
 import { supabase } from "@/lib/supabase";
 import { API_BASE } from "@/app/lib/apiBase";
@@ -552,7 +552,7 @@ export function DocxView({
             >
                 {loading && !bytes && (
                     <div className="flex h-full items-center justify-center">
-                        <CocoLegalIcon spin cocoLegal size={28} />
+                        <CocoaLegalIcon spin cocoaLegal size={28} />
                     </div>
                 )}
                 {(error || renderError) && (

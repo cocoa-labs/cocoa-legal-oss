@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 
-import { getUserBetaPolicy } from "./cocoLegalApi";
+import { getUserBetaPolicy } from "./cocoaLegalApi";
 
 /**
  * Whether in-app signatures are labelled nonbinding under the current

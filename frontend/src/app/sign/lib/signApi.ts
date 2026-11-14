@@ -2,7 +2,7 @@
  * Self-contained API helper for the public signer-facing page.
  *
  * This intentionally does NOT depend on the app's main api client
- * (`@/app/lib/cocoLegalApi`). The signing page is opened by an external signer via
+ * (`@/app/lib/cocoaLegalApi`). The signing page is opened by an external signer via
  * a single-use magic link with no auth, so it must stay free of Supabase/session
  * imports and send no Authorization header.
  *

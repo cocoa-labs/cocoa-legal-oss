@@ -1,7 +1,7 @@
 // Shared color map + date helpers for the calendar view, so the agenda and the
 // month grid read events the same way. Calendars are color-coded by source
 // (primary vs the shared firm calendar); deadlines are an orthogonal red flag.
-import type { CalendarEvent, CalendarSource } from "@/app/lib/cocoLegalApi";
+import type { CalendarEvent, CalendarSource } from "@/app/lib/cocoaLegalApi";
 
 export const CALENDAR_COLORS: Record<
     CalendarSource,
@@ -17,7 +17,7 @@ export const CALENDAR_COLORS: Record<
         dot: "bg-amber-500",
         text: "text-amber-700 dark:text-amber-300",
         soft: "bg-amber-500/10",
-        label: "Coco Legal",
+        label: "Cocoa Legal",
     },
 };
 

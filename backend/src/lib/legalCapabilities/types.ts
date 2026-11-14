@@ -24,7 +24,7 @@ export type LegalPractice =
 
 /**
  * The workflow shape the gallery uses. Mirrors the existing
- * CocoLegalWorkflow shape (assistant or tabular) so a capability becomes a
+ * CocoaLegalWorkflow shape (assistant or tabular) so a capability becomes a
  * built-in workflow with no extra plumbing. A capability may also declare
  * `sub_workflows` — IDs of legacy workflows that run as a deeper second
  * step (e.g. Triage NDA → NDA Review).
@@ -100,7 +100,7 @@ export interface CapabilityOutputSpec {
     sections: CapabilityOutputSection[];
 }
 
-/** What this capability produces and through which Coco output paths. */
+/** What this capability produces and through which Cocoa output paths. */
 export interface OutputBindings {
     /** Set true if the capability can generate a DOCX export. */
     docx: boolean;

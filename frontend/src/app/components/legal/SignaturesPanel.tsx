@@ -13,7 +13,7 @@ import {
     listSignatures,
     type SignatureEnvelopeSummary,
     type SignerRef,
-} from "@/app/lib/cocoLegalApi";
+} from "@/app/lib/cocoaLegalApi";
 import { SignatureStatusCard } from "./SignatureStatusCard";
 
 /** Envelope statuses that are still in flight (awaiting someone's action). */

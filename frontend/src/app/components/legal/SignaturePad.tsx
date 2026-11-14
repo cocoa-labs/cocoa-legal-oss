@@ -213,7 +213,7 @@ export default function SignaturePad({
                         }`}
                         style={{
                             fontFamily:
-                                "'Coco Legal Signature', 'Snell Roundhand', 'Apple Chancery', 'Segoe Script', 'Brush Script MT', 'Lucida Handwriting', cursive",
+                                "'Cocoa Legal Signature', 'Snell Roundhand', 'Apple Chancery', 'Segoe Script', 'Brush Script MT', 'Lucida Handwriting', cursive",
                         }}
                     >
                         {typedName.trim() || "Your signature"}

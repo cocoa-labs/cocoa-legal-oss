@@ -195,7 +195,7 @@ templatesRouter.get(
 );
 
 // GET /templates — list the caller's firm templates (firm rows overlaid on the
-// Coco Legal default-shared rows). Optional ?doc_type= filter.
+// Cocoa Legal default-shared rows). Optional ?doc_type= filter.
 templatesRouter.get(
     "/",
     asyncRoute(async (req, res) => {
@@ -363,7 +363,7 @@ templatesRouter.post(
 );
 
 // DELETE /templates/:id — soft delete (archive) the firm's OWN template row.
-// Never archives a Coco Legal default-shared row: if the id resolves to a
+// Never archives a Cocoa Legal default-shared row: if the id resolves to a
 // default-shared template, return 403. The .eq("firm_id", firmId) on the update
 // is a second guard so a shared row can never be touched even if it slipped past.
 templatesRouter.delete(

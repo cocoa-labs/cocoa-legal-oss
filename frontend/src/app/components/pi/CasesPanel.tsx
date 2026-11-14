@@ -17,7 +17,7 @@ import {
     PI_CASE_STATUSES,
     type PiCase,
     type PiCaseStatus,
-} from "@/app/lib/cocoLegalApi";
+} from "@/app/lib/cocoaLegalApi";
 import {
     caseOriginLabel,
     caseStatusBadge,

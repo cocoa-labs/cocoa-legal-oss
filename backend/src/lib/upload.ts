@@ -18,7 +18,7 @@ export const MAX_UPLOAD_SIZE_MB = Math.round(MAX_UPLOAD_SIZE_BYTES / (1024 * 102
 export const MAX_AUDIO_UPLOAD_SIZE_BYTES = 250 * 1024 * 1024;
 export const MAX_AUDIO_UPLOAD_SIZE_MB = Math.round(MAX_AUDIO_UPLOAD_SIZE_BYTES / (1024 * 1024));
 
-const tempRoot = path.join(os.tmpdir(), "coco-legal-quarantine");
+const tempRoot = path.join(os.tmpdir(), "cocoa-legal-quarantine");
 const diskStorage = multer.diskStorage({
   destination(_req, _file, callback) {
     fs.mkdir(tempRoot, { recursive: true }, (error) => callback(error, tempRoot));
@@ -181,7 +181,7 @@ export async function checkClamAvReachable(): Promise<void> {
 /** Email intake uses the same scanner and container validation as HTTP uploads. */
 export async function validateEmailAttachmentBytes(bytes: Buffer, filename: string): Promise<void> {
   if (bytes.length > MAX_UPLOAD_SIZE_BYTES) throw new Error("ATTACHMENT_TOO_LARGE");
-  const dir = await fsPromises.mkdtemp(path.join(os.tmpdir(), "coco-email-scan-"));
+  const dir = await fsPromises.mkdtemp(path.join(os.tmpdir(), "cocoa-email-scan-"));
   try {
     const file = path.join(dir, "attachment");
     await fsPromises.writeFile(file, bytes, { mode: 0o600 });

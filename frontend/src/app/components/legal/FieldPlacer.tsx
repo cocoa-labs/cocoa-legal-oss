@@ -12,7 +12,7 @@ import {
     getPdfJs,
     STANDARD_FONT_DATA_URL,
 } from "@/app/components/shared/highlightQuote";
-import { getSignatureDocumentPdf } from "@/app/lib/cocoLegalApi";
+import { getSignatureDocumentPdf } from "@/app/lib/cocoaLegalApi";
 
 export type PlacedFieldType = "signature" | "date";
 

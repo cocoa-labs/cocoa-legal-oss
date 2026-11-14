@@ -3,8 +3,8 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { Download, FileSignature, PenLine } from "lucide-react";
-import { getDocumentUrl, getProject } from "@/app/lib/cocoLegalApi";
-import type { CocoLegalProject, DraftQAFinding } from "@/app/components/shared/types";
+import { getDocumentUrl, getProject } from "@/app/lib/cocoaLegalApi";
+import type { CocoaLegalProject, DraftQAFinding } from "@/app/components/shared/types";
 import { MatterNav } from "@/app/components/projects/MatterNav";
 import { AppBackButton } from "@/app/components/shared/AppBackButton";
 import { DocView } from "@/app/components/shared/DocView";
@@ -59,7 +59,7 @@ function isDocxFile(filename: string) {
 export function AuthoringWorkspace({ projectId }: Props) {
     const router = useRouter();
 
-    const [project, setProject] = useState<CocoLegalProject | null>(null);
+    const [project, setProject] = useState<CocoaLegalProject | null>(null);
     const [draftOpen, setDraftOpen] = useState(false);
 
     // The draft shown in the center pane.

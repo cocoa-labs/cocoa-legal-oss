@@ -1,6 +1,6 @@
 # Production Readiness Notes
 
-This file records the production controls Coco Legal implements and the
+This file records the production controls Cocoa Legal implements and the
 ones a deployer still has to add. It tracks the controls that must stay visible
 while the implementation is staged.
 

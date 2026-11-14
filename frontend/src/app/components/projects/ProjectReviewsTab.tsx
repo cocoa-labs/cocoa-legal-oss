@@ -3,7 +3,7 @@
 import { type Dispatch, type SetStateAction } from "react";
 import { Table2 } from "lucide-react";
 import { RowActions } from "@/app/components/shared/RowActions";
-import type { CocoLegalDocument, TabularReview } from "@/app/components/shared/types";
+import type { CocoaLegalDocument, TabularReview } from "@/app/components/shared/types";
 import { CHECK_W, formatDate, NAME_COL_W } from "./ProjectPageParts";
 
 export function ProjectReviewsTab({
@@ -26,7 +26,7 @@ export function ProjectReviewsTab({
     setRenamingReviewId,
     setRenameReviewValue,
 }: {
-    docs: CocoLegalDocument[];
+    docs: CocoaLegalDocument[];
     reviews: TabularReview[];
     filteredReviews: TabularReview[];
     selectedReviewIds: string[];

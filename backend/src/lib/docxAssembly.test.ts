@@ -71,18 +71,18 @@ test("renderSectionsToDocxBuffer emits a valid OOXML package", async () => {
     }
 });
 
-test("renderSectionsToDocxBuffer preserves {{coco-sign:N}} anchor tokens", async () => {
+test("renderSectionsToDocxBuffer preserves {{cocoa-sign:N}} anchor tokens", async () => {
     const res = await renderSectionsToDocxBuffer("NDA", [
         {
             heading: "Signatures",
-            content: "{{coco-sign:1}}\nBy: ____",
+            content: "{{cocoa-sign:1}}\nBy: ____",
             pageBreak: true,
         },
     ]);
     const zip = await JSZip.loadAsync((res as { buffer: Buffer }).buffer);
     const xml = await zip.file("word/document.xml")!.async("string");
     assert.ok(
-        xml.includes("{{coco-sign:1}}"),
+        xml.includes("{{cocoa-sign:1}}"),
         "anchor token should survive rendering",
     );
 });

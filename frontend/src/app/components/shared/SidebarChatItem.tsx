@@ -11,10 +11,10 @@ import {
 import { useChatHistoryContext } from "@/app/contexts/ChatHistoryContext";
 import { useAuth } from "@/contexts/AuthContext";
 import { OwnerOnlyModal } from "@/app/components/shared/OwnerOnlyModal";
-import type { CocoLegalChat } from "@/app/components/shared/types";
+import type { CocoaLegalChat } from "@/app/components/shared/types";
 
 interface Props {
-    chat: CocoLegalChat;
+    chat: CocoaLegalChat;
     isActive: boolean;
     onSelect: () => void;
     projectName?: string;

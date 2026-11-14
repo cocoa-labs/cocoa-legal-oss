@@ -12,7 +12,7 @@ import {
 
 export type ThemeMode = "light" | "dark";
 
-const STORAGE_KEY = "coco-theme";
+const STORAGE_KEY = "cocoa-theme";
 
 type ThemeContextValue = {
     theme: ThemeMode;

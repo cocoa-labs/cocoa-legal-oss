@@ -9,7 +9,7 @@ import {
     listAutomationRuns,
     type AutomationRun,
     type AutomationStatusOut,
-} from "@/app/lib/cocoLegalApi";
+} from "@/app/lib/cocoaLegalApi";
 import { groupRuns } from "./piShared";
 import { AutomationRunCard } from "./AutomationRunCard";
 

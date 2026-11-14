@@ -6,7 +6,7 @@ import remarkGfm from "remark-gfm";
 import rehypeKatex from "rehype-katex";
 import "katex/dist/katex.min.css";
 import { displayCitationQuote, formatCitationPage } from "./types";
-import type { CocoLegalCitationAnnotation } from "./types";
+import type { CocoaLegalCitationAnnotation } from "./types";
 
 // ---------------------------------------------------------------------------
 // Markdown renderer (shared config)
@@ -27,8 +27,8 @@ export function MarkdownContent({
     divRef,
 }: {
     text: string;
-    citationsList: CocoLegalCitationAnnotation[];
-    onCitationClick?: (c: CocoLegalCitationAnnotation) => void;
+    citationsList: CocoaLegalCitationAnnotation[];
+    onCitationClick?: (c: CocoaLegalCitationAnnotation) => void;
     divRef?: React.RefObject<HTMLDivElement | null>;
 }) {
     return (

@@ -1,7 +1,7 @@
 "use client";
 
 import { useCallback } from "react";
-import { generateChatTitle } from "@/app/lib/cocoLegalApi";
+import { generateChatTitle } from "@/app/lib/cocoaLegalApi";
 import { useChatHistoryContext } from "@/app/contexts/ChatHistoryContext";
 
 export function useGenerateChatTitle() {

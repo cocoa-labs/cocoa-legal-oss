@@ -3,7 +3,7 @@ import type { createServerSupabase } from "./supabase";
 
 type Db = ReturnType<typeof createServerSupabase>;
 
-/** Same seed firm as playbooks — Coco Legal-shipped defaults every firm inherits. */
+/** Same seed firm as playbooks — Cocoa Legal-shipped defaults every firm inherits. */
 export const DEFAULT_SHARED_FIRM_ID = "default-shared";
 
 const UUID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
@@ -106,7 +106,7 @@ export function validateTemplateShape(
     // (the two forms `substituteVariables` accepts). A body token that was
     // never added to the variable schema would otherwise pass validation,
     // never be collected by the wizard, and silently blank at assembly. Does
-    // NOT match `{{coco-sign:N}}` or `{{playbook:key}}` — only `{{var.*}}`.
+    // NOT match `{{cocoa-sign:N}}` or `{{playbook:key}}` — only `{{var.*}}`.
     const body = typeof s.body_md === "string" ? s.body_md : "";
     for (const m of body.matchAll(/\{\{var[:.]([^}\s]+)\}\}/g)) {
       if (!varNames.has(m[1])) {

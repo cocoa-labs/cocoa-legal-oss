@@ -2,7 +2,7 @@
 
 import { useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
-import type { CalendarEvent } from "@/app/lib/cocoLegalApi";
+import type { CalendarEvent } from "@/app/lib/cocoaLegalApi";
 import {
     CALENDAR_COLORS,
     addDays,

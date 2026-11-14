@@ -120,7 +120,7 @@ export default function LoginPage() {
                     </form>
                 </div>
                 <p className="text-center text-xs text-[var(--app-text-subtle)] leading-relaxed px-2">
-                    Coco Legal is currently a demo service. Please do not
+                    Cocoa Legal is currently a demo service. Please do not
                     upload, submit, or store sensitive, confidential,
                     privileged, client, or personally identifiable documents.
                 </p>

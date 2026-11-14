@@ -18,7 +18,7 @@ import {
     getUserBetaPolicy,
     updateUserBetaPolicy,
     type ManagedBetaPolicy,
-} from "@/app/lib/cocoLegalApi";
+} from "@/app/lib/cocoaLegalApi";
 import { MAX_DISPLAY_NAME_LENGTH } from "@/lib/userIdentity";
 import { ControlledBetaPolicySummary } from "@/app/components/legal/ControlledBetaPolicySummary";
 

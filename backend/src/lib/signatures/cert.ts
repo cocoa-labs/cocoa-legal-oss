@@ -26,10 +26,10 @@ import {
 } from "./certGen";
 
 /** Passphrase used for the in-process self-signed dev bundle. */
-const DEV_PASSPHRASE = "coco-legal-dev";
+const DEV_PASSPHRASE = "cocoa-legal-dev";
 
 /** CN shown on the self-signed dev certificate's subject and issuer. */
-const DEV_COMMON_NAME = "Coco Legal Signing (dev self-signed)";
+const DEV_COMMON_NAME = "Cocoa Legal Signing (dev self-signed)";
 
 /**
  * Signature placeholder size passed to pdflibAddPlaceholder (pdf.ts imports
@@ -83,7 +83,7 @@ function devIdentity(): SigningIdentity {
     if (!cachedDev) {
         const minted: MintedIdentity = mintSigningIdentity({
             commonName: DEV_COMMON_NAME,
-            organization: "Coco Legal",
+            organization: "Cocoa Legal",
             organizationalUnit: "Document Signing",
             keyBits: 2048,
             validityYears: 10,

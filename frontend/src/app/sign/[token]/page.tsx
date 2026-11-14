@@ -2,7 +2,7 @@
 
 import { Fragment, useEffect, useRef, useState, useCallback } from "react";
 import { useParams } from "next/navigation";
-import { CocoLegalIcon } from "@/components/chat/coco-legal-icon";
+import { CocoaLegalIcon } from "@/components/chat/cocoa-legal-icon";
 import {
     fetchSignSession,
     submitSignature,
@@ -22,12 +22,12 @@ type LoadState =
     | { kind: "error"; title: string; message: string }
     | { kind: "ready"; session: SignSession };
 
-function CocoMark() {
+function CocoaMark() {
     return (
         <div className="flex items-center gap-2">
-            <CocoLegalIcon size={28} />
+            <CocoaLegalIcon size={28} />
             <span className="font-serif text-lg font-light text-stone-900">
-                Coco Legal
+                Cocoa Legal
             </span>
         </div>
     );
@@ -83,7 +83,7 @@ function CenteredCard({
     return (
         <Shell notice={notice}>
             <header className="flex items-center justify-between gap-4">
-                <CocoMark />
+                <CocoaMark />
             </header>
             <div className="overflow-hidden rounded-2xl border border-stone-200 bg-white shadow-[0_12px_32px_rgba(42,26,12,0.07)]">
                 {notice.banner ? (
@@ -97,7 +97,7 @@ function CenteredCard({
                         aria-hidden="true"
                     >
                         {icon === "loading" ? (
-                            <CocoLegalIcon size={30} spin />
+                            <CocoaLegalIcon size={30} spin />
                         ) : icon === "success" ? (
                             <svg
                                 width="26"
@@ -401,7 +401,7 @@ export default function SignPage() {
     return (
         <Shell notice={notice}>
             <header className="flex items-center justify-between gap-4">
-                <CocoMark />
+                <CocoaMark />
                 {session.signer?.email ? (
                     <span className="max-w-[40vw] truncate text-[13px] text-stone-500">
                         {session.signer.email}

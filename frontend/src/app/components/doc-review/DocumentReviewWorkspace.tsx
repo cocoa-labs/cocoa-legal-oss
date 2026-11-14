@@ -48,7 +48,7 @@ import {
     type DerivedDocumentNode,
     type DocumentVersionNode,
     type ProjectDocumentTree,
-} from "@/app/lib/cocoLegalApi";
+} from "@/app/lib/cocoaLegalApi";
 import { useAssistantChat } from "@/app/hooks/useAssistantChat";
 import type { LegalProposal } from "@/app/hooks/useAssistantChat";
 import { deriveConversationDoc } from "./deriveConversationDoc";
@@ -71,7 +71,7 @@ import { DocxView } from "@/app/components/shared/DocxView";
 import { SignersModal } from "@/app/components/legal/SignersModal";
 import { SignatureStatusCard } from "@/app/components/legal/SignatureStatusCard";
 import { createPortal } from "react-dom";
-import { CocoLegalIcon } from "@/components/chat/coco-legal-icon";
+import { CocoaLegalIcon } from "@/components/chat/cocoa-legal-icon";
 import { useAppVersionReloadBlocker } from "@/components/AppVersionGuard";
 import { useAuth } from "@/contexts/AuthContext";
 import { useUserProfile } from "@/contexts/UserProfileContext";
@@ -81,18 +81,18 @@ import { invalidateDocxBytes } from "@/app/hooks/useFetchDocxBytes";
 import type {
     CitationQuote,
     AgentOperation,
-    CocoLegalCitationAnnotation,
-    CocoLegalDocument,
-    CocoLegalEditAnnotation,
-    CocoLegalHighlightAnnotation,
-    CocoLegalMessage,
-    CocoLegalProject,
+    CocoaLegalCitationAnnotation,
+    CocoaLegalDocument,
+    CocoaLegalEditAnnotation,
+    CocoaLegalHighlightAnnotation,
+    CocoaLegalMessage,
+    CocoaLegalProject,
 } from "@/app/components/shared/types";
 import { expandCitationToEntries } from "@/app/components/shared/types";
 import {
-    getCocoLegalDocDragData,
-    getCocoLegalFolderDragData,
-    hasCocoLegalDragPayload,
+    getCocoaLegalDocDragData,
+    getCocoaLegalFolderDragData,
+    hasCocoaLegalDragPayload,
 } from "@/app/lib/dragTypes";
 import {
     matterAuthoringHref,
@@ -204,7 +204,7 @@ function signatureBannerMeta(status: string): {
 }
 
 function highlightsToQuotes(
-    highlights: CocoLegalHighlightAnnotation[],
+    highlights: CocoaLegalHighlightAnnotation[],
 ): CitationQuote[] {
     return highlights
         .filter((highlight) => highlight.status !== "removed")
@@ -258,7 +258,7 @@ function AssistantGreeting({ greetingName }: { greetingName: string }) {
                             "transform 900ms cubic-bezier(0.25, 0.46, 0.45, 0.94)",
                     }}
                 >
-                    <CocoLegalIcon
+                    <CocoaLegalIcon
                         size={ICON_SIZE}
                         style={{
                             filter:
@@ -351,7 +351,7 @@ export function DocumentReviewWorkspace({
     const { profile } = useUserProfile();
     const greetingName = getGreetingName(profile?.displayName);
 
-    const [project, setProject] = useState<CocoLegalProject | null>(null);
+    const [project, setProject] = useState<CocoaLegalProject | null>(null);
     const [documentTree, setDocumentTree] =
         useState<ProjectDocumentTree | null>(null);
     const [chatTitle, setChatTitle] = useState<string | null>(null);
@@ -484,7 +484,7 @@ export function DocumentReviewWorkspace({
         saveChat,
         loadChats,
     } = useChatHistoryContext();
-    const [initialMessages] = useState<CocoLegalMessage[]>(newChatMessages ?? []);
+    const [initialMessages] = useState<CocoaLegalMessage[]>(newChatMessages ?? []);
     const {
         messages,
         isResponseLoading,
@@ -910,7 +910,7 @@ export function DocumentReviewWorkspace({
 
     // ── Handlers ──────────────────────────────────────────────────────────────
     const handleSubmit = useCallback(
-        (message: CocoLegalMessage) => {
+        (message: CocoaLegalMessage) => {
             // Snapshot every open tab's version so the turn is anchored to the
             // versions on screen (provenance + staleness fix). The active tab
             // is flagged `displayed` and also sent as displayedDoc.
@@ -1036,12 +1036,12 @@ export function DocumentReviewWorkspace({
         [activeTabId, tabs, handleChat],
     );
 
-    const handleDocClick = (doc: CocoLegalDocument) => {
+    const handleDocClick = (doc: CocoaLegalDocument) => {
         openTab(doc.id, doc.filename, undefined, undefined, doc.latest_version_number ?? null);
     };
 
     const handleVersionClick = (
-        doc: CocoLegalDocument,
+        doc: CocoaLegalDocument,
         version: DocumentVersionNode,
     ) => {
         openTabRef.current(
@@ -1057,7 +1057,7 @@ export function DocumentReviewWorkspace({
     // document, then surfaces the producing turn: within the same chat we
     // scroll to and highlight the message; a different chat (a fork) is loaded.
     const handleVersionProvenanceClick = (
-        doc: CocoLegalDocument,
+        doc: CocoaLegalDocument,
         version: DocumentVersionNode,
     ) => {
         openTab(
@@ -1114,7 +1114,7 @@ export function DocumentReviewWorkspace({
     };
 
     const handleExportDocument = async (
-        doc: CocoLegalDocument,
+        doc: CocoaLegalDocument,
         versionId?: string | null,
     ) => {
         const { url, filename } = await getDocumentUrl(
@@ -1149,12 +1149,12 @@ export function DocumentReviewWorkspace({
     };
 
     const handleSendForSignature = (
-        doc: CocoLegalDocument,
+        doc: CocoaLegalDocument,
     ) => {
         setSignFor({ documentId: doc.id, filename: doc.filename });
     };
 
-    const handleCitationClick = (citation: CocoLegalCitationAnnotation) => {
+    const handleCitationClick = (citation: CocoaLegalCitationAnnotation) => {
         openTabRef.current(
             citation.document_id,
             citation.filename,
@@ -1185,7 +1185,7 @@ export function DocumentReviewWorkspace({
         versionId: string | null;
         versionNumber: number | null;
         title: string;
-        highlights: CocoLegalHighlightAnnotation[];
+        highlights: CocoaLegalHighlightAnnotation[];
         activeHighlightId?: string | null;
     }) => {
         const quotes = highlightsToQuotes(args.highlights);
@@ -1202,7 +1202,7 @@ export function DocumentReviewWorkspace({
     const handleHighlightSetChange = (args: {
         setId: string;
         documentId: string;
-        highlights: CocoLegalHighlightAnnotation[];
+        highlights: CocoaLegalHighlightAnnotation[];
     }) => {
         void args.setId;
         const quotes = highlightsToQuotes(args.highlights);
@@ -1231,7 +1231,7 @@ export function DocumentReviewWorkspace({
         }
     };
 
-    const handleEditViewClick = (ann: CocoLegalEditAnnotation, filename: string) => {
+    const handleEditViewClick = (ann: CocoaLegalEditAnnotation, filename: string) => {
         openTab(
             ann.document_id,
             filename,
@@ -1385,7 +1385,7 @@ export function DocumentReviewWorkspace({
                 (
                     event,
                 ): event is Extract<
-                    NonNullable<CocoLegalMessage["events"]>[number],
+                    NonNullable<CocoaLegalMessage["events"]>[number],
                     { type: "doc_edited" }
                 > =>
                     event.type === "doc_edited" &&
@@ -1419,7 +1419,7 @@ export function DocumentReviewWorkspace({
                 (
                     event,
                 ): event is Extract<
-                    NonNullable<CocoLegalMessage["events"]>[number],
+                    NonNullable<CocoaLegalMessage["events"]>[number],
                     { type: "doc_created" }
                 > =>
                     event.type === "doc_created" &&
@@ -1442,7 +1442,7 @@ export function DocumentReviewWorkspace({
 
     const handleChatDrop = (e: React.DragEvent) => {
         e.preventDefault();
-        const docId = getCocoLegalDocDragData(e.dataTransfer);
+        const docId = getCocoaLegalDocDragData(e.dataTransfer);
         if (!docId) return;
         const doc = project?.documents?.find((d) => d.id === docId);
         if (doc) chatInputRef.current?.addDoc(doc);
@@ -1749,7 +1749,7 @@ export function DocumentReviewWorkspace({
                             onDragOver={(e) => {
                                 e.preventDefault();
                                 // Only show the upload overlay for external file drags, not internal moves
-                                const isInternal = hasCocoLegalDragPayload(
+                                const isInternal = hasCocoaLegalDragPayload(
                                     e.dataTransfer,
                                 );
                                 if (!isInternal && canMutate) setExplorerDragOver(true);
@@ -1822,10 +1822,10 @@ export function DocumentReviewWorkspace({
                                 }}
                                 onDrop={async (e) => {
                                     e.preventDefault();
-                                    const docId = getCocoLegalDocDragData(
+                                    const docId = getCocoaLegalDocDragData(
                                         e.dataTransfer,
                                     );
-                                    const folderId = getCocoLegalFolderDragData(
+                                    const folderId = getCocoaLegalFolderDragData(
                                         e.dataTransfer,
                                     );
                                     if (docId) {
@@ -2175,7 +2175,7 @@ export function DocumentReviewWorkspace({
                     onDrop={handleChatDrop}
                 >
                     <div className="flex h-10 shrink-0 items-center gap-2 border-b border-[var(--app-border)] px-4">
-                        <CocoLegalIcon size={16} />
+                        <CocoaLegalIcon size={16} />
                         <span className="text-xs font-medium text-[var(--app-text-strong)]">
                             Quill
                         </span>

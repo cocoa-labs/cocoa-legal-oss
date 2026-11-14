@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 import { useAssistantChat } from "@/app/hooks/useAssistantChat";
 import { InitialView } from "@/app/components/assistant/InitialView";
 import { ChatView } from "@/app/components/assistant/ChatView";
-import type { CocoLegalMessage } from "@/app/components/shared/types";
+import type { CocoaLegalMessage } from "@/app/components/shared/types";
 
 export default function AssistantPage() {
     const router = useRouter();
@@ -20,7 +20,7 @@ export default function AssistantPage() {
         dismissProposal,
     } = useAssistantChat();
 
-    async function handleInitialSubmit(message: CocoLegalMessage) {
+    async function handleInitialSubmit(message: CocoaLegalMessage) {
         const newChatId = await handleNewChat(message);
         if (newChatId) router.push(`/assistant/chat/${newChatId}`);
     }

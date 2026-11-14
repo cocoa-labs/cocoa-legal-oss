@@ -18,11 +18,11 @@ import {
     listProjects,
     toggleRecordingActionItem,
     updateRecording,
-} from "@/app/lib/cocoLegalApi";
+} from "@/app/lib/cocoaLegalApi";
 import { useRecordingStatus } from "@/app/hooks/useRecordingStatus";
 import { MarkdownContent } from "@/app/components/shared/MarkdownContent";
 import type {
-    CocoLegalProject,
+    CocoaLegalProject,
     Recording,
     RecordingStatus,
 } from "@/app/components/shared/types";
@@ -318,7 +318,7 @@ function DetailHeader({
     onRecordingChange,
 }: {
     recording: Recording;
-    projects: CocoLegalProject[];
+    projects: CocoaLegalProject[];
     onRecordingChange: (recording: Recording) => void;
 }) {
     const router = useRouter();
@@ -553,7 +553,7 @@ export function RecordingDetailPanel({ recordingId }: { recordingId: string }) {
     const { recording: polled, error: pollError } =
         useRecordingStatus(recordingId);
     const [recording, setRecording] = useState<Recording | null>(null);
-    const [projects, setProjects] = useState<CocoLegalProject[]>([]);
+    const [projects, setProjects] = useState<CocoaLegalProject[]>([]);
 
     // Sync from the poll during render (not via an effect): whenever the hook
     // yields a new snapshot — a fresh poll, or `null` when the route id changes

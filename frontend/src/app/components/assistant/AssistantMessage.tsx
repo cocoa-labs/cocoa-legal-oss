@@ -17,15 +17,15 @@ import {
     Search,
     ShieldCheck,
 } from "lucide-react";
-import { CocoLegalIcon } from "@/components/chat/coco-legal-icon";
+import { CocoaLegalIcon } from "@/components/chat/cocoa-legal-icon";
 import { MarkdownContent } from "../shared/MarkdownContent";
 import { RecordingCard } from "../recordings/RecordingCard";
 import type {
     AssistantEvent,
     CapabilityResultEvent,
-    CocoLegalCitationAnnotation,
-    CocoLegalEditAnnotation,
-    CocoLegalHighlightAnnotation,
+    CocoaLegalCitationAnnotation,
+    CocoaLegalEditAnnotation,
+    CocoaLegalHighlightAnnotation,
     DraftQAFinding,
 } from "../shared/types";
 import { resolveCapabilityResultCard } from "../legal/cards";
@@ -48,7 +48,7 @@ import {
     approveAssembleOperation,
     approveOperation,
     updateDocumentHighlightStatus,
-} from "@/app/lib/cocoLegalApi";
+} from "@/app/lib/cocoaLegalApi";
 import { invalidateDocxBytes } from "@/app/hooks/useFetchDocxBytes";
 
 function toolCallLabel(name: string): string {
@@ -94,10 +94,10 @@ function BulkEditActions({
     onError,
 }: {
     pending: {
-        annotation: CocoLegalEditAnnotation;
+        annotation: CocoaLegalEditAnnotation;
         filename: string;
     }[];
-    onViewClick?: (ann: CocoLegalEditAnnotation, filename: string) => void;
+    onViewClick?: (ann: CocoaLegalEditAnnotation, filename: string) => void;
     onResolveStart?: (args: {
         editId: string;
         documentId: string;
@@ -272,13 +272,13 @@ function EditCardsSection({
     onError,
 }: {
     pending: {
-        annotation: CocoLegalEditAnnotation;
+        annotation: CocoaLegalEditAnnotation;
         filename: string;
     }[];
     filenameByDocId: Map<string, string>;
     cards: React.ReactNode[];
     resolvedCount: number;
-    onViewClick?: (ann: CocoLegalEditAnnotation, filename: string) => void;
+    onViewClick?: (ann: CocoaLegalEditAnnotation, filename: string) => void;
     onResolveStart?: (args: {
         editId: string;
         documentId: string;
@@ -390,11 +390,11 @@ function ResponseStatus({ status }: { status: StatusState }) {
 
     return (
         <div className="w-full h-9 flex items-center mb-2">
-            <CocoLegalIcon
+            <CocoaLegalIcon
                 spin={isActive}
                 done={showDone && doneVisible}
                 error={isError}
-                cocoLegal={!isError && !(showDone && doneVisible)}
+                cocoaLegal={!isError && !(showDone && doneVisible)}
                 size={22}
             />
         </div>
@@ -1361,13 +1361,13 @@ function DocHighlightsBlock({
         versionId: string | null;
         versionNumber: number | null;
         title: string;
-        highlights: CocoLegalHighlightAnnotation[];
+        highlights: CocoaLegalHighlightAnnotation[];
         activeHighlightId?: string | null;
     }) => void;
     onChanged?: (args: {
         setId: string;
         documentId: string;
-        highlights: CocoLegalHighlightAnnotation[];
+        highlights: CocoaLegalHighlightAnnotation[];
     }) => void;
 }) {
     const [highlights, setHighlights] = useState(event.highlights);
@@ -1408,7 +1408,7 @@ function DocHighlightsBlock({
         }));
     })();
 
-    const notifyChanged = (next: CocoLegalHighlightAnnotation[]) => {
+    const notifyChanged = (next: CocoaLegalHighlightAnnotation[]) => {
         onChanged?.({
             setId: event.highlight_set_id,
             documentId: event.document_id,
@@ -1416,7 +1416,7 @@ function DocHighlightsBlock({
         });
     };
 
-    const openHighlight = (highlight?: CocoLegalHighlightAnnotation | null) => {
+    const openHighlight = (highlight?: CocoaLegalHighlightAnnotation | null) => {
         onView?.({
             documentId: event.document_id,
             filename: event.filename,
@@ -1463,7 +1463,7 @@ function DocHighlightsBlock({
     ]);
 
     const setHighlightStatus = async (
-        highlight: CocoLegalHighlightAnnotation,
+        highlight: CocoaLegalHighlightAnnotation,
         status: "kept" | "removed",
     ) => {
         if (!event.highlight_set_id || busyId) return;
@@ -1906,8 +1906,8 @@ function DocEditedBlock({
 
 function preprocessCitations(
     text: string,
-    annotations: CocoLegalCitationAnnotation[],
-    citationsList: CocoLegalCitationAnnotation[],
+    annotations: CocoaLegalCitationAnnotation[],
+    citationsList: CocoaLegalCitationAnnotation[],
 ): string {
     // Replace [N] or [N, M, ...] inline markers with internal §idx§ tokens backed by annotations
     return text.replace(/\[(\d+(?:,\s*\d+)*)\]/g, (full, refsStr) => {
@@ -1935,26 +1935,26 @@ interface Props {
     documentPacketJobIds?: ReadonlySet<string>;
     isStreaming?: boolean;
     isError?: boolean;
-    /** Human-readable error text rendered alongside the red Coco Legal icon. */
+    /** Human-readable error text rendered alongside the red Cocoa Legal icon. */
     errorMessage?: string;
-    annotations?: CocoLegalCitationAnnotation[];
-    onCitationClick?: (citation: CocoLegalCitationAnnotation) => void;
+    annotations?: CocoaLegalCitationAnnotation[];
+    onCitationClick?: (citation: CocoaLegalCitationAnnotation) => void;
     minHeight?: string;
     onWorkflowClick?: (workflowId: string) => void;
-    onEditViewClick?: (ann: CocoLegalEditAnnotation, filename: string) => void;
+    onEditViewClick?: (ann: CocoaLegalEditAnnotation, filename: string) => void;
     onHighlightViewClick?: (args: {
         documentId: string;
         filename: string;
         versionId: string | null;
         versionNumber: number | null;
         title: string;
-        highlights: CocoLegalHighlightAnnotation[];
+        highlights: CocoaLegalHighlightAnnotation[];
         activeHighlightId?: string | null;
     }) => void;
     onHighlightSetChange?: (args: {
         setId: string;
         documentId: string;
-        highlights: CocoLegalHighlightAnnotation[];
+        highlights: CocoaLegalHighlightAnnotation[];
     }) => void;
     onOperationApplied?: (
         operation: Extract<
@@ -2119,7 +2119,7 @@ export function AssistantMessage({
     // Pre-process citations for all content events. Each [N] marker resolves
     // to exactly one annotation (models are instructed to use shared refs
     // only for cross-page continuations via the [[PAGE_BREAK]] sentinel).
-    const citationsList: CocoLegalCitationAnnotation[] = [];
+    const citationsList: CocoaLegalCitationAnnotation[] = [];
     const processedTexts: string[] = [];
     if (events) {
         for (const event of events) {
@@ -2697,7 +2697,7 @@ export function AssistantMessage({
                                     { type: "doc_edited" }
                                 >[];
                                 const pending: {
-                                    annotation: CocoLegalEditAnnotation;
+                                    annotation: CocoaLegalEditAnnotation;
                                     filename: string;
                                 }[] = [];
                                 const filenameByDocId = new Map<
@@ -2705,7 +2705,7 @@ export function AssistantMessage({
                                     string
                                 >();
                                 // Effective status = external override if any, else the annotation's DB status.
-                                const statusOf = (ann: CocoLegalEditAnnotation) =>
+                                const statusOf = (ann: CocoaLegalEditAnnotation) =>
                                     resolvedEditStatuses?.[ann.edit_id] ??
                                     ann.status;
                                 for (const e of editedEvents) {

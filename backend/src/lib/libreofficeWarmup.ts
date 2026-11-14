@@ -19,7 +19,7 @@ import { convertWithLibreOffice } from "./libreoffice";
  * `nixpacks.toml` exist to provide.
  */
 const WARM_UP_RTF = Buffer.from(
-    "{\\rtf1\\ansi{\\fonttbl{\\f0 Times New Roman;}}\\f0\\fs22 Coco Legal converter warm-up.}",
+    "{\\rtf1\\ansi{\\fonttbl{\\f0 Times New Roman;}}\\f0\\fs22 Cocoa Legal converter warm-up.}",
     "latin1",
 );
 

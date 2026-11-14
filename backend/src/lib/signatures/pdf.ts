@@ -577,7 +577,7 @@ export async function stampSignatures(
     }
     const fonts = { body, script };
 
-    // White out any anchor-token markers (e.g. {{coco-sign:0}}) before drawing
+    // White out any anchor-token markers (e.g. {{cocoa-sign:0}}) before drawing
     // the signatures, so the markers never appear in the executed PDF.
     for (const r of opts?.coverRects ?? []) {
         const pageIndex = Math.min(Math.max(r.page, 0), pages.length - 1);
@@ -713,9 +713,9 @@ export function signaturePlaceholderMetadata(env: NodeJS.ProcessEnv = process.en
     location: string;
 } {
     return {
-        reason: "Document executed via Coco Legal e-signature",
+        reason: "Document executed via Cocoa Legal e-signature",
         contactInfo: env.SIGNING_CONTACT_EMAIL?.trim() || "",
-        name: "Coco Legal Signing",
+        name: "Cocoa Legal Signing",
         location: env.SIGNING_LOCATION?.trim() || "",
     };
 }

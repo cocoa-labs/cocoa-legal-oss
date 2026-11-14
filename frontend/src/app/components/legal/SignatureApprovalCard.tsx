@@ -16,7 +16,7 @@ import {
     SIGNATURE_PREPARED_VERSION_UNAVAILABLE,
     SIGNATURE_STALE_VERSION,
     type SignerRef,
-} from "@/app/lib/cocoLegalApi";
+} from "@/app/lib/cocoaLegalApi";
 import type { AssistantEvent } from "../shared/types";
 import { SignatureStatusCard } from "./SignatureStatusCard";
 import { SignatureVersionChoice } from "./SignatureVersionChoice";

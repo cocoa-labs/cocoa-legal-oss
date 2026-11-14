@@ -45,7 +45,7 @@ import { checkProjectAccess, listAccessibleProjectIds } from "../lib/access";
 const router = Router();
 router.use(requireAuth);
 
-const FIRM_NAME = process.env.CALENDAR_FIRM_NAME || "Coco Legal";
+const FIRM_NAME = process.env.CALENDAR_FIRM_NAME || "Cocoa Legal";
 const DEFAULT_TZ = process.env.CALENDAR_DEFAULT_TIMEZONE || "UTC";
 
 class CalendarScopeError extends Error {

@@ -26,7 +26,7 @@ async function main() {
    throw new Error("RESTORE_DRILL_CONFIRM=disposable is required");
  const target = required("RESTORE_DATABASE_URL");
  if (target === process.env.DATABASE_URL) throw new Error("Restore target must not equal DATABASE_URL");
- const work = await mkdtemp(path.join(os.tmpdir(), "coco-restore-"));
+ const work = await mkdtemp(path.join(os.tmpdir(), "cocoa-restore-"));
  try {
   const decrypted = path.join(work, "database.dump");
   await run("age", ["--decrypt", "--identity", required("BACKUP_AGE_IDENTITY_FILE"), "--output", decrypted, required("RESTORE_BACKUP_FILE")]);

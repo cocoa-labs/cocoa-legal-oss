@@ -1,5 +1,5 @@
 import { MODELS, type ModelOption } from "../components/assistant/ModelToggle";
-import type { ApiKeyState } from "@/app/lib/cocoLegalApi";
+import type { ApiKeyState } from "@/app/lib/cocoaLegalApi";
 
 export type ModelProvider = "claude" | "gemini" | "openai" | "openrouter";
 

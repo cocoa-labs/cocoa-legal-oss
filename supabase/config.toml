@@ -1,4 +1,4 @@
-# Local Supabase for Coco Legal development (Supabase CLI 3.1.0: `npx supabase@3.1.0 start`).
+# Local Supabase for Cocoa Legal development (Supabase CLI 3.1.0: `npx supabase@3.1.0 start`).
 # Postgres + Auth only. Schema changes come from backend/migrations via `npm run migrate`,
 # so the CLI's own migrations and seeding are off. Storage and Realtime are unused
 # (files live in S3-compatible storage), and analytics/edge functions are off to save memory.
@@ -7,7 +7,7 @@
 # https://supabase.com/docs/guides/local-development/cli/config
 # A string used to distinguish different Supabase projects on the same host. Defaults to the
 # working directory name when running `supabase init`.
-project_id = "coco-legal"
+project_id = "cocoa-legal"
 
 [api]
 enabled = true

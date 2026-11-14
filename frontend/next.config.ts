@@ -4,7 +4,7 @@ import { withSentryConfig } from "@sentry/nextjs";
 const buildId =
     process.env.VERCEL_DEPLOYMENT_ID ||
     process.env.VERCEL_GIT_COMMIT_SHA ||
-    process.env.NEXT_PUBLIC_COCO_BUILD_ID ||
+    process.env.NEXT_PUBLIC_COCOA_BUILD_ID ||
     process.env.GITHUB_SHA ||
     "development";
 
@@ -14,7 +14,7 @@ const nextConfig: NextConfig = {
     output: process.env.NEXT_OUTPUT === "standalone" ? "standalone" : undefined,
     reactCompiler: true,
     env: {
-        NEXT_PUBLIC_COCO_BUILD_ID: buildId,
+        NEXT_PUBLIC_COCOA_BUILD_ID: buildId,
     },
     async rewrites() {
         return [

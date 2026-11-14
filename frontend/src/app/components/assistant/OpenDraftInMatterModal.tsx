@@ -9,7 +9,7 @@ import {
     invalidateDirectoryCache,
 } from "../shared/useDirectoryData";
 import { ProjectPicker } from "../shared/ProjectPicker";
-import { createProject, moveDocumentToProject } from "@/app/lib/cocoLegalApi";
+import { createProject, moveDocumentToProject } from "@/app/lib/cocoaLegalApi";
 import { matterDocReviewHref } from "@/app/lib/matterRoutes";
 
 export interface OpenDraftDoc {

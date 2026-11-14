@@ -15,7 +15,7 @@ import {
     Upload,
 } from "lucide-react";
 
-const CLOSE_ROW_ACTIONS_EVENT = "coco-legal:close-row-actions";
+const CLOSE_ROW_ACTIONS_EVENT = "cocoa-legal:close-row-actions";
 const LEGACY_CLOSE_ROW_ACTIONS_EVENT = "mike:close-row-actions";
 
 export function closeRowActionMenus() {

@@ -3,14 +3,14 @@
 import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { X, Upload } from "lucide-react";
-import { listDocumentVersions } from "@/app/lib/cocoLegalApi";
-import type { CocoLegalDocument } from "./types";
+import { listDocumentVersions } from "@/app/lib/cocoaLegalApi";
+import type { CocoaLegalDocument } from "./types";
 import { DOCUMENT_ACCEPT_ATTR } from "@/app/lib/uploadTypes";
 
 interface Props {
     open: boolean;
     onClose: () => void;
-    doc: CocoLegalDocument | null;
+    doc: CocoaLegalDocument | null;
     onSubmit: (file: File, displayName: string) => Promise<void>;
 }
 

@@ -1354,7 +1354,7 @@ function buildTabularMessages(
         .map((c, i) => `- COL:${i} "${c.name}"`)
         .join("\n");
 
-    let systemContent = `You are Quill, the AI legal colleague inside Coco Legal. You are helping with the tabular review titled "${reviewTitle}".
+    let systemContent = `You are Quill, the AI legal colleague inside Cocoa Legal. You are helping with the tabular review titled "${reviewTitle}".
 
 The review extracts specific fields from multiple legal documents into a structured table.
 You do NOT have the cell content yet — call read_table_cells to fetch the cells you need before answering.

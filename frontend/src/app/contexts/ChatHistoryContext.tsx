@@ -15,11 +15,11 @@ import {
     deleteChat,
     listChats,
     renameChat,
-} from "@/app/lib/cocoLegalApi";
-import type { CocoLegalChat, CocoLegalMessage } from "@/app/components/shared/types";
+} from "@/app/lib/cocoaLegalApi";
+import type { CocoaLegalChat, CocoaLegalMessage } from "@/app/components/shared/types";
 
 interface ChatHistoryContextType {
-    chats: CocoLegalChat[] | null;
+    chats: CocoaLegalChat[] | null;
     hasMoreChats: boolean;
     currentChatId: string | null;
     setCurrentChatId: (chatId: string | null) => void;
@@ -27,8 +27,8 @@ interface ChatHistoryContextType {
     loadMoreChats: () => void;
     saveChat: (projectId?: string) => Promise<string | null>;
     renameChat: (chatId: string, title: string) => Promise<void>;
-    newChatMessages: CocoLegalMessage[] | null;
-    setNewChatMessages: (messages: CocoLegalMessage[] | null) => void;
+    newChatMessages: CocoaLegalMessage[] | null;
+    setNewChatMessages: (messages: CocoaLegalMessage[] | null) => void;
     replaceChatId: (
         oldChatId: string,
         newChatId: string,
@@ -46,12 +46,12 @@ const CHAT_LIMIT_INCREMENT = 10;
 
 export function ChatHistoryProvider({ children }: { children: ReactNode }) {
     const { user } = useAuth();
-    const [chats, setChats] = useState<CocoLegalChat[] | null>(null);
+    const [chats, setChats] = useState<CocoaLegalChat[] | null>(null);
     const [chatLimit, setChatLimit] = useState(INITIAL_CHAT_LIMIT);
     const [hasMoreChats, setHasMoreChats] = useState(false);
     const [currentChatId, setCurrentChatId] = useState<string | null>(null);
     const [newChatMessages, setNewChatMessages] = useState<
-        CocoLegalMessage[] | null
+        CocoaLegalMessage[] | null
     >(null);
 
     const loadChats = useCallback(async () => {
@@ -133,7 +133,7 @@ export function ChatHistoryProvider({ children }: { children: ReactNode }) {
                     projectId ? { project_id: projectId } : undefined,
                 );
                 const now = new Date().toISOString();
-                const newChat: CocoLegalChat = {
+                const newChat: CocoaLegalChat = {
                     id,
                     project_id: projectId ?? null,
                     user_id: user?.id ?? "",

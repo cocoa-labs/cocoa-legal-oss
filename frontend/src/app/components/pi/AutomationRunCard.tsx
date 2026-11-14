@@ -1,7 +1,7 @@
 "use client";
 
 import { ChevronRight, Link2, Receipt, ShieldCheck, Zap } from "lucide-react";
-import type { AutomationRun } from "@/app/lib/cocoLegalApi";
+import type { AutomationRun } from "@/app/lib/cocoaLegalApi";
 import {
     runNeedsCaseConfirm,
     runStatusBadge,

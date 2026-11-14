@@ -8,13 +8,13 @@ import {
     createRecording,
     listProjects,
     listRecordings,
-} from "@/app/lib/cocoLegalApi";
+} from "@/app/lib/cocoaLegalApi";
 import {
     AUDIO_ACCEPT_ATTR,
     MAX_AUDIO_BYTES,
 } from "@/app/lib/uploadTypes";
 import type {
-    CocoLegalProject,
+    CocoaLegalProject,
     Recording,
     RecordingSource,
     RecordingStatus,
@@ -204,7 +204,7 @@ export function RecordingsLibraryPanel() {
     // listProjects() lookup). Fetched once.
     useEffect(() => {
         listProjects()
-            .then((projects: CocoLegalProject[]) => {
+            .then((projects: CocoaLegalProject[]) => {
                 const map: Record<string, string> = {};
                 for (const p of projects) map[p.id] = p.name;
                 setProjectNames(map);

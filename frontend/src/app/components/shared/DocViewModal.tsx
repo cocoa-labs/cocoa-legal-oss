@@ -3,17 +3,17 @@
 import { createPortal } from "react-dom";
 import { Download, Trash2, X } from "lucide-react";
 import { DocView } from "./DocView";
-import { getDocumentUrl } from "@/app/lib/cocoLegalApi";
-import type { CocoLegalDocument } from "./types";
+import { getDocumentUrl } from "@/app/lib/cocoaLegalApi";
+import type { CocoaLegalDocument } from "./types";
 
 interface Props {
-    doc: CocoLegalDocument | null;
+    doc: CocoaLegalDocument | null;
     /** Optional specific version to display. Only honoured for DOCX. */
     versionId?: string | null;
     /** Optional label suffix for the header (e.g. "V3"). */
     versionLabel?: string | null;
     onClose: () => void;
-    onDelete?: (doc: CocoLegalDocument) => void;
+    onDelete?: (doc: CocoaLegalDocument) => void;
 }
 
 export function DocViewModal({

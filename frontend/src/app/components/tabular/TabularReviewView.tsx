@@ -19,15 +19,15 @@ import {
     updateTabularReview,
     uploadReviewDocument,
     exportTabularReviewDocx,
-} from "@/app/lib/cocoLegalApi";
+} from "@/app/lib/cocoaLegalApi";
 import {
     DOCUMENT_EXTENSIONS_HUMAN,
     isDocumentFile,
 } from "@/app/lib/uploadTypes";
 import type {
     ColumnConfig,
-    CocoLegalDocument,
-    CocoLegalProject,
+    CocoaLegalDocument,
+    CocoaLegalProject,
     TabularCell,
     TabularReview,
 } from "../shared/types";
@@ -63,9 +63,9 @@ interface Props {
 export function TRView({ reviewId, projectId }: Props) {
     const { setSidebarOpen } = useSidebar();
     const [review, setReview] = useState<TabularReview | null>(null);
-    const [project, setProject] = useState<CocoLegalProject | null>(null);
+    const [project, setProject] = useState<CocoaLegalProject | null>(null);
     const [cells, setCells] = useState<TabularCell[]>([]);
-    const [documents, setDocuments] = useState<CocoLegalDocument[]>([]);
+    const [documents, setDocuments] = useState<CocoaLegalDocument[]>([]);
     const [columns, setColumns] = useState<ColumnConfig[]>([]);
     const [loading, setLoading] = useState(true);
     const [generating, setGenerating] = useState(false);
@@ -177,7 +177,7 @@ export function TRView({ reviewId, projectId }: Props) {
         }
     }
 
-    async function handleAddDocuments(newDocs: CocoLegalDocument[]) {
+    async function handleAddDocuments(newDocs: CocoaLegalDocument[]) {
         const toAdd = newDocs.filter(
             (d) => !documents.some((existing) => existing.id === d.id),
         );
@@ -231,7 +231,7 @@ export function TRView({ reviewId, projectId }: Props) {
 
         setUploadingDroppedFilenames(accepted.map((file) => file.name));
         try {
-            const uploaded: CocoLegalDocument[] = [];
+            const uploaded: CocoaLegalDocument[] = [];
             const documentIds = documents.map((document) => document.id);
             for (const file of accepted) {
                 const document = await uploadReviewDocument(reviewId, file, {
@@ -1031,7 +1031,7 @@ export function TRView({ reviewId, projectId }: Props) {
                 <AddProjectDocsModal
                     open={addDocsOpen}
                     onClose={() => setAddDocsOpen(false)}
-                    onSelect={(docs: CocoLegalDocument[]) =>
+                    onSelect={(docs: CocoaLegalDocument[]) =>
                         handleAddDocuments(docs)
                     }
                     breadcrumb={[
@@ -1051,7 +1051,7 @@ export function TRView({ reviewId, projectId }: Props) {
                 <AddDocumentsModal
                     open={addDocsOpen}
                     onClose={() => setAddDocsOpen(false)}
-                    onSelect={(docs: CocoLegalDocument[]) =>
+                    onSelect={(docs: CocoaLegalDocument[]) =>
                         handleAddDocuments(docs)
                     }
                     breadcrumb={[

@@ -17,7 +17,7 @@ const ebGaramond = EB_Garamond({
 
 export const metadata: Metadata = {
     metadataBase: new URL(siteUrl()),
-    title: "Coco Legal - AI Legal Platform",
+    title: "Cocoa Legal - AI Legal Platform",
     description:
         "AI-powered legal document analysis, matter strategy, and contract review platform.",
     icons: {
@@ -30,14 +30,14 @@ export const metadata: Metadata = {
     openGraph: {
         type: "website",
         url: siteUrl(),
-        siteName: "Coco Legal",
-        title: "Coco Legal - AI Legal Platform",
+        siteName: "Cocoa Legal",
+        title: "Cocoa Legal - AI Legal Platform",
         description:
             "AI-powered legal document analysis, matter strategy, and contract review platform.",
     },
     twitter: {
         card: "summary",
-        title: "Coco Legal - AI Legal Platform",
+        title: "Cocoa Legal - AI Legal Platform",
         description:
             "AI-powered legal document analysis, matter strategy, and contract review platform.",
     },
@@ -51,7 +51,7 @@ export default function RootLayout({
     const themeScript = `
         (function() {
             try {
-                var theme = localStorage.getItem("coco-theme") === "light" ? "light" : "dark";
+                var theme = localStorage.getItem("cocoa-theme") === "light" ? "light" : "dark";
                 var root = document.documentElement;
                 root.dataset.theme = theme;
                 root.classList.toggle("dark", theme === "dark");

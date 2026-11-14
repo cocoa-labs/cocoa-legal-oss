@@ -1,7 +1,7 @@
 "use client";
 
 import { GitCompareArrows, Loader2, PenLine } from "lucide-react";
-import type { EnvelopeVersionState } from "@/app/lib/cocoLegalApi";
+import type { EnvelopeVersionState } from "@/app/lib/cocoaLegalApi";
 
 /**
  * Name one version the way the backend names it in its own refusal message

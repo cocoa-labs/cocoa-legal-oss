@@ -17,8 +17,8 @@ import {
 import { AppBackButton } from "@/app/components/shared/AppBackButton";
 import { HeaderSearchBtn } from "@/app/components/shared/HeaderSearchBtn";
 import { RenameableTitle } from "@/app/components/shared/RenameableTitle";
-import type { CocoLegalProject } from "@/app/components/shared/types";
-import type { CocoLegalDocumentVersion } from "@/app/lib/cocoLegalApi";
+import type { CocoaLegalProject } from "@/app/components/shared/types";
+import type { CocoaLegalDocumentVersion } from "@/app/lib/cocoaLegalApi";
 import { matterCommandHref } from "@/app/lib/matterRoutes";
 
 export type ProjectTab = "documents" | "assistant" | "reviews";
@@ -98,7 +98,7 @@ export function DocVersionHistory({
     docId: string;
     filename: string;
     loading: boolean;
-    versions: CocoLegalDocumentVersion[];
+    versions: CocoaLegalDocumentVersion[];
     depth?: number;
     onDownloadVersion?: (
         docId: string,
@@ -389,7 +389,7 @@ export function ProjectPageHeader({
     onNewReview,
     canRenameMatter,
 }: {
-    project: CocoLegalProject;
+    project: CocoaLegalProject;
     tab: ProjectTab;
     search: string;
     creatingChat: boolean;

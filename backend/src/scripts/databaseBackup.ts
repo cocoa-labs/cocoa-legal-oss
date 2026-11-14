@@ -23,7 +23,7 @@ async function run(command: string, args: string[]): Promise<void> {
 }
 
 async function main() {
- const work = await mkdtemp(path.join(os.tmpdir(), "coco-backup-"));
+ const work = await mkdtemp(path.join(os.tmpdir(), "cocoa-backup-"));
  try {
   const timestamp = new Date().toISOString().replaceAll(":", "-");
   const dump = path.join(work, "database.dump");

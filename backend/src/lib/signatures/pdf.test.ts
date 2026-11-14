@@ -124,14 +124,14 @@ async function testEmbedWithChainedEnvCert(stamped: Buffer) {
         // three-cert CMS lands well above the old 4 KB ceiling.
         const root = mintSigningIdentity({
             commonName: "Fixture Root CA",
-            organization: "Coco Legal",
+            organization: "Cocoa Legal",
             keyBits: 4096,
             passphrase: "root",
             isCa: true,
         });
         const issuing = mintSigningIdentity({
             commonName: "Fixture Issuing CA",
-            organization: "Coco Legal",
+            organization: "Cocoa Legal",
             keyBits: 4096,
             passphrase: "ca",
             isCa: true,
@@ -139,7 +139,7 @@ async function testEmbedWithChainedEnvCert(stamped: Buffer) {
         });
         const leaf = mintSigningIdentity({
             commonName: "Fixture Chained Signer",
-            organization: "Coco Legal",
+            organization: "Cocoa Legal",
             keyBits: 4096,
             passphrase: "leaf",
             issuer: { cert: issuing.cert, privateKey: issuing.privateKey },
@@ -624,7 +624,7 @@ async function withFakeSoffice(): Promise<void> {
     const previousConcurrency = process.env.LIBREOFFICE_MAX_CONCURRENT;
     delete process.env.LIBREOFFICE_MAX_CONCURRENT;
 
-    scratchDir = await mkdtemp(path.join(os.tmpdir(), "coco-sigpdf-test-"));
+    scratchDir = await mkdtemp(path.join(os.tmpdir(), "cocoa-sigpdf-test-"));
     recordPath = path.join(scratchDir, "record.txt");
     seenInputPath = path.join(scratchDir, "seen-input.bin");
     try {
@@ -655,9 +655,9 @@ async function main() {
     await testEnsurePdfWrapsImage();
     await withFakeSoffice();
     assert.deepEqual(signaturePlaceholderMetadata({}), {
-        reason: "Document executed via Coco Legal e-signature",
+        reason: "Document executed via Cocoa Legal e-signature",
         contactInfo: "",
-        name: "Coco Legal Signing",
+        name: "Cocoa Legal Signing",
         location: "",
     });
     const configured = signaturePlaceholderMetadata({

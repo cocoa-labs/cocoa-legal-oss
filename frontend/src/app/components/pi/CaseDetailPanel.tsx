@@ -20,7 +20,7 @@ import {
     type PiCaseDetailOut,
     type PiCasePolicy,
     type PiCaseStatus,
-} from "@/app/lib/cocoLegalApi";
+} from "@/app/lib/cocoaLegalApi";
 import {
     caseOriginLabel,
     caseStatusBadge,

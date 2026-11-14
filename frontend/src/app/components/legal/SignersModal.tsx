@@ -19,7 +19,7 @@ import {
     createSignatureRequest,
     signSelf,
     type SignatureEnvelopeDetail,
-} from "@/app/lib/cocoLegalApi";
+} from "@/app/lib/cocoaLegalApi";
 import { SignatureStatusCard } from "./SignatureStatusCard";
 import { FieldPlacer, type PlacedField, type PlacerSigner } from "./FieldPlacer";
 import SignaturePad, { type SignatureMode } from "./SignaturePad";

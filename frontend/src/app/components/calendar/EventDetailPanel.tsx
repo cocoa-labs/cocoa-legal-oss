@@ -21,7 +21,7 @@ import {
     deleteEvent,
     type CalendarEvent,
     type CalendarSource,
-} from "@/app/lib/cocoLegalApi";
+} from "@/app/lib/cocoaLegalApi";
 import {
     CALENDAR_COLORS,
     formatEventTime,

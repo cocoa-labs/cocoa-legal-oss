@@ -12,19 +12,19 @@ import {
 } from "lucide-react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
-import type { CocoLegalDocument, CocoLegalWorkflow } from "../shared/types";
-import { createTabularReview } from "@/app/lib/cocoLegalApi";
+import type { CocoaLegalDocument, CocoaLegalWorkflow } from "../shared/types";
+import { createTabularReview } from "@/app/lib/cocoaLegalApi";
 import { useRouter } from "next/navigation";
 import { formatIcon, formatLabel } from "../tabular/columnFormat";
 import { useDirectoryData } from "../shared/useDirectoryData";
 import { FileDirectory } from "../shared/FileDirectory";
-import type { CocoLegalProject } from "../shared/types";
+import type { CocoaLegalProject } from "../shared/types";
 import { useChatHistoryContext } from "@/app/contexts/ChatHistoryContext";
 import { representedPartyChoiceForWorkflow } from "../legal/creShared";
 
 interface Props {
-    workflows: CocoLegalWorkflow[];
-    workflow: CocoLegalWorkflow | null;
+    workflows: CocoaLegalWorkflow[];
+    workflow: CocoaLegalWorkflow | null;
     onClose: () => void;
     /**
      * Document ids to pre-select on the configure screen when the modal opens.
@@ -60,7 +60,7 @@ function SimpleProjectPicker({
     selectedId,
     onSelect,
 }: {
-    projects: CocoLegalProject[];
+    projects: CocoaLegalProject[];
     selectedId: string | null;
     onSelect: (id: string | null) => void;
 }) {
@@ -180,7 +180,7 @@ function MarkdownBody({ content }: { content: string }) {
 // ---------------------------------------------------------------------------
 // Right panel for assistant workflows (select screen)
 // ---------------------------------------------------------------------------
-function AssistantPanel({ workflow }: { workflow: CocoLegalWorkflow }) {
+function AssistantPanel({ workflow }: { workflow: CocoaLegalWorkflow }) {
     return (
         <div className="flex-1 border-l border-t border-gray-200 flex flex-col overflow-hidden px-3 pb-3">
             <div className="py-3 shrink-0">
@@ -200,7 +200,7 @@ function AssistantPanel({ workflow }: { workflow: CocoLegalWorkflow }) {
 // ---------------------------------------------------------------------------
 // Right panel for tabular workflows — accordion column list (select screen)
 // ---------------------------------------------------------------------------
-function TabularPanel({ workflow }: { workflow: CocoLegalWorkflow }) {
+function TabularPanel({ workflow }: { workflow: CocoaLegalWorkflow }) {
     const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
     const columns = (workflow.columns_config ?? []).sort(
         (a, b) => a.index - b.index,
@@ -296,7 +296,7 @@ export function DisplayWorkflowModal({
     prefillDocumentIds,
 }: Props) {
     const [screen, setScreen] = useState<"select" | "configure">("select");
-    const [selected, setSelected] = useState<CocoLegalWorkflow | null>(workflow);
+    const [selected, setSelected] = useState<CocoaLegalWorkflow | null>(workflow);
     const [listSearch, setListSearch] = useState("");
     const selectedRowRef = useRef<HTMLButtonElement>(null);
 
@@ -401,7 +401,7 @@ export function DisplayWorkflowModal({
             const projectId = inProject ? selectedProjectId! : undefined;
             const chatId = await saveChat(projectId);
             if (!chatId) return;
-            const allDocs: CocoLegalDocument[] = [
+            const allDocs: CocoaLegalDocument[] = [
                 ...standaloneDocuments,
                 ...projects.flatMap((p) => p.documents || []),
             ];
@@ -431,7 +431,7 @@ export function DisplayWorkflowModal({
     }
 
     async function handleCreateReview() {
-        const allDocs: CocoLegalDocument[] = [
+        const allDocs: CocoaLegalDocument[] = [
             ...standaloneDocuments,
             ...projects.flatMap((p) => p.documents || []),
         ];

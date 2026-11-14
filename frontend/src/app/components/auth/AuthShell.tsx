@@ -1,12 +1,12 @@
 "use client";
 
 import { SiteLogo } from "@/components/site-logo";
-import { CocoCommandBackdrop } from "@/app/components/shared/CocoCommandBackdrop";
+import { CocoaCommandBackdrop } from "@/app/components/shared/CocoaCommandBackdrop";
 
 export function AuthShell({ children }: { children: React.ReactNode }) {
     return (
         <div className="relative min-h-dvh overflow-hidden bg-[var(--app-shell)] px-6 py-8 text-[var(--app-text)]">
-            <CocoCommandBackdrop variant="auth" />
+            <CocoaCommandBackdrop variant="auth" />
 
             <div className="relative z-10 mx-auto flex min-h-[calc(100dvh-4rem)] w-full max-w-6xl flex-col">
                 <header className="flex items-center justify-between">
@@ -23,7 +23,7 @@ export function AuthShell({ children }: { children: React.ReactNode }) {
                 <main className="grid flex-1 items-center gap-10 py-12 lg:grid-cols-[minmax(0,1fr)_460px]">
                     <section className="hidden max-w-xl lg:block">
                         <p className="mb-4 text-sm font-medium uppercase tracking-[0.24em] text-[var(--app-warm)]">
-                            Coco Legal Suite
+                            Cocoa Legal Suite
                         </p>
                         <h1 className="font-serif text-6xl font-light leading-[0.95] text-[var(--app-text-strong)]">
                             Contract intelligence for modern legal operations.

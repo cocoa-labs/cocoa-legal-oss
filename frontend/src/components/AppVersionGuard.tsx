@@ -29,7 +29,7 @@ const ReloadSafetyContext = createContext<ReloadSafetyContextValue | null>(
     null,
 );
 const CURRENT_BUILD_ID =
-    process.env.NEXT_PUBLIC_COCO_BUILD_ID?.trim() || "development";
+    process.env.NEXT_PUBLIC_COCOA_BUILD_ID?.trim() || "development";
 
 export function useAppVersionReloadBlocker(
     blocked: boolean,

@@ -12,7 +12,7 @@ import {
     getDocumentUrl,
     updateCaseExpense,
     type PiCaseExpense,
-} from "@/app/lib/cocoLegalApi";
+} from "@/app/lib/cocoaLegalApi";
 import { expenseStatusBadge, formatCents, formatWhen } from "./piShared";
 
 /** Statuses from which the operator can still record a payment. */

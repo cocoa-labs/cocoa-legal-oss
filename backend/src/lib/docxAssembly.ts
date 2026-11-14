@@ -41,7 +41,7 @@ export interface DocxRenderOptions {
  * Build a validated .docx buffer from structured sections. This is the pure
  * rendering half extracted from the original `generateDocx`: literal,
  * LibreOffice-compatible markers plus the same signature-block detection,
- * `{{coco-sign:N}}` anchor handling, and OOXML package validation. It does
+ * `{{cocoa-sign:N}}` anchor handling, and OOXML package validation. It does
  * NOT persist anything — callers pass the buffer to `persistAuthoredDocx`.
  */
 export async function renderSectionsToDocxBuffer(

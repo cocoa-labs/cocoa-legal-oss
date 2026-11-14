@@ -628,7 +628,7 @@ router.post("/inbound/refresh", async (_req: Request, res: Response) => {
 function inboundAuthorized(req: Request): boolean {
     const secret = process.env.GMAIL_INBOUND_WEBHOOK_SECRET;
     if (!secret) return false;
-    return req.header("x-coco-inbound-secret") === secret;
+    return req.header("x-cocoa-inbound-secret") === secret;
 }
 
 // POST /email-inbound/webhook — fire-and-forget trigger, responds fast.

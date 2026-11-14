@@ -1,7 +1,7 @@
 # Legal demo fixtures — CRE sample documents
 
 Text-based `.docx` sample documents that stage the **Commercial Real Estate
-Review** demo (see [`docs/cre-demo-script.md`](../../docs/cre-demo-script.md)).
+Review** walkthrough (see [`docs/cre-test-script.md`](../../docs/cre-test-script.md)).
 All parties are **fictional**, the content is **US** jurisdiction, and every file
 carries a `SAMPLE — for demonstration only` footer.
 

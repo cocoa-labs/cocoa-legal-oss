@@ -14,11 +14,11 @@ import {
 import {
     createWorkflow,
     generateWorkflow,
-} from "@/app/lib/cocoLegalApi";
+} from "@/app/lib/cocoaLegalApi";
 import type {
     ColumnConfig,
     ColumnFormat,
-    CocoLegalWorkflow,
+    CocoaLegalWorkflow,
 } from "../shared/types";
 import { FORMAT_OPTIONS, formatLabel } from "../tabular/columnFormat";
 import { PRACTICE_OPTIONS } from "./practices";
@@ -26,7 +26,7 @@ import { PRACTICE_OPTIONS } from "./practices";
 interface Props {
     open: boolean;
     onClose: () => void;
-    onCreated: (workflow: CocoLegalWorkflow) => void;
+    onCreated: (workflow: CocoaLegalWorkflow) => void;
 }
 
 type Step = "define" | "generate" | "review";
@@ -422,7 +422,7 @@ export function NewWorkflowModal({ open, onClose, onCreated }: Props) {
                                 Generate workflow substance
                             </h2>
                             <p className="mt-2 max-w-xl text-sm leading-6 text-gray-500">
-                                Coco Legal will draft the reusable{" "}
+                                Cocoa Legal will draft the reusable{" "}
                                 {type === "assistant"
                                     ? "assistant prompt"
                                     : "tabular extraction columns"}{" "}

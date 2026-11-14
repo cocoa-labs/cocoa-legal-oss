@@ -7,7 +7,7 @@ import {
     deleteWorkflowShare,
     listWorkflowShares,
     shareWorkflow,
-} from "@/app/lib/cocoLegalApi";
+} from "@/app/lib/cocoaLegalApi";
 import { useAuth } from "@/contexts/AuthContext";
 import { EmailPillInput } from "../shared/EmailPillInput";
 

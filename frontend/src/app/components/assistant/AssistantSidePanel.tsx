@@ -4,9 +4,9 @@ import { useCallback, useRef, useState } from "react";
 import { X } from "lucide-react";
 import { DocPanel, type DocPanelMode } from "../shared/DocPanel";
 import type {
-    CocoLegalCitationAnnotation,
-    CocoLegalEditAnnotation,
-    CocoLegalHighlightAnnotation,
+    CocoaLegalCitationAnnotation,
+    CocoaLegalEditAnnotation,
+    CocoaLegalHighlightAnnotation,
 } from "../shared/types";
 
 // ---------------------------------------------------------------------------
@@ -35,18 +35,18 @@ export type DocumentTab = CommonTab & { kind: "document" };
 
 export type CitationTab = CommonTab & {
     kind: "citation";
-    citation: CocoLegalCitationAnnotation;
+    citation: CocoaLegalCitationAnnotation;
 };
 
 export type EditTab = CommonTab & {
     kind: "edit";
-    edit: CocoLegalEditAnnotation;
+    edit: CocoaLegalEditAnnotation;
 };
 
 export type HighlightTab = CommonTab & {
     kind: "highlight";
     title: string;
-    highlights: CocoLegalHighlightAnnotation[];
+    highlights: CocoaLegalHighlightAnnotation[];
     activeHighlightId?: string | null;
 };
 

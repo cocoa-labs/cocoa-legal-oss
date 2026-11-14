@@ -6,7 +6,7 @@ import { CalendarDays } from "lucide-react";
 import {
     getEventForRecording,
     type CalendarEvent,
-} from "@/app/lib/cocoLegalApi";
+} from "@/app/lib/cocoaLegalApi";
 import { formatEventTime, parseEventStart } from "./calendarColors";
 
 /**

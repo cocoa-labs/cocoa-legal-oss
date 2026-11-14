@@ -1,4 +1,4 @@
-# Deploying Coco Legal
+# Deploying Cocoa Legal
 
 This guide covers a production deployment. For a local install, use the [README quickstart](README.md#quickstart-local-docker).
 
@@ -20,7 +20,7 @@ A deployment has five parts:
 
 ## 2. Database schema
 
-Apply every migration with the ledger runner, from any machine with Node.js 20+ (or with the backend image: `docker run --rm -e DATABASE_URL=... coco-legal-backend npm run migrate`):
+Apply every migration with the ledger runner, from any machine with Node.js 20+ (or with the backend image: `docker run --rm -e DATABASE_URL=... cocoa-legal-backend npm run migrate`):
 
 ```bash
 cd backend
@@ -54,7 +54,7 @@ Run ClamAV (`clamav/clamav`) where the backend can reach it and set `CLAMAV_HOST
 ### Docker (any container host)
 
 ```bash
-docker build -t coco-legal-backend ./backend
+docker build -t cocoa-legal-backend ./backend
 ```
 
 The image includes LibreOffice and the fonts document conversion needs. It listens on `PORT` (3001) and runs `NODE_ENV=production`, which makes missing critical settings fatal at boot.
@@ -86,7 +86,7 @@ At least one model provider key (`ANTHROPIC_API_KEY`, `GEMINI_API_KEY`, `OPENAI_
 
 Each executed PDF carries a cryptographic signature from one certificate, supplied as `SIGNING_CERT_P12_BASE64` and `SIGNING_CERT_PASSPHRASE` and validated at boot. Without them the backend uses an ephemeral development certificate that changes on every restart and logs a warning.
 
-1. Run `npx tsx scripts/generateSigningCert.ts` in `backend/`. It creates a five-year RSA-4096 certificate and writes both values into `backend/.env`; it won't overwrite an existing identity without `--force`. The certificate is named for Coco Legal unless you pass your own, for example `--cn="Example Law LLP Document Signing" --org="Example Law LLP"`.
+1. Run `npx tsx scripts/generateSigningCert.ts` in `backend/`. It creates a five-year RSA-4096 certificate and writes both values into `backend/.env`; it won't overwrite an existing identity without `--force`. The certificate is named for Cocoa Legal unless you pass your own, for example `--cn="Example Law LLP Document Signing" --org="Example Law LLP"`.
 2. Back up both values in a password manager. Your host must not be the only holder of the signing identity.
 3. Deploy, restart once, and confirm the boot log shows the same certificate serial both times.
 
@@ -105,12 +105,12 @@ Set the project's root directory to `frontend/` and add:
 | `NEXT_PUBLIC_API_BASE_URL` | backend origin |
 | `NEXT_PUBLIC_SITE_URL` | frontend origin |
 | `NEXT_PUBLIC_TERMS_URL`, `NEXT_PUBLIC_PRIVACY_URL` | optional; links are hidden when unset |
-| `NEXT_PUBLIC_SOURCE_CODE_URL` | your fork's public URL if you modified Coco Legal (AGPL-3.0 §13) |
+| `NEXT_PUBLIC_SOURCE_CODE_URL` | your fork's public URL if you modified Cocoa Legal (AGPL-3.0 §13) |
 
 ### Docker
 
 ```bash
-docker build -t coco-legal-frontend \
+docker build -t cocoa-legal-frontend \
   --build-arg NEXT_PUBLIC_SUPABASE_URL=https://your-project.supabase.co \
   --build-arg NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY=... \
   --build-arg NEXT_PUBLIC_API_BASE_URL=https://api.your-domain.example \

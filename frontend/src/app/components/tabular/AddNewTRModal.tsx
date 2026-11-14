@@ -11,9 +11,9 @@ import {
   X,
 } from "lucide-react";
 import type {
-  CocoLegalDocument,
-  CocoLegalProject,
-  CocoLegalWorkflow,
+  CocoaLegalDocument,
+  CocoaLegalProject,
+  CocoaLegalWorkflow,
 } from "../shared/types";
 import { DOCUMENT_ACCEPT_ATTR } from "@/app/lib/uploadTypes";
 import {
@@ -23,7 +23,7 @@ import {
   listWorkflows,
   uploadProjectDocument,
   uploadStandaloneDocument,
-} from "@/app/lib/cocoLegalApi";
+} from "@/app/lib/cocoaLegalApi";
 import { FileDirectory } from "../shared/FileDirectory";
 import { BUILT_IN_WORKFLOWS } from "../workflows/builtinWorkflows";
 
@@ -34,11 +34,11 @@ interface Props {
     title: string,
     projectId?: string,
     documentIds?: string[],
-    columnsConfig?: CocoLegalWorkflow["columns_config"],
+    columnsConfig?: CocoaLegalWorkflow["columns_config"],
   ) => void;
-  projects?: CocoLegalProject[];
+  projects?: CocoaLegalProject[];
   /** When provided, skip the project/directory picker and show only these docs */
-  projectDocs?: CocoLegalDocument[];
+  projectDocs?: CocoaLegalDocument[];
   projectName?: string;
   projectCmNumber?: string | null;
 }
@@ -76,12 +76,12 @@ export function AddNewTRModal({
   const [projectDropdownOpen, setProjectDropdownOpen] = useState(false);
 
   // Project-scoped docs (when underProject is true and no fixedProjectDocs)
-  const [projectDocs, setProjectDocs] = useState<CocoLegalDocument[]>([]);
+  const [projectDocs, setProjectDocs] = useState<CocoaLegalDocument[]>([]);
   const [loadingDocs, setLoadingDocs] = useState(false);
 
   // Full directory (when underProject is false)
-  const [standaloneDocs, setStandaloneDocs] = useState<CocoLegalDocument[]>([]);
-  const [directoryProjects, setDirectoryProjects] = useState<CocoLegalProject[]>(
+  const [standaloneDocs, setStandaloneDocs] = useState<CocoaLegalDocument[]>([]);
+  const [directoryProjects, setDirectoryProjects] = useState<CocoaLegalProject[]>(
     [],
   );
   const [loadingDirectory, setLoadingDirectory] = useState(false);
@@ -92,7 +92,7 @@ export function AddNewTRModal({
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   // Workflow templates
-  const [workflows, setWorkflows] = useState<CocoLegalWorkflow[]>([]);
+  const [workflows, setWorkflows] = useState<CocoaLegalWorkflow[]>([]);
   const [loadingWorkflows, setLoadingWorkflows] = useState(false);
   const [selectedWorkflowId, setSelectedWorkflowId] = useState<string | null>(
     null,
@@ -256,7 +256,7 @@ export function AddNewTRModal({
     : underProject
       ? []
       : directoryProjects;
-  const flatProjectDocs: CocoLegalDocument[] =
+  const flatProjectDocs: CocoaLegalDocument[] =
     !isProjectMode && underProject ? projectDocs : [];
   const directoryLoading = isProjectMode
     ? false

@@ -1,7 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
-import { getDocumentGenerationJob } from "@/app/lib/cocoLegalApi";
+import { getDocumentGenerationJob } from "@/app/lib/cocoaLegalApi";
 import type { DocumentGenerationJobStatus } from "@/app/components/shared/types";
 import { startDocumentJobPolling } from "@/app/lib/documentJobPolling";
 

@@ -31,8 +31,8 @@ export function signerPageNotice(nonbinding: boolean | null): SignerPageNotice {
     if (nonbinding) {
         return {
             banner: "Beta test — not for legal execution. Use synthetic or redacted documents only.",
-            footer: ["Controlled beta e-signature by Coco Legal", "Not for legal execution"],
+            footer: ["Controlled beta e-signature by Cocoa Legal", "Not for legal execution"],
         };
     }
-    return { banner: null, footer: ["Electronic signature by Coco Legal"] };
+    return { banner: null, footer: ["Electronic signature by Cocoa Legal"] };
 }

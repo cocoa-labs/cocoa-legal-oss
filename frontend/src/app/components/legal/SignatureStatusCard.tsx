@@ -29,7 +29,7 @@ import {
     SIGNATURE_STALE_VERSION,
     type SignatureEnvelopeDetail,
     type SignerRef,
-} from "@/app/lib/cocoLegalApi";
+} from "@/app/lib/cocoaLegalApi";
 import SignaturePad, { type SignatureMode } from "./SignaturePad";
 import {
     describeVersionMismatch,

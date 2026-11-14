@@ -1,6 +1,6 @@
 # Contributing
 
-Coco Legal is a community release, and Cocoa Labs no longer maintains it. Issues are closed and pull requests won't be reviewed or merged. The way to build on it is to **fork it** and run your own version.
+Cocoa Legal is a community release, and Cocoa Labs no longer maintains it. Issues are closed and pull requests won't be reviewed or merged. The way to build on it is to **fork it** and run your own version.
 
 If you maintain a fork:
 

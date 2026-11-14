@@ -64,7 +64,7 @@ export async function resolveCalendarId(
     let id = await getFirmCalendarId(db);
     if (!id) {
         id = await connector.ensureFirmCalendar(
-            process.env.CALENDAR_FIRM_NAME || "Coco Legal",
+            process.env.CALENDAR_FIRM_NAME || "Cocoa Legal",
         );
         if (id) await setFirmCalendarId(db, id);
     }

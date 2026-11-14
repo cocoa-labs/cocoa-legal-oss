@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState, useSyncExternalStore } from "react";
 import { Plus, Library, FileText, Check, ChevronDown } from "lucide-react";
 import { HeaderSearchBtn } from "../shared/HeaderSearchBtn";
-import { listTemplates, deleteTemplate } from "@/app/lib/cocoLegalApi";
+import { listTemplates, deleteTemplate } from "@/app/lib/cocoaLegalApi";
 import type { DocTemplate } from "../shared/types";
 import { DOC_TYPE_LABELS } from "./builtinTemplates";
 import { TemplateDetailModal } from "./TemplateDetailModal";
@@ -15,7 +15,7 @@ import {
 } from "../assistant/OpenDraftInMatterModal";
 import { ToolbarTabs } from "../shared/ToolbarTabs";
 import { RowActions } from "../shared/RowActions";
-import { CocoLegalIcon } from "@/components/chat/coco-legal-icon";
+import { CocoaLegalIcon } from "@/components/chat/cocoa-legal-icon";
 import { AppBackButton } from "../shared/AppBackButton";
 
 type Tab = "all" | "builtin" | "firm" | "hidden";
@@ -23,12 +23,12 @@ type Tab = "all" | "builtin" | "firm" | "hidden";
 const NAME_COL_W = "w-[300px] shrink-0";
 
 // Templates have no backend hidden-list (unlike workflows, which use
-// /workflows/hidden). The shared Coco Legal-default rows (`source_kind:
-// "coco_seed"`) can't be deleted, so "hiding" one is a per-browser
+// /workflows/hidden). The shared Cocoa Legal-default rows (`source_kind:
+// "cocoa_seed"`) can't be deleted, so "hiding" one is a per-browser
 // preference persisted in localStorage — the template-management analogue of
 // WorkflowList's hide mechanism, just client-side because no server endpoint
 // exists. Firm-owned rows are deleted (archived) via the API instead.
-const HIDDEN_TEMPLATES_KEY = "coco-legal:hidden-templates";
+const HIDDEN_TEMPLATES_KEY = "cocoa-legal:hidden-templates";
 
 function readHiddenTemplateIds(): string[] {
     if (typeof window === "undefined") return [];
@@ -89,9 +89,9 @@ function setHiddenTemplateIds(next: string[]) {
     hiddenIdsListeners.forEach((listener) => listener());
 }
 
-/** A coco_seed template is a shared default — hide, don't delete. */
-function isCocoSeed(t: DocTemplate): boolean {
-    return t.source_kind === "coco_seed";
+/** A cocoa_seed template is a shared default — hide, don't delete. */
+function isCocoaSeed(t: DocTemplate): boolean {
+    return t.source_kind === "cocoa_seed";
 }
 
 /** Firm-owned (parameterized or AI-generated) → deletable (archive). */
@@ -103,7 +103,7 @@ function isFirmOwned(t: DocTemplate): boolean {
 }
 
 function sourceMeta(t: DocTemplate): { label: string; firm: boolean } {
-    if (isCocoSeed(t)) return { label: "Coco Legal", firm: false };
+    if (isCocoaSeed(t)) return { label: "Cocoa Legal", firm: false };
     if (t.source_kind === "ai_generated") return { label: "AI", firm: true };
     return { label: "Firm", firm: true };
 }
@@ -210,8 +210,8 @@ export function TemplateList() {
     }
 
     const hidden = templates.filter((t) => hiddenIds.includes(t.id));
-    const cocoDefaults = templates.filter(
-        (t) => isCocoSeed(t) && !hiddenIds.includes(t.id),
+    const cocoaDefaults = templates.filter(
+        (t) => isCocoaSeed(t) && !hiddenIds.includes(t.id),
     );
     const firmTemplates = templates.filter(
         (t) => isFirmOwned(t) && !hiddenIds.includes(t.id),
@@ -220,7 +220,7 @@ export function TemplateList() {
 
     const byTab =
         activeTab === "builtin"
-            ? cocoDefaults
+            ? cocoaDefaults
             : activeTab === "firm"
               ? firmTemplates
               : activeTab === "hidden"
@@ -336,7 +336,7 @@ export function TemplateList() {
                         </span>
                     ) : (
                         <span className="inline-flex items-center gap-1.5 text-xs font-medium text-[var(--app-text-muted)]">
-                            <CocoLegalIcon size={14} />
+                            <CocoaLegalIcon size={14} />
                             {sourceLabel}
                         </span>
                     )}
@@ -345,7 +345,7 @@ export function TemplateList() {
                     className="w-8 shrink-0 flex justify-end"
                     onClick={(e) => e.stopPropagation()}
                 >
-                    {isCocoSeed(t) ? (
+                    {isCocoaSeed(t) ? (
                         hiddenIds.includes(t.id) ? (
                             <RowActions
                                 onUnhide={() => handleUnhideTemplate(t.id)}
@@ -479,7 +479,7 @@ export function TemplateList() {
                                         Hidden Templates
                                     </p>
                                     <p className="mt-1 text-left text-xs text-[var(--app-text-subtle)]">
-                                        Coco Legal default templates you&apos;ve hidden
+                                        Cocoa Legal default templates you&apos;ve hidden
                                         will appear here. You can unhide them at
                                         any time.
                                     </p>

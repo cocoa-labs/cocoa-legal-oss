@@ -5,11 +5,11 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { Plus, FolderOpen, ChevronDown, FileSignature, ChevronRight } from "lucide-react";
 import { HeaderSearchBtn } from "@/app/components/shared/HeaderSearchBtn";
-import { listProjects, updateProject, deleteProject } from "@/app/lib/cocoLegalApi";
+import { listProjects, updateProject, deleteProject } from "@/app/lib/cocoaLegalApi";
 import { useSignatureSummary } from "@/app/components/legal/SignatureSummaryContext";
 import { OwnerOnlyModal } from "@/app/components/shared/OwnerOnlyModal";
 import { useAuth } from "@/contexts/AuthContext";
-import type { CocoLegalProject } from "@/app/components/shared/types";
+import type { CocoaLegalProject } from "@/app/components/shared/types";
 import { NewProjectModal } from "./NewProjectModal";
 import { ToolbarTabs } from "@/app/components/shared/ToolbarTabs";
 import { RowActions } from "@/app/components/shared/RowActions";
@@ -30,7 +30,7 @@ const CHECK_W = "w-8 shrink-0";
 const NAME_COL_W = "w-[300px] shrink-0";
 
 export function ProjectsOverview() {
-    const [projects, setProjects] = useState<CocoLegalProject[]>([]);
+    const [projects, setProjects] = useState<CocoaLegalProject[]>([]);
     const [loading, setLoading] = useState(true);
     const [loadError, setLoadError] = useState<string | null>(null);
     const [modalOpen, setModalOpen] = useState(false);

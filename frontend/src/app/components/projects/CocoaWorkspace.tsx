@@ -35,7 +35,7 @@ import {
     getTabularReview,
     listProjectChats,
     listTabularReviews,
-} from "@/app/lib/cocoLegalApi";
+} from "@/app/lib/cocoaLegalApi";
 import { useChatHistoryContext } from "@/app/contexts/ChatHistoryContext";
 import { AppBackButton } from "@/app/components/shared/AppBackButton";
 import { DocPanel } from "@/app/components/shared/DocPanel";
@@ -50,13 +50,13 @@ import {
 } from "@/app/lib/matterRoutes";
 import type {
     AssistantEvent,
-    CocoLegalChat,
-    CocoLegalChatDetailOut,
-    CocoLegalCitationAnnotation,
-    CocoLegalDocument,
-    CocoLegalEditAnnotation,
-    CocoLegalMessage,
-    CocoLegalProject,
+    CocoaLegalChat,
+    CocoaLegalChatDetailOut,
+    CocoaLegalCitationAnnotation,
+    CocoaLegalDocument,
+    CocoaLegalEditAnnotation,
+    CocoaLegalMessage,
+    CocoaLegalProject,
     TabularReview,
     TabularReviewDetailOut,
 } from "@/app/components/shared/types";
@@ -124,7 +124,7 @@ function formatMoneyLabel(value?: string | null) {
     return value;
 }
 
-function docTypeLabel(doc?: CocoLegalDocument | null) {
+function docTypeLabel(doc?: CocoaLegalDocument | null) {
     if (!doc?.file_type) return "Document";
     return doc.file_type.toUpperCase();
 }
@@ -135,7 +135,7 @@ function summarizeCell(value?: string | null) {
     return trimmed.length > 90 ? `${trimmed.slice(0, 87)}...` : trimmed;
 }
 
-function messageText(message: CocoLegalMessage) {
+function messageText(message: CocoaLegalMessage) {
     if (message.content?.trim()) return message.content.trim();
     const events = message.events ?? [];
     return events
@@ -145,11 +145,11 @@ function messageText(message: CocoLegalMessage) {
         .trim();
 }
 
-function collectCitations(messages: CocoLegalMessage[]): CocoLegalCitationAnnotation[] {
+function collectCitations(messages: CocoaLegalMessage[]): CocoaLegalCitationAnnotation[] {
     return messages.flatMap((message) => message.annotations ?? []);
 }
 
-function citationChipKey(citation: CocoLegalCitationAnnotation, index: number) {
+function citationChipKey(citation: CocoaLegalCitationAnnotation, index: number) {
     return [
         citation.ref ?? "no-ref",
         citation.document_id ?? citation.doc_id ?? "no-doc",
@@ -159,14 +159,14 @@ function citationChipKey(citation: CocoLegalCitationAnnotation, index: number) {
     ].join("-");
 }
 
-function citationChipLabel(citation: CocoLegalCitationAnnotation) {
+function citationChipLabel(citation: CocoaLegalCitationAnnotation) {
     const filename = citation.filename || "Citation";
     const page = citation.page ? ` p.${citation.page}` : "";
     return `${filename}${page}`;
 }
 
-function collectPendingEdits(messages: CocoLegalMessage[]): CocoLegalEditAnnotation[] {
-    const edits: CocoLegalEditAnnotation[] = [];
+function collectPendingEdits(messages: CocoaLegalMessage[]): CocoaLegalEditAnnotation[] {
+    const edits: CocoaLegalEditAnnotation[] = [];
     for (const message of messages) {
         for (const event of message.events ?? []) {
             if (event.type !== "doc_edited") continue;
@@ -178,7 +178,7 @@ function collectPendingEdits(messages: CocoLegalMessage[]): CocoLegalEditAnnotat
     return edits;
 }
 
-function latestAssistantMessages(messages: CocoLegalMessage[]) {
+function latestAssistantMessages(messages: CocoaLegalMessage[]) {
     return messages
         .filter((message) => message.role === "assistant" && messageText(message))
         .slice(-3)
@@ -215,7 +215,7 @@ function buildExtractionRows(
     });
 }
 
-function CocoMark() {
+function CocoaMark() {
     return (
         <div className="flex items-center gap-3">
             <div className="relative flex h-8 w-8 items-center justify-center rounded-lg border border-cyan-300/40 bg-cyan-300/10 shadow-[0_0_28px_rgba(34,211,238,0.22)]">
@@ -223,7 +223,7 @@ function CocoMark() {
                 <div className="absolute h-1.5 w-1.5 rounded-full bg-cyan-300" />
             </div>
             <span className="text-lg font-semibold tracking-normal text-[var(--app-text-strong)]">
-                Coco Legal
+                Cocoa Legal
             </span>
         </div>
     );
@@ -284,15 +284,15 @@ function WorkspaceSkeleton() {
     );
 }
 
-export function CocoWorkspace({ projectId }: { projectId: string }) {
+export function CocoaWorkspace({ projectId }: { projectId: string }) {
     const router = useRouter();
     const { saveChat, setNewChatMessages } = useChatHistoryContext();
     const [isPending, startTransition] = useTransition();
 
-    const [project, setProject] = useState<CocoLegalProject | null>(null);
-    const [chats, setChats] = useState<CocoLegalChat[]>([]);
+    const [project, setProject] = useState<CocoaLegalProject | null>(null);
+    const [chats, setChats] = useState<CocoaLegalChat[]>([]);
     const [reviews, setReviews] = useState<TabularReview[]>([]);
-    const [chatDetail, setChatDetail] = useState<CocoLegalChatDetailOut | null>(null);
+    const [chatDetail, setChatDetail] = useState<CocoaLegalChatDetailOut | null>(null);
     const [reviewDetail, setReviewDetail] =
         useState<TabularReviewDetailOut | null>(null);
     const [selectedDocId, setSelectedDocId] = useState<string | null>(null);
@@ -308,7 +308,7 @@ export function CocoWorkspace({ projectId }: { projectId: string }) {
         let cancelled = false;
         Promise.all([
             getProject(projectId),
-            listProjectChats(projectId).catch(() => [] as CocoLegalChat[]),
+            listProjectChats(projectId).catch(() => [] as CocoaLegalChat[]),
             listTabularReviews(projectId).catch(() => [] as TabularReview[]),
         ])
             .then(([loadedProject, loadedChats, loadedReviews]) => {
@@ -513,7 +513,7 @@ export function CocoWorkspace({ projectId }: { projectId: string }) {
     return (
         <div className="flex h-full min-h-[760px] overflow-hidden bg-[var(--app-shell)] text-[var(--app-text)]">
             <aside className="hidden w-[228px] shrink-0 flex-col border-r border-[var(--app-border)] bg-[var(--app-sidebar)] p-4 lg:flex">
-                <CocoMark />
+                <CocoaMark />
                 <button className="mt-8 flex h-10 items-center justify-between rounded-lg bg-blue-600 px-3 text-sm font-medium text-white shadow-[0_0_28px_rgba(37,99,235,0.35)]">
                     <span className="flex items-center gap-2">
                         <Plus className="h-4 w-4" />
@@ -574,7 +574,7 @@ export function CocoWorkspace({ projectId }: { projectId: string }) {
                     </div>
                     <div className="min-w-0">
                         <p className="truncate text-xs font-medium text-[var(--app-text-strong)]">
-                            Coco Legal
+                            Cocoa Legal
                         </p>
                         <p className="text-[11px] text-[var(--app-text-subtle)]">Pilot workspace</p>
                     </div>
@@ -1095,8 +1095,8 @@ function AssistantActivity({
     message,
     citations,
 }: {
-    message: CocoLegalMessage;
-    citations: CocoLegalCitationAnnotation[];
+    message: CocoaLegalMessage;
+    citations: CocoaLegalCitationAnnotation[];
 }) {
     const text = messageText(message);
     return (

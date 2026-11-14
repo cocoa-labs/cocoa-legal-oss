@@ -12,7 +12,7 @@ import { useAuth } from "@/contexts/AuthContext";
 import {
     listSignatures,
     type SignatureEnvelopeSummary,
-} from "@/app/lib/cocoLegalApi";
+} from "@/app/lib/cocoaLegalApi";
 import { groupEnvelopes } from "./SignaturesPanel";
 
 /** How many of the newest envelopes to expose for compact "recent" displays. */

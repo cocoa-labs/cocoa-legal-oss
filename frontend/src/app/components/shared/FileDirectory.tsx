@@ -14,7 +14,7 @@ import {
 } from "lucide-react";
 
 const IMAGE_FILE_TYPES = new Set(["png", "jpg", "jpeg", "webp", "gif"]);
-import type { CocoLegalDocument, CocoLegalProject } from "./types";
+import type { CocoaLegalDocument, CocoaLegalProject } from "./types";
 import { VersionChip } from "./VersionChip";
 
 function formatDate(iso: string | null) {
@@ -35,8 +35,8 @@ export function DocFileIcon({ fileType }: { fileType: string | null }) {
 }
 
 interface FileDirectoryProps {
-    standaloneDocs: CocoLegalDocument[];
-    directoryProjects: CocoLegalProject[];
+    standaloneDocs: CocoaLegalDocument[];
+    directoryProjects: CocoaLegalProject[];
     loading: boolean;
     selectedIds: Set<string>;
     onChange: (ids: Set<string>) => void;

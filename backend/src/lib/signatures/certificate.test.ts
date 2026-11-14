@@ -17,9 +17,9 @@ function identity(
     return {
         mode,
         subjectCN:
-            mode === "ca-issued" ? "Coco Legal Signing" : "Coco Legal Document Signing",
+            mode === "ca-issued" ? "Cocoa Legal Signing" : "Cocoa Legal Document Signing",
         issuerCN:
-            mode === "ca-issued" ? "Example Trust CA" : "Coco Legal Document Signing",
+            mode === "ca-issued" ? "Example Trust CA" : "Cocoa Legal Document Signing",
         serialHex: "01deadbeefcafe42",
         notBefore: new Date("2026-01-01T00:00:00.000Z"),
         notAfter: new Date("2031-01-01T00:00:00.000Z"),
@@ -67,7 +67,7 @@ async function testOrgSelfSignedWording() {
     assert.match(text, /self-signed certificate/i);
     assert.match(text, /rather than a publicly trusted certificate/i);
     assert.doesNotMatch(text, /ephemeral development/i);
-    assert.match(text, /Coco Legal Document Signing/);
+    assert.match(text, /Cocoa Legal Document Signing/);
     assert.match(text, /01deadbeefcafe42/i);
     // Fingerprint prefix (chunked rendering may wrap the tail).
     assert.match(text, /aabbccddeeff0011/i);

@@ -72,7 +72,7 @@ async function tableExists(db: Db, table: string) {
 
 async function main() {
     const db = createServerSupabase();
-    console.log("=== Coco Legal — go-live schema audit (READ-ONLY) ===\n");
+    console.log("=== Cocoa Legal — go-live schema audit (READ-ONLY) ===\n");
 
     // 1. Table presence, grouped by migration.
     const missingByMigration = new Map<string, string[]>();

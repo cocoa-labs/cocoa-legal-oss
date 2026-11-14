@@ -8,7 +8,7 @@ import {
   retryEmailAttachment,
   type EmailAttachmentRef,
   type InboundEmailAttachment,
-} from "@/app/lib/cocoLegalApi";
+} from "@/app/lib/cocoaLegalApi";
 
 export function EmailAttachmentList({
   emailId,

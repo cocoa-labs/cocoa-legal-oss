@@ -8,13 +8,13 @@ import {
     createRecording,
     getChat,
     cancelDocumentGenerationJob,
-} from "@/app/lib/cocoLegalApi";
+} from "@/app/lib/cocoaLegalApi";
 import { useChatHistoryContext } from "@/app/contexts/ChatHistoryContext";
 import { useGenerateChatTitle } from "./useGenerateChatTitle";
 import type {
     AssistantEvent,
-    CocoLegalCitationAnnotation,
-    CocoLegalMessage,
+    CocoaLegalCitationAnnotation,
+    CocoaLegalMessage,
 } from "@/app/components/shared/types";
 import { normalizeDocEditedEvent } from "@/app/components/doc-review/documentReliability";
 import { synchronizeAssistantContent } from "@/app/lib/conversationContent";
@@ -71,7 +71,7 @@ export type CapabilityRunOpt = {
 };
 
 interface UseAssistantChatOptions {
-    initialMessages?: CocoLegalMessage[];
+    initialMessages?: CocoaLegalMessage[];
     chatId?: string;
     projectId?: string;
     chatBasePath?: string;
@@ -106,7 +106,7 @@ export function useAssistantChat({
     } = useChatHistoryContext();
     const { generate: generateTitle } = useGenerateChatTitle();
 
-    const [messages, setMessages] = useState<CocoLegalMessage[]>(initialMessages);
+    const [messages, setMessages] = useState<CocoaLegalMessage[]>(initialMessages);
     const [isResponseLoading, setIsResponseLoading] = useState(false);
     const [isLoadingCitations, setIsLoadingCitations] = useState(false);
     const [proposal, setProposal] = useState<LegalProposal | null>(null);
@@ -129,10 +129,10 @@ export function useAssistantChat({
     };
 
     const updateLastContentEvent = (
-        prev: CocoLegalMessage[],
+        prev: CocoaLegalMessage[],
         text: string,
         isStreaming?: boolean,
-    ): CocoLegalMessage[] => {
+    ): CocoaLegalMessage[] => {
         const updated = [...prev];
         const last = updated[updated.length - 1];
         if (last?.role !== "assistant") return prev;
@@ -370,7 +370,7 @@ export function useAssistantChat({
     };
 
     const handleChat = async (
-        message: CocoLegalMessage,
+        message: CocoaLegalMessage,
         opts?: {
             displayedDoc?: {
                 filename: string;
@@ -408,7 +408,7 @@ export function useAssistantChat({
         // Carry the confirmed run on the optimistic turn too, so the "Capability
         // run" pill shows the moment the user confirms — not only after the
         // reload that reads chat_messages.capability_run back.
-        const turnMessage: CocoLegalMessage = opts?.capabilityRun
+        const turnMessage: CocoaLegalMessage = opts?.capabilityRun
             ? {
                   ...message,
                   capability_run: {
@@ -424,7 +424,7 @@ export function useAssistantChat({
               }
             : message;
 
-        const newMessages: CocoLegalMessage[] = isMessageAlreadyAdded
+        const newMessages: CocoaLegalMessage[] = isMessageAlreadyAdded
             ? messages
             : [...messages, turnMessage];
 
@@ -859,7 +859,7 @@ export function useAssistantChat({
                             // nothing — pushing it would only finalize the
                             // streaming content early and mint a phantom
                             // one-step card. Mirrors the refresh-path
-                            // normalizer in cocoLegalApi.getChat().
+                            // normalizer in cocoaLegalApi.getChat().
                             if (
                                 reason === "max_output" ||
                                 reason === "context_limit" ||
@@ -910,7 +910,7 @@ export function useAssistantChat({
 
                         // Matter / case lookups. These MUST be handled here
                         // even though they carry no interactive payload: the
-                        // reload path (cocoLegalApi.getChat) casts the persisted
+                        // reload path (cocoaLegalApi.getChat) casts the persisted
                         // events straight through, so an event dropped by this
                         // chain shows a step live and a *different* step count
                         // after a refresh — and, unrendered, contributes an
@@ -1530,7 +1530,7 @@ export function useAssistantChat({
                             // finalised message.
                             clearStreamingPlaceholders();
                             const incoming = (data.citations ??
-                                []) as CocoLegalCitationAnnotation[];
+                                []) as CocoaLegalCitationAnnotation[];
                             setMessages((prev) => {
                                 const updated = [...prev];
                                 const last = updated[updated.length - 1];
@@ -1598,7 +1598,7 @@ export function useAssistantChat({
                     );
                 }
 
-                let persisted: CocoLegalMessage | undefined;
+                let persisted: CocoaLegalMessage | undefined;
                 const attempts = needsTerminalRecovery ? 4 : 1;
                 for (let attempt = 0; attempt < attempts; attempt++) {
                     const detail = await getChat(finalChatId);
@@ -1643,7 +1643,7 @@ export function useAssistantChat({
                             (candidate.id === streamedAssistantMessageId ||
                                 index === updated.length - 1)
                         ) {
-                            updated[index] = persisted as CocoLegalMessage;
+                            updated[index] = persisted as CocoaLegalMessage;
                             break;
                         }
                     }
@@ -1738,7 +1738,7 @@ export function useAssistantChat({
     };
 
     const handleNewChat = async (
-        message: CocoLegalMessage,
+        message: CocoaLegalMessage,
         projectId?: string,
     ): Promise<string | null> => {
         if (!message.content.trim()) return null;

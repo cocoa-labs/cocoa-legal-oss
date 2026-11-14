@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { getRecording } from "@/app/lib/cocoLegalApi";
+import { getRecording } from "@/app/lib/cocoaLegalApi";
 import type { Recording } from "@/app/components/shared/types";
 
 const POLL_INTERVAL_MS = 2500;

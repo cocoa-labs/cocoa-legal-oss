@@ -15,7 +15,7 @@ import {
     listEmails,
     refreshInbound,
     type EmailRecord,
-} from "@/app/lib/cocoLegalApi";
+} from "@/app/lib/cocoaLegalApi";
 
 function formatReceived(iso: string | null): string {
     if (!iso) return "";

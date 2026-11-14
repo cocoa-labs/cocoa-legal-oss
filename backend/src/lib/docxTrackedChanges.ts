@@ -974,7 +974,7 @@ export async function applyTrackedEdits(
         const minEnd = minStart + deleted.length;
         void findEnd;
 
-        const changeId = `coco-legal-${editIdx}-${Date.now()}`;
+        const changeId = `cocoa-legal-${editIdx}-${Date.now()}`;
         const plan: PlannedChange = {
             editIndex: editIdx,
             deleteStart: minStart,

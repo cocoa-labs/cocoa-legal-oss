@@ -9,7 +9,7 @@ import type {
     AutomationWorkflowKind,
     PiCaseStatus,
     PiExpenseStatus,
-} from "@/app/lib/cocoLegalApi";
+} from "@/app/lib/cocoaLegalApi";
 
 // ---------------------------------------------------------------------------
 // Formatting

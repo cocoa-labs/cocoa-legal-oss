@@ -1,14 +1,14 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { getProject, listProjects, listStandaloneDocuments } from "@/app/lib/cocoLegalApi";
-import type { CocoLegalDocument, CocoLegalProject } from "./types";
+import { getProject, listProjects, listStandaloneDocuments } from "@/app/lib/cocoaLegalApi";
+import type { CocoaLegalDocument, CocoaLegalProject } from "./types";
 
 const CACHE_TTL_MS = 30_000;
 
 interface DirectoryCache {
-    standaloneDocuments: CocoLegalDocument[];
-    projects: CocoLegalProject[];
+    standaloneDocuments: CocoaLegalDocument[];
+    projects: CocoaLegalProject[];
     fetchedAt: number;
 }
 
@@ -20,8 +20,8 @@ export function invalidateDirectoryCache() {
 
 export function useDirectoryData(enabled: boolean) {
     const [loading, setLoading] = useState(true);
-    const [standaloneDocuments, setStandaloneDocuments] = useState<CocoLegalDocument[]>([]);
-    const [projects, setProjects] = useState<CocoLegalProject[]>([]);
+    const [standaloneDocuments, setStandaloneDocuments] = useState<CocoaLegalDocument[]>([]);
+    const [projects, setProjects] = useState<CocoaLegalProject[]>([]);
 
     useEffect(() => {
         if (!enabled) return;

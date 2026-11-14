@@ -10,7 +10,7 @@ import { ProposalChip } from "./ProposalChip";
 import { AssistantMessage } from "./AssistantMessage";
 import { ChatInput } from "./ChatInput";
 import { AppBackButton } from "@/app/components/shared/AppBackButton";
-import { CocoCommandBackdrop } from "@/app/components/shared/CocoCommandBackdrop";
+import { CocoaCommandBackdrop } from "@/app/components/shared/CocoaCommandBackdrop";
 import {
     AssistantSidePanel,
     type AssistantSidePanelTab,
@@ -19,14 +19,14 @@ import { AssistantWorkflowModal } from "./AssistantWorkflowModal";
 import { DisplayWorkflowModal } from "../workflows/DisplayWorkflowModal";
 import { BUILT_IN_WORKFLOWS } from "../workflows/builtinWorkflows";
 import { capabilityIdToWorkflowId } from "../legal/creShared";
-import { updateChatSuggestions } from "@/app/lib/cocoLegalApi";
+import { updateChatSuggestions } from "@/app/lib/cocoaLegalApi";
 import type {
     AssistantEvent,
-    CocoLegalCitationAnnotation,
-    CocoLegalEditAnnotation,
-    CocoLegalHighlightAnnotation,
-    CocoLegalMessage,
-    CocoLegalWorkflow,
+    CocoaLegalCitationAnnotation,
+    CocoaLegalEditAnnotation,
+    CocoaLegalHighlightAnnotation,
+    CocoaLegalMessage,
+    CocoaLegalWorkflow,
 } from "../shared/types";
 import type {
     CapabilityRunOpt,
@@ -42,10 +42,10 @@ function senderName(from: string | null | undefined): string {
 }
 
 interface Props {
-    messages: CocoLegalMessage[];
+    messages: CocoaLegalMessage[];
     isResponseLoading: boolean;
     handleChat: (
-        message: CocoLegalMessage,
+        message: CocoaLegalMessage,
         opts?: {
             editImageSource?: {
                 document_id?: string | null;
@@ -100,7 +100,7 @@ export function ChatView({
     // Confirming opens the SAME DisplayWorkflowModal the gallery uses, so the
     // configure → createTabularReview / start-chat path is reused verbatim.
     const [proposalWorkflow, setProposalWorkflow] =
-        useState<CocoLegalWorkflow | null>(null);
+        useState<CocoaLegalWorkflow | null>(null);
     // Document id(s) the user just attached, carried on the proposal so the
     // modal opens with the lease already selected (Create Review enabled at
     // once). Captured at confirm time and handed to DisplayWorkflowModal.
@@ -339,7 +339,7 @@ export function ChatView({
      * AssistantMessage when the user clicks a numbered citation pill.
      */
     const openCitation = useCallback(
-        (citation: CocoLegalCitationAnnotation) => {
+        (citation: CocoaLegalCitationAnnotation) => {
             upsertTab({
                 kind: "citation",
                 id: citation.document_id,
@@ -358,7 +358,7 @@ export function ChatView({
      * AssistantMessage when the user clicks an EditCard's View button.
      */
     const openEditor = useCallback(
-        (ann: CocoLegalEditAnnotation, filename: string) => {
+        (ann: CocoaLegalEditAnnotation, filename: string) => {
             upsertTab({
                 kind: "edit",
                 id: ann.document_id,
@@ -402,7 +402,7 @@ export function ChatView({
             versionId: string | null;
             versionNumber: number | null;
             title: string;
-            highlights: CocoLegalHighlightAnnotation[];
+            highlights: CocoaLegalHighlightAnnotation[];
             activeHighlightId?: string | null;
         }) => {
             upsertTab({
@@ -424,7 +424,7 @@ export function ChatView({
         (args: {
             setId: string;
             documentId: string;
-            highlights: CocoLegalHighlightAnnotation[];
+            highlights: CocoaLegalHighlightAnnotation[];
         }) => {
             setTabs((prev) =>
                 prev.map((tab) =>
@@ -709,7 +709,7 @@ export function ChatView({
             data-assistant-chat-shell
             className="h-full w-full flex relative overflow-hidden bg-[var(--app-shell)] text-[var(--app-text)]"
         >
-            <CocoCommandBackdrop variant="chat" />
+            <CocoaCommandBackdrop variant="chat" />
             <AppBackButton
                 variant="dark"
                 className="absolute left-4 top-4 z-20 md:left-6 md:top-6"

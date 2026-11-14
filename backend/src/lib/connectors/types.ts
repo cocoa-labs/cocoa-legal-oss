@@ -120,7 +120,7 @@ export interface EmailConnector {
     }): Promise<ListSinceResult>;
     getMessage(id: string): Promise<ParsedEmail>;
     getAttachment(messageId: string, attachmentId: string): Promise<Buffer>;
-    /** Mark a message processed (add a Coco Legal label / clear UNREAD). */
+    /** Mark a message processed (add a Cocoa Legal label / clear UNREAD). */
     markProcessed(id: string): Promise<void>;
 }
 

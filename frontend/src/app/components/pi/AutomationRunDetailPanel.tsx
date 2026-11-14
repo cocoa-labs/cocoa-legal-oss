@@ -28,7 +28,7 @@ import {
     type AutomationRunDetail,
     type AutomationStatusOut,
     type PiCase,
-} from "@/app/lib/cocoLegalApi";
+} from "@/app/lib/cocoaLegalApi";
 import {
     formatCents,
     formatWhen,

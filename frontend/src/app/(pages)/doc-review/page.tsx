@@ -3,15 +3,15 @@
 import { useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 import { FileText, FolderOpen, Loader2, Plus, Search } from "lucide-react";
-import { CocoCommandBackdrop } from "@/app/components/shared/CocoCommandBackdrop";
-import { CocoLegalIcon } from "@/components/chat/coco-legal-icon";
+import { CocoaCommandBackdrop } from "@/app/components/shared/CocoaCommandBackdrop";
+import { CocoaLegalIcon } from "@/components/chat/cocoa-legal-icon";
 import { NewProjectModal } from "@/app/components/projects/NewProjectModal";
-import { listProjects } from "@/app/lib/cocoLegalApi";
+import { listProjects } from "@/app/lib/cocoaLegalApi";
 import { matterDocReviewHref } from "@/app/lib/matterRoutes";
-import type { CocoLegalProject } from "@/app/components/shared/types";
+import type { CocoaLegalProject } from "@/app/components/shared/types";
 import { AppBackButton } from "@/app/components/shared/AppBackButton";
 
-function formatRecentMatterDate(project: CocoLegalProject) {
+function formatRecentMatterDate(project: CocoaLegalProject) {
     const raw = project.updated_at || project.created_at;
     const date = new Date(raw);
     if (Number.isNaN(date.getTime())) return "No activity";
@@ -24,7 +24,7 @@ function formatRecentMatterDate(project: CocoLegalProject) {
 
 export default function DocReviewLauncherPage() {
     const router = useRouter();
-    const [projects, setProjects] = useState<CocoLegalProject[]>([]);
+    const [projects, setProjects] = useState<CocoaLegalProject[]>([]);
     const [loading, setLoading] = useState(true);
     const [search, setSearch] = useState("");
     const [newMatterOpen, setNewMatterOpen] = useState(false);
@@ -63,7 +63,7 @@ export default function DocReviewLauncherPage() {
 
     return (
         <div className="relative flex h-full w-full overflow-hidden bg-[var(--app-shell)] px-5 py-6 text-[var(--app-text)] md:px-8">
-            <CocoCommandBackdrop variant="hero" />
+            <CocoaCommandBackdrop variant="hero" />
 
             <main className="relative z-10 mx-auto flex w-full max-w-6xl flex-col">
                 <header className="flex flex-wrap items-center justify-between gap-4">
@@ -71,7 +71,7 @@ export default function DocReviewLauncherPage() {
                         <AppBackButton variant="dark" className="mt-1" />
                         <div className="min-w-0">
                             <div className="flex items-center gap-3">
-                                <CocoLegalIcon
+                                <CocoaLegalIcon
                                     size={28}
                                     style={{
                                         filter:

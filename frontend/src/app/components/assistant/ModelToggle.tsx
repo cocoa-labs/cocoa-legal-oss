@@ -8,7 +8,7 @@ import {
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { isModelAvailable } from "@/app/lib/modelAvailability";
-import type { ApiKeyState } from "@/app/lib/cocoLegalApi";
+import type { ApiKeyState } from "@/app/lib/cocoaLegalApi";
 import { useModelsCatalog } from "@/app/hooks/useModelsCatalog";
 import { cn } from "@/lib/utils";
 import { ModelPickerContent } from "./ModelPickerContent";

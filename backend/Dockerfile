@@ -1,6 +1,6 @@
-# Coco Legal backend: Express API plus LibreOffice for DOCX/XLSX/PPTX → PDF.
+# Cocoa Legal backend: Express API plus LibreOffice for DOCX/XLSX/PPTX → PDF.
 #
-#   docker build -t coco-legal-backend ./backend
+#   docker build -t cocoa-legal-backend ./backend
 #
 # Development dependencies stay installed on purpose: `npm run migrate` runs
 # through tsx, so the same image can apply migrations:

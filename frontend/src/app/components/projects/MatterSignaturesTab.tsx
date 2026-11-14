@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import { getProject } from "@/app/lib/cocoLegalApi";
+import { getProject } from "@/app/lib/cocoaLegalApi";
 import { AppBackButton } from "@/app/components/shared/AppBackButton";
 import { MatterNav } from "./MatterNav";
 import { SignaturesPanel } from "@/app/components/legal/SignaturesPanel";

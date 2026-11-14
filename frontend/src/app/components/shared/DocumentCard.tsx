@@ -8,12 +8,12 @@ import {
   AlertCircle,
   Loader2,
 } from "lucide-react";
-import type { CocoLegalDocument } from "./types";
+import type { CocoaLegalDocument } from "./types";
 
 interface Props {
-  document: CocoLegalDocument;
+  document: CocoaLegalDocument;
   onRemove?: (id: string) => void;
-  onClick?: (doc: CocoLegalDocument) => void;
+  onClick?: (doc: CocoaLegalDocument) => void;
   selected?: boolean;
 }
 

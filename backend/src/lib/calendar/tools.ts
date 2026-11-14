@@ -69,7 +69,7 @@ export const CALENDAR_TOOLS: OpenAIToolSchema[] = [
         function: {
             name: "list_events",
             description:
-                "List upcoming events from Quill's calendars (its own 'primary' calendar and the shared 'Coco Legal' firm calendar) within a time window. READ-ONLY: nothing is created, changed, or sent. Use it to answer 'what's on my calendar', 'am I free Tuesday', 'what's coming up on the Smith matter', or to find the event the user means before calling get_event / update_event / delete_event. Returns each event's event_id, title, start/end, which calendar it is on, attendee count, whether it has a Google Meet link, and whether it is all-day.",
+                "List upcoming events from Quill's calendars (its own 'primary' calendar and the shared 'Cocoa Legal' firm calendar) within a time window. READ-ONLY: nothing is created, changed, or sent. Use it to answer 'what's on my calendar', 'am I free Tuesday', 'what's coming up on the Smith matter', or to find the event the user means before calling get_event / update_event / delete_event. Returns each event's event_id, title, start/end, which calendar it is on, attendee count, whether it has a Google Meet link, and whether it is all-day.",
             parameters: {
                 type: "object",
                 properties: {
@@ -87,7 +87,7 @@ export const CALENDAR_TOOLS: OpenAIToolSchema[] = [
                         type: "string",
                         enum: ["primary", "firm", "all"],
                         description:
-                            "Which calendar(s) to read: 'primary' (Quill's own), 'firm' (the shared Coco Legal calendar for court dates/firm deadlines), or 'all' (both, merged). Defaults to 'all'.",
+                            "Which calendar(s) to read: 'primary' (Quill's own), 'firm' (the shared Cocoa Legal calendar for court dates/firm deadlines), or 'all' (both, merged). Defaults to 'all'.",
                     },
                 },
             },
@@ -173,7 +173,7 @@ export const CALENDAR_TOOLS: OpenAIToolSchema[] = [
                         type: "string",
                         enum: ["primary", "firm"],
                         description:
-                            "Which calendar to add the event to: 'primary' (Quill's own) or 'firm' (the shared Coco Legal calendar, e.g. a firm-wide court date). Defaults to 'primary'.",
+                            "Which calendar to add the event to: 'primary' (Quill's own) or 'firm' (the shared Cocoa Legal calendar, e.g. a firm-wide court date). Defaults to 'primary'.",
                     },
                 },
                 required: ["title", "start", "end"],
@@ -255,7 +255,7 @@ export const CALENDAR_TOOLS: OpenAIToolSchema[] = [
         function: {
             name: "create_deadline",
             description:
-                "Record a legal deadline — a court date, filing deadline, statute of limitations, or other due date — as an all-day event on the shared 'Coco Legal' firm calendar, flagged as a deadline with a lead-time reminder. Use this instead of create_event when the user is tracking a DEADLINE (e.g. 'add the SOL for the Doe case on March 3', 'filing deadline next Friday'). Quill classifies the deadline type and picks a sensible reminder lead time from the title unless you pass them explicitly. This is a private firm-calendar entry with no attendees, so it is created directly (and is undoable).",
+                "Record a legal deadline — a court date, filing deadline, statute of limitations, or other due date — as an all-day event on the shared 'Cocoa Legal' firm calendar, flagged as a deadline with a lead-time reminder. Use this instead of create_event when the user is tracking a DEADLINE (e.g. 'add the SOL for the Doe case on March 3', 'filing deadline next Friday'). Quill classifies the deadline type and picks a sensible reminder lead time from the title unless you pass them explicitly. This is a private firm-calendar entry with no attendees, so it is created directly (and is undoable).",
             parameters: {
                 type: "object",
                 properties: {

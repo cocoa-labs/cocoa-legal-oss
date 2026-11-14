@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { CalendarDays } from "lucide-react";
-import { listEvents, type CalendarEvent } from "@/app/lib/cocoLegalApi";
+import { listEvents, type CalendarEvent } from "@/app/lib/cocoaLegalApi";
 import { EventRow } from "./EventRow";
 import { addDays, startOfDay } from "./calendarColors";
 

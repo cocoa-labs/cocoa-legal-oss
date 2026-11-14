@@ -5,7 +5,7 @@ import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { Library, RotateCcw } from "lucide-react";
 import { API_BASE } from "@/app/lib/apiBase";
-import { exportCapabilityResultDocx } from "@/app/lib/cocoLegalApi";
+import { exportCapabilityResultDocx } from "@/app/lib/cocoaLegalApi";
 import { recordProposalMetric } from "@/app/lib/assistantReliabilityTelemetry";
 import type {
     CapabilityResultEvent,

@@ -5,10 +5,10 @@ import { useParams, useRouter, useSearchParams } from "next/navigation";
 import { useAssistantChat } from "@/app/hooks/useAssistantChat";
 import { useChatHistoryContext } from "@/app/contexts/ChatHistoryContext";
 import { ChatView } from "@/app/components/assistant/ChatView";
-import { getChat, getEmail } from "@/app/lib/cocoLegalApi";
+import { getChat, getEmail } from "@/app/lib/cocoaLegalApi";
 import type {
     AssistantEvent,
-    CocoLegalMessage,
+    CocoaLegalMessage,
 } from "@/app/components/shared/types";
 
 type EmailReceivedEvent = Extract<AssistantEvent, { type: "email_received" }>;
@@ -25,7 +25,7 @@ type EmailReceivedEvent = Extract<AssistantEvent, { type: "email_received" }>;
  *     whose arguments.in_reply_to_email_id is this id.
  */
 function hasReplyDraftFor(
-    messages: CocoLegalMessage[],
+    messages: CocoaLegalMessage[],
     inboundId: string,
 ): boolean {
     return messages.some((m) =>

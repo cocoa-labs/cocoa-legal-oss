@@ -148,7 +148,7 @@ async function readRecord(): Promise<Record<string, string>> {
     );
 }
 
-const WORK_DIR_PREFIX = "coco-soffice-";
+const WORK_DIR_PREFIX = "cocoa-soffice-";
 
 async function workDirsInTmp(): Promise<string[]> {
     const entries = await readdir(os.tmpdir());
@@ -544,7 +544,7 @@ async function main(): Promise<void> {
     // exported override cannot change what these tests mean.
     delete process.env.LIBREOFFICE_MAX_CONCURRENT;
 
-    scratchDir = await mkdtemp(path.join(os.tmpdir(), "coco-lo-test-"));
+    scratchDir = await mkdtemp(path.join(os.tmpdir(), "cocoa-lo-test-"));
     recordPath = path.join(scratchDir, "record.txt");
     try {
         await testStderrNoiseStillSucceeds();

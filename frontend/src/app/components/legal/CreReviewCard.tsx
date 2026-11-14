@@ -11,7 +11,7 @@ import {
 } from "lucide-react";
 import type {
     ColumnConfig,
-    CocoLegalDocument,
+    CocoaLegalDocument,
     TabularCell,
     TabularReview,
 } from "../shared/types";
@@ -37,7 +37,7 @@ interface Props {
     review: TabularReview;
     columns: ColumnConfig[];
     cells: TabularCell[];
-    documents: CocoLegalDocument[];
+    documents: CocoaLegalDocument[];
     onExportDocx?: () => void;
     onExportXlsx?: () => void;
     onCopy?: () => void;

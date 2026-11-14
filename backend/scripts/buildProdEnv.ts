@@ -86,8 +86,8 @@ const PROD_VALUES: [string, string, string][] = [
     ["CLAMAV_HOST", "clamav.railway.internal", "Railway private networking: <service>.railway.internal"],
     ["CLAMAV_PORT", "3310", "clamd default port"],
     ["TRUST_PROXY_HOPS", "1", "Railway fronts you with a single proxy"],
-    ["GMAIL_AGENT_NAME", "Quill · Coco Legal", "From display name recipients see"],
-    ["CALENDAR_FIRM_NAME", "Coco Legal", "shared calendar name (also the find-or-create key)"],
+    ["GMAIL_AGENT_NAME", "Quill · Cocoa Legal", "From display name recipients see"],
+    ["CALENDAR_FIRM_NAME", "Cocoa Legal", "shared calendar name (also the find-or-create key)"],
     ["CALENDAR_DEFAULT_TIMEZONE", "UTC", "set your firm's IANA timezone"],
     ["CALENDAR_REMINDER_WORKER_ENABLED", "true", "strict lowercase 'true'"],
     ["EMAIL_AUTODRAFT_ENABLED", "true", "drafts replies for human approval"],
@@ -137,7 +137,7 @@ function main() {
     // Emit ONE `KEY="value"` per line with NO comments and NO blank lines.
     // Railway's raw-variable editor silently dropped 18 of 35 entries from a
     // commented file — values containing spaces (e.g. the PEM private key,
-    // "Coco Legal") and interleaved `#` lines are the likely cause. Always
+    // "Cocoa Legal") and interleaved `#` lines are the likely cause. Always
     // quoting and emitting nothing else removes every parsing ambiguity.
     const quote = (v: string) => `"${v.replace(/\\/g, "\\\\").replace(/"/g, '\\"')}"`;
 

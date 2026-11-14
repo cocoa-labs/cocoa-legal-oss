@@ -19,7 +19,7 @@ import {
 export { escapeHtml };
 
 /** e-sign-specific footer. */
-const ESIGN_FOOTER = "Electronic signature request sent with Coco Legal";
+const ESIGN_FOOTER = "Electronic signature request sent with Cocoa Legal";
 
 /**
  * Controlled-beta labels. Signature wording follows beta mode

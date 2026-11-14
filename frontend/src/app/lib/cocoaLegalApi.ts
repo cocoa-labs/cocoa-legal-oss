@@ -1,5 +1,5 @@
 /**
- * Coco Legal API client — all requests to the Node.js backend.
+ * Cocoa Legal API client — all requests to the Node.js backend.
  * Attaches the Supabase auth token for user authentication.
  */
 
@@ -11,17 +11,17 @@ import type {
     AuthoringJobStatus,
     CapabilityRunRecord,
     DocumentGenerationJobStatus,
-    CocoLegalChat,
-    CocoLegalChatDetailOut,
-    CocoLegalCitationAnnotation,
-    CocoLegalDocument,
-    CocoLegalFolder,
-    CocoLegalMessage,
-    CocoLegalProject,
-    CocoLegalWorkflow,
-    CocoLegalHighlightAnnotation,
-    CocoLegalImageAttachment,
-    CocoLegalMessageAttachment,
+    CocoaLegalChat,
+    CocoaLegalChatDetailOut,
+    CocoaLegalCitationAnnotation,
+    CocoaLegalDocument,
+    CocoaLegalFolder,
+    CocoaLegalMessage,
+    CocoaLegalProject,
+    CocoaLegalWorkflow,
+    CocoaLegalHighlightAnnotation,
+    CocoaLegalImageAttachment,
+    CocoaLegalMessageAttachment,
     DocTemplate,
     DocTemplateSection,
     DocTemplateVariable,
@@ -40,9 +40,9 @@ interface ServerMessage {
     chat_id: string;
     role: "user" | "assistant";
     content: string | AssistantEvent[] | null;
-    files?: CocoLegalMessageAttachment[] | null;
+    files?: CocoaLegalMessageAttachment[] | null;
     workflow?: { id: string; title: string } | null;
-    annotations?: CocoLegalCitationAnnotation[] | null;
+    annotations?: CocoaLegalCitationAnnotation[] | null;
     inherited_from_chat_id?: string | null;
     version_context?: VersionContextSnapshot | null;
     created_at: string;
@@ -52,7 +52,7 @@ interface ServerMessage {
     capability_run?: CapabilityRunRecord | null;
 }
 interface ServerChatDetailOut {
-    chat: CocoLegalChat;
+    chat: CocoaLegalChat;
     messages: ServerMessage[];
 }
 
@@ -92,7 +92,7 @@ export class ApiError extends Error {
  * listen for this event so they can refresh immediately instead of waiting for
  * the next consolidated 15-second poll.
  */
-export const ACTION_STATE_MUTATED_EVENT = "coco:action-state-mutated";
+export const ACTION_STATE_MUTATED_EVENT = "cocoa:action-state-mutated";
 
 function notifyActionStateMutation(method: string | undefined): void {
     if (
@@ -156,16 +156,16 @@ async function apiRequest<T>(path: string, init?: RequestInit): Promise<T> {
 // Projects
 // ---------------------------------------------------------------------------
 
-export async function listProjects(): Promise<CocoLegalProject[]> {
-    return apiRequest<CocoLegalProject[]>("/projects");
+export async function listProjects(): Promise<CocoaLegalProject[]> {
+    return apiRequest<CocoaLegalProject[]>("/projects");
 }
 
 export async function createProject(
     name: string,
     cm_number?: string,
     shared_with?: string[],
-): Promise<CocoLegalProject> {
-    return apiRequest<CocoLegalProject>("/projects", {
+): Promise<CocoaLegalProject> {
+    return apiRequest<CocoaLegalProject>("/projects", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ name, cm_number, shared_with }),
@@ -288,8 +288,8 @@ export async function updateDocumentHighlightStatus(
     setId: string,
     highlightId: string,
     status: "kept" | "removed",
-): Promise<{ highlight: CocoLegalHighlightAnnotation }> {
-    return apiRequest<{ highlight: CocoLegalHighlightAnnotation }>(
+): Promise<{ highlight: CocoaLegalHighlightAnnotation }> {
+    return apiRequest<{ highlight: CocoaLegalHighlightAnnotation }>(
         `/single-documents/${documentId}/highlight-sets/${setId}/highlights/${highlightId}`,
         {
             method: "PATCH",
@@ -302,7 +302,7 @@ export async function updateDocumentHighlightStatus(
 export async function applyDocumentHighlightSet(
     documentId: string,
     setId: string,
-    highlights?: CocoLegalHighlightAnnotation[],
+    highlights?: CocoaLegalHighlightAnnotation[],
 ): Promise<{
     version_id: string;
     version_number: number;
@@ -395,8 +395,8 @@ export async function undoOperation(
     return response.operation;
 }
 
-export async function getProject(projectId: string): Promise<CocoLegalProject> {
-    return apiRequest<CocoLegalProject>(`/projects/${projectId}`);
+export async function getProject(projectId: string): Promise<CocoaLegalProject> {
+    return apiRequest<CocoaLegalProject>(`/projects/${projectId}`);
 }
 
 export interface DocumentActionState {
@@ -738,8 +738,8 @@ export async function updateProject(
         name?: string;
         cm_number?: string;
     },
-): Promise<CocoLegalProject> {
-    return apiRequest<CocoLegalProject>(`/projects/${projectId}`, {
+): Promise<CocoaLegalProject> {
+    return apiRequest<CocoaLegalProject>(`/projects/${projectId}`, {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
@@ -848,8 +848,8 @@ export async function createProjectFolder(
     projectId: string,
     name: string,
     parentFolderId?: string | null,
-): Promise<CocoLegalFolder> {
-    return apiRequest<CocoLegalFolder>(`/projects/${projectId}/folders`, {
+): Promise<CocoaLegalFolder> {
+    return apiRequest<CocoaLegalFolder>(`/projects/${projectId}/folders`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -863,8 +863,8 @@ export async function renameProjectFolder(
     projectId: string,
     folderId: string,
     name: string,
-): Promise<CocoLegalFolder> {
-    return apiRequest<CocoLegalFolder>(
+): Promise<CocoaLegalFolder> {
+    return apiRequest<CocoaLegalFolder>(
         `/projects/${projectId}/folders/${folderId}`,
         {
             method: "PATCH",
@@ -887,8 +887,8 @@ export async function moveSubfolderToFolder(
     projectId: string,
     folderId: string,
     parentFolderId: string | null,
-): Promise<CocoLegalFolder> {
-    return apiRequest<CocoLegalFolder>(
+): Promise<CocoaLegalFolder> {
+    return apiRequest<CocoaLegalFolder>(
         `/projects/${projectId}/folders/${folderId}`,
         {
             method: "PATCH",
@@ -902,8 +902,8 @@ export async function moveDocumentToFolder(
     projectId: string,
     documentId: string,
     folderId: string | null,
-): Promise<CocoLegalDocument> {
-    return apiRequest<CocoLegalDocument>(
+): Promise<CocoaLegalDocument> {
+    return apiRequest<CocoaLegalDocument>(
         `/projects/${projectId}/documents/${documentId}/folder`,
         {
             method: "PATCH",
@@ -917,8 +917,8 @@ export async function renameProjectDocument(
     projectId: string,
     documentId: string,
     filename: string,
-): Promise<CocoLegalDocument> {
-    return apiRequest<CocoLegalDocument>(
+): Promise<CocoaLegalDocument> {
+    return apiRequest<CocoaLegalDocument>(
         `/projects/${projectId}/documents/${documentId}`,
         {
             method: "PATCH",
@@ -931,8 +931,8 @@ export async function renameProjectDocument(
 export async function addDocumentToProject(
     projectId: string,
     documentId: string,
-): Promise<CocoLegalDocument> {
-    return apiRequest<CocoLegalDocument>(
+): Promise<CocoaLegalDocument> {
+    return apiRequest<CocoaLegalDocument>(
         `/projects/${projectId}/documents/${documentId}`,
         { method: "POST" },
     );
@@ -946,7 +946,7 @@ export interface VersionProvenance {
     source: "edit" | "operation" | "highlight";
 }
 
-export interface CocoLegalDocumentVersion {
+export interface CocoaLegalDocumentVersion {
     id: string;
     document_id?: string;
     version_number: number | null;
@@ -974,12 +974,12 @@ export interface CocoLegalDocumentVersion {
     provenance?: VersionProvenance | null;
 }
 
-export interface DocumentVersionNode extends CocoLegalDocumentVersion {
+export interface DocumentVersionNode extends CocoaLegalDocumentVersion {
     document_id: string;
 }
 
 export interface DerivedDocumentNode {
-    document: CocoLegalDocument;
+    document: CocoaLegalDocument;
     version: DocumentVersionNode | null;
     source_document_id: string;
     source_version_id: string | null;
@@ -988,7 +988,7 @@ export interface DerivedDocumentNode {
 }
 
 export interface DocumentTreeNode {
-    document: CocoLegalDocument;
+    document: CocoaLegalDocument;
     versions: DocumentVersionNode[];
     derived_documents: DerivedDocumentNode[];
     is_derived?: boolean;
@@ -996,7 +996,7 @@ export interface DocumentTreeNode {
 
 export interface ProjectDocumentTree {
     project_id: string;
-    folders: CocoLegalFolder[];
+    folders: CocoaLegalFolder[];
     documents: DocumentTreeNode[];
 }
 
@@ -1005,7 +1005,7 @@ export async function listDocumentVersions(
     options?: { includeDecisions?: boolean },
 ): Promise<{
     current_version_id: string | null;
-    versions: CocoLegalDocumentVersion[];
+    versions: CocoaLegalDocumentVersion[];
 }> {
     const qs = options?.includeDecisions ? "?include_decisions=true" : "";
     return apiRequest(`/single-documents/${documentId}/versions${qs}`);
@@ -1031,7 +1031,7 @@ export async function finalizeCleanDocument(
     download_url: string;
     remaining_pending: number;
     already_final?: boolean;
-    version?: CocoLegalDocumentVersion;
+    version?: CocoaLegalDocumentVersion;
 }> {
     return apiRequest(`/single-documents/${documentId}/finalize-clean`, {
         method: "POST",
@@ -1044,7 +1044,7 @@ export async function uploadDocumentVersion(
     documentId: string,
     file: File,
     displayName?: string,
-): Promise<CocoLegalDocumentVersion> {
+): Promise<CocoaLegalDocumentVersion> {
     const authHeaders = await getAuthHeader();
     const form = new FormData();
     form.append("file", file);
@@ -1058,7 +1058,7 @@ export async function uploadDocumentVersion(
         },
     );
     if (!response.ok) throw new Error(await response.text());
-    const result = (await response.json()) as CocoLegalDocumentVersion;
+    const result = (await response.json()) as CocoaLegalDocumentVersion;
     notifyActionStateMutation("POST");
     return result;
 }
@@ -1067,8 +1067,8 @@ export async function renameDocumentVersion(
     documentId: string,
     versionId: string,
     displayName: string | null,
-): Promise<CocoLegalDocumentVersion> {
-    return apiRequest<CocoLegalDocumentVersion>(
+): Promise<CocoaLegalDocumentVersion> {
+    return apiRequest<CocoaLegalDocumentVersion>(
         `/single-documents/${documentId}/versions/${versionId}`,
         {
             method: "PATCH",
@@ -1081,7 +1081,7 @@ export async function renameDocumentVersion(
 export async function uploadProjectDocument(
     projectId: string,
     file: File,
-): Promise<CocoLegalDocument> {
+): Promise<CocoaLegalDocument> {
     const authHeaders = await getAuthHeader();
     const form = new FormData();
     form.append("file", file);
@@ -1094,14 +1094,14 @@ export async function uploadProjectDocument(
         },
     );
     if (!response.ok) throw new Error(await response.text());
-    const result = (await response.json()) as CocoLegalDocument;
+    const result = (await response.json()) as CocoaLegalDocument;
     notifyActionStateMutation("POST");
     return result;
 }
 
 export async function uploadStandaloneDocument(
     file: File,
-): Promise<CocoLegalDocument> {
+): Promise<CocoaLegalDocument> {
     const authHeaders = await getAuthHeader();
     const form = new FormData();
     form.append("file", file);
@@ -1111,7 +1111,7 @@ export async function uploadStandaloneDocument(
         body: form,
     });
     if (!response.ok) throw new Error(await response.text());
-    const result = (await response.json()) as CocoLegalDocument;
+    const result = (await response.json()) as CocoaLegalDocument;
     notifyActionStateMutation("POST");
     return result;
 }
@@ -1119,7 +1119,7 @@ export async function uploadStandaloneDocument(
 export async function uploadChatImageAttachment(
     file: File,
     options?: { projectId?: string },
-): Promise<CocoLegalImageAttachment> {
+): Promise<CocoaLegalImageAttachment> {
     const authHeaders = await getAuthHeader();
     const form = new FormData();
     form.append("file", file);
@@ -1133,7 +1133,7 @@ export async function uploadChatImageAttachment(
     const raw = (await response.json()) as {
         id: string;
         filename: string;
-        mime_type: CocoLegalImageAttachment["mime_type"];
+        mime_type: CocoaLegalImageAttachment["mime_type"];
         size_bytes: number;
     };
     return {
@@ -1157,8 +1157,8 @@ export async function fetchChatImageAttachment(
     return response.blob();
 }
 
-export async function listStandaloneDocuments(): Promise<CocoLegalDocument[]> {
-    return apiRequest<CocoLegalDocument[]>("/single-documents");
+export async function listStandaloneDocuments(): Promise<CocoaLegalDocument[]> {
+    return apiRequest<CocoaLegalDocument[]>("/single-documents");
 }
 
 export async function deleteDocument(documentId: string): Promise<void> {
@@ -1369,25 +1369,25 @@ export async function listChats(options?: {
     limit?: number;
     /** Case-insensitive chat-TITLE substring filter. Bodies aren't searched. */
     search?: string;
-}): Promise<CocoLegalChat[]> {
+}): Promise<CocoaLegalChat[]> {
     const params = new URLSearchParams();
     if (options?.limit) params.set("limit", String(options.limit));
     // URLSearchParams.toString() percent-encodes values for us.
     const search = options?.search?.trim();
     if (search) params.set("search", search);
     const query = params.toString();
-    return apiRequest<CocoLegalChat[]>(`/chat${query ? `?${query}` : ""}`);
+    return apiRequest<CocoaLegalChat[]>(`/chat${query ? `?${query}` : ""}`);
 }
 
 export async function listProjectChats(
     projectId: string,
-): Promise<CocoLegalChat[]> {
-    return apiRequest<CocoLegalChat[]>(`/projects/${projectId}/chats`);
+): Promise<CocoaLegalChat[]> {
+    return apiRequest<CocoaLegalChat[]>(`/projects/${projectId}/chats`);
 }
 
-export async function getChat(chatId: string): Promise<CocoLegalChatDetailOut> {
+export async function getChat(chatId: string): Promise<CocoaLegalChatDetailOut> {
     const raw = await apiRequest<ServerChatDetailOut>(`/chat/${chatId}`);
-    const messages: CocoLegalMessage[] = raw.messages.map((m) => {
+    const messages: CocoaLegalMessage[] = raw.messages.map((m) => {
         if (m.role === "user") {
             return {
                 id: m.id,
@@ -1595,7 +1595,7 @@ export async function generateChatTitle(
 export async function streamChat(payload: {
     message: {
         content: string;
-        files?: CocoLegalMessageAttachment[];
+        files?: CocoaLegalMessageAttachment[];
         workflow?: { id: string; title: string };
     };
     chat_id?: string;
@@ -1628,7 +1628,7 @@ export async function streamChat(payload: {
 
 type StreamChatMessage = {
     content: string;
-    files?: CocoLegalMessageAttachment[];
+    files?: CocoaLegalMessageAttachment[];
     workflow?: { id: string; title: string };
 };
 
@@ -1792,7 +1792,7 @@ export async function uploadReviewDocument(
         documentIds?: string[];
         columnsConfig?: { index: number; name: string; prompt: string }[];
     },
-): Promise<CocoLegalDocument> {
+): Promise<CocoaLegalDocument> {
     const uploaded = options?.projectId
         ? await uploadProjectDocument(options.projectId, file)
         : await uploadStandaloneDocument(file);
@@ -1961,18 +1961,18 @@ export async function clearTabularCells(
 // Workflows
 // ---------------------------------------------------------------------------
 
-type WorkflowType = CocoLegalWorkflow["type"];
+type WorkflowType = CocoaLegalWorkflow["type"];
 
 export async function listWorkflows(
     type: WorkflowType,
-): Promise<CocoLegalWorkflow[]> {
-    return apiRequest<CocoLegalWorkflow[]>(`/workflows?type=${type}`);
+): Promise<CocoaLegalWorkflow[]> {
+    return apiRequest<CocoaLegalWorkflow[]>(`/workflows?type=${type}`);
 }
 
 export async function getWorkflow(
     workflowId: string,
-): Promise<CocoLegalWorkflow> {
-    return apiRequest<CocoLegalWorkflow>(`/workflows/${workflowId}`);
+): Promise<CocoaLegalWorkflow> {
+    return apiRequest<CocoaLegalWorkflow>(`/workflows/${workflowId}`);
 }
 
 export async function createWorkflow(payload: {
@@ -1987,8 +1987,8 @@ export async function createWorkflow(payload: {
         tags?: string[];
     }[];
     practice?: string | null;
-}): Promise<CocoLegalWorkflow> {
-    return apiRequest<CocoLegalWorkflow>("/workflows", {
+}): Promise<CocoaLegalWorkflow> {
+    return apiRequest<CocoaLegalWorkflow>("/workflows", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
@@ -2041,8 +2041,8 @@ export async function updateWorkflow(
         }[];
         practice?: string | null;
     },
-): Promise<CocoLegalWorkflow> {
-    return apiRequest<CocoLegalWorkflow>(`/workflows/${workflowId}`, {
+): Promise<CocoaLegalWorkflow> {
+    return apiRequest<CocoaLegalWorkflow>(`/workflows/${workflowId}`, {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
@@ -2582,7 +2582,7 @@ export async function signSelf(
 // ---------------------------------------------------------------------------
 
 /**
- * List the caller's firm templates (firm rows overlaid on the Coco Legal
+ * List the caller's firm templates (firm rows overlaid on the Cocoa Legal
  * default-shared rows). The server wraps the list in `{ templates }`, so we
  * unwrap to the bare array the UI expects. Optional `docType` filter.
  */

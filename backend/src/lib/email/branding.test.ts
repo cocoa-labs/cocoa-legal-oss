@@ -29,7 +29,7 @@ async function testFullBrandingHasWordmarkFooterSentinel() {
         bodyText: "Hello **world**",
         mode: "full",
     });
-    assert.ok(html.includes("Coco Legal"), "full has the wordmark");
+    assert.ok(html.includes("Cocoa Legal"), "full has the wordmark");
     assert.ok(html.includes(DEFAULT_EMAIL_FOOTER), "full has the default footer");
     assert.ok(html.includes(BRAND_SENTINEL), "full carries the brand sentinel");
     assert.equal(text, "Hello **world**", "text is the untouched bodyText");
@@ -64,7 +64,7 @@ async function testModelBodyHtmlSanitizedIntoCard() {
     });
     assert.ok(html.includes("<p>Hi</p>"), "model html fragment preserved");
     assert.ok(!html.includes("evil()"), "script stripped from model html");
-    assert.ok(html.includes("Coco Legal"), "model html is wrapped in the shell");
+    assert.ok(html.includes("Cocoa Legal"), "model html is wrapped in the shell");
 }
 
 async function testSentinelIdempotency() {

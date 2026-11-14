@@ -227,7 +227,7 @@ async function main(): Promise<void> {
     // developer's exported override cannot change what these tests mean.
     delete process.env.LIBREOFFICE_MAX_CONCURRENT;
 
-    scratchDir = await mkdtemp(path.join(os.tmpdir(), "coco-lo-warmup-test-"));
+    scratchDir = await mkdtemp(path.join(os.tmpdir(), "cocoa-lo-warmup-test-"));
     recordPath = path.join(scratchDir, "record.txt");
     inputCopyPath = path.join(scratchDir, "sent-input");
     try {

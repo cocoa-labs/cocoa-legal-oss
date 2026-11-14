@@ -1,6 +1,6 @@
-import type { CocoLegalWorkflow } from "../shared/types";
+import type { CocoaLegalWorkflow } from "../shared/types";
 
-export const BUILT_IN_WORKFLOWS: CocoLegalWorkflow[] = [
+export const BUILT_IN_WORKFLOWS: CocoaLegalWorkflow[] = [
     {
         id: "builtin-cp-checklist",
         user_id: null,

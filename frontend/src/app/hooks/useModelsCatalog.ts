@@ -6,7 +6,7 @@ import {
     type FeaturedModelEntry,
     type ModelsCatalogResponse,
     type OpenRouterCatalogEntry,
-} from "@/app/lib/cocoLegalApi";
+} from "@/app/lib/cocoaLegalApi";
 import { MODELS } from "@/app/components/assistant/ModelToggle";
 
 const unverifiedHealth = () => ({

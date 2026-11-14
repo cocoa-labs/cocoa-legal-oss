@@ -1,12 +1,12 @@
 /**
- * S3-compatible storage utilities for Coco Legal document management.
+ * S3-compatible storage utilities for Cocoa Legal document management.
  * Supports Railway buckets, Cloudflare R2, and similar S3 APIs.
  *
  * Required env vars:
  *   R2_ENDPOINT_URL     — https://<account-id>.r2.cloudflarestorage.com
  *   R2_ACCESS_KEY_ID    — R2 API token (Access Key ID)
  *   R2_SECRET_ACCESS_KEY — R2 API token (Secret Access Key)
- *   R2_BUCKET_NAME      — bucket name (default: "coco-legal")
+ *   R2_BUCKET_NAME      — bucket name (default: "cocoa-legal")
  */
 
 import {
@@ -72,7 +72,7 @@ function getPresignClient(): S3Client {
   return cachedPresignClient;
 }
 
-const BUCKET = process.env.R2_BUCKET_NAME ?? "coco-legal";
+const BUCKET = process.env.R2_BUCKET_NAME ?? "cocoa-legal";
 
 export const storageEnabled = Boolean(
   process.env.R2_ENDPOINT_URL &&

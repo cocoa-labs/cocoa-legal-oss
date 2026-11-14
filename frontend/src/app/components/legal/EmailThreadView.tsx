@@ -12,10 +12,10 @@ import {
 import {
     getEmail,
     type EmailThreadOut,
-} from "@/app/lib/cocoLegalApi";
+} from "@/app/lib/cocoaLegalApi";
 import { EmailAttachmentList } from "./EmailAttachmentList";
 import { useAssistantChat } from "@/app/hooks/useAssistantChat";
-import type { CocoLegalMessage } from "@/app/components/shared/types";
+import type { CocoaLegalMessage } from "@/app/components/shared/types";
 
 function formatWhen(iso: string | null): string {
     if (!iso) return "";
@@ -69,7 +69,7 @@ export function EmailThreadView({ emailId }: { emailId: string }) {
         if (!focal || starting) return;
         setStarting(true);
         try {
-            const seed: CocoLegalMessage = {
+            const seed: CocoaLegalMessage = {
                 role: "user",
                 content:
                     `Help me reply to this email.\n\n` +

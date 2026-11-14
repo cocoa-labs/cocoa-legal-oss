@@ -5,14 +5,14 @@ import { createPortal } from "react-dom";
 import { ChevronLeft, Search, X } from "lucide-react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
-import type { CocoLegalWorkflow } from "../shared/types";
-import { listWorkflows } from "@/app/lib/cocoLegalApi";
+import type { CocoaLegalWorkflow } from "../shared/types";
+import { listWorkflows } from "@/app/lib/cocoaLegalApi";
 import { BUILT_IN_WORKFLOWS } from "../workflows/builtinWorkflows";
 
 interface Props {
     open: boolean;
     onClose: () => void;
-    onSelect: (workflow: CocoLegalWorkflow) => void;
+    onSelect: (workflow: CocoaLegalWorkflow) => void;
     projectName?: string;
     projectCmNumber?: string | null;
     initialWorkflowId?: string;
@@ -26,9 +26,9 @@ export function AssistantWorkflowModal({
     projectCmNumber,
     initialWorkflowId,
 }: Props) {
-    const [workflows, setWorkflows] = useState<CocoLegalWorkflow[]>([]);
+    const [workflows, setWorkflows] = useState<CocoaLegalWorkflow[]>([]);
     const [loading, setLoading] = useState(false);
-    const [selected, setSelected] = useState<CocoLegalWorkflow | null>(null);
+    const [selected, setSelected] = useState<CocoaLegalWorkflow | null>(null);
     const [search, setSearch] = useState("");
     const [rightVisible, setRightVisible] = useState(false);
 

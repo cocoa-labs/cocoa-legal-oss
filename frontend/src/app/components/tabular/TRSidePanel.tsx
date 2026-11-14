@@ -12,7 +12,7 @@ import {
     RefreshCw,
     X,
 } from "lucide-react";
-import type { ColumnConfig, CocoLegalDocument, TabularCell } from "../shared/types";
+import type { ColumnConfig, CocoaLegalDocument, TabularCell } from "../shared/types";
 import { preprocessCitations, type ParsedCitation } from "./citation-utils";
 import { getPillClass } from "./pillUtils";
 import { DocView } from "../shared/DocView";
@@ -42,7 +42,7 @@ function isImageDocument(d: {
 
 interface Props {
     cell: TabularCell;
-    document: CocoLegalDocument;
+    document: CocoaLegalDocument;
     column: ColumnConfig;
     columns: ColumnConfig[];
     onClose: () => void;

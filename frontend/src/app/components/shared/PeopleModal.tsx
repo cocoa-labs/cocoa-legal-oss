@@ -7,7 +7,7 @@ import type {
     ProjectMember,
     ProjectMemberRole,
     ProjectPeople,
-} from "@/app/lib/cocoLegalApi";
+} from "@/app/lib/cocoaLegalApi";
 
 export interface SharedResource {
     id: string;

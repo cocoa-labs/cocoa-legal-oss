@@ -9,7 +9,7 @@ import {
     Upload,
     X,
 } from "lucide-react";
-import { listTemplates, uploadStandaloneDocument } from "@/app/lib/cocoLegalApi";
+import { listTemplates, uploadStandaloneDocument } from "@/app/lib/cocoaLegalApi";
 import { DOCUMENT_ACCEPT_ATTR } from "@/app/lib/uploadTypes";
 import type { DocTemplate } from "../shared/types";
 import { DOC_TYPE_LABELS } from "./builtinTemplates";
@@ -38,9 +38,9 @@ const SOURCE_BUCKETS: {
         badgeClass: "border-violet-200 bg-violet-50 text-violet-700",
     },
     {
-        kind: "coco_seed",
-        heading: "Coco Legal defaults",
-        badge: "Coco Legal",
+        kind: "cocoa_seed",
+        heading: "Cocoa Legal defaults",
+        badge: "Cocoa Legal",
         badgeClass: "border-gray-200 bg-gray-50 text-gray-600",
     },
     {

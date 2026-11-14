@@ -11,7 +11,7 @@ import {
     updateProjectTask,
     type MatterTask,
     type ProjectMemberRole,
-} from "@/app/lib/cocoLegalApi";
+} from "@/app/lib/cocoaLegalApi";
 
 export function MatterTasksPanel({
     projectId,

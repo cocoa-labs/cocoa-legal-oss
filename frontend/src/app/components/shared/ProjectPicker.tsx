@@ -2,10 +2,10 @@
 
 import { useState } from "react";
 import { Folder, Search, X } from "lucide-react";
-import type { CocoLegalProject } from "./types";
+import type { CocoaLegalProject } from "./types";
 
 interface Props {
-    projects: CocoLegalProject[];
+    projects: CocoaLegalProject[];
     loading: boolean;
     selectedId: string | null;
     onSelect: (id: string | null) => void;

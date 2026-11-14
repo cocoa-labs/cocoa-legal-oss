@@ -44,14 +44,14 @@ import {
     getProjectBetaPolicy,
     updateProjectBetaPolicy,
     type BetaPolicy,
-    type CocoLegalDocumentVersion,
-} from "@/app/lib/cocoLegalApi";
+    type CocoaLegalDocumentVersion,
+} from "@/app/lib/cocoaLegalApi";
 import type {
-    CocoLegalDocument,
-    CocoLegalFolder,
-    CocoLegalProject,
-    CocoLegalChat,
-    CocoLegalWorkflow,
+    CocoaLegalDocument,
+    CocoaLegalFolder,
+    CocoaLegalProject,
+    CocoaLegalChat,
+    CocoaLegalWorkflow,
     TabularReview,
 } from "@/app/components/shared/types";
 import { ToolbarTabs } from "@/app/components/shared/ToolbarTabs";
@@ -92,11 +92,11 @@ import { MatterTasksPanel } from "./MatterTasksPanel";
 import { ControlledBetaPolicySummary } from "../legal/ControlledBetaPolicySummary";
 import { projectBetaGate } from "@/app/lib/betaPolicyGate";
 import {
-    COCO_LEGAL_DOC_DRAG_TYPE,
-    COCO_LEGAL_FOLDER_DRAG_TYPE,
-    getCocoLegalDocDragData,
-    getCocoLegalFolderDragData,
-    hasCocoLegalDragPayload,
+    COCOA_LEGAL_DOC_DRAG_TYPE,
+    COCOA_LEGAL_FOLDER_DRAG_TYPE,
+    getCocoaLegalDocDragData,
+    getCocoaLegalFolderDragData,
+    hasCocoaLegalDragPayload,
 } from "@/app/lib/dragTypes";
 
 interface Props {
@@ -105,9 +105,9 @@ interface Props {
 }
 
 export function ProjectPage({ projectId, initialTab = "documents" }: Props) {
-    const [project, setProject] = useState<CocoLegalProject | null>(null);
-    const [folders, setFolders] = useState<CocoLegalFolder[]>([]);
-    const [chats, setChats] = useState<CocoLegalChat[]>([]);
+    const [project, setProject] = useState<CocoaLegalProject | null>(null);
+    const [folders, setFolders] = useState<CocoaLegalFolder[]>([]);
+    const [chats, setChats] = useState<CocoaLegalChat[]>([]);
     const [projectReviews, setProjectReviews] = useState<TabularReview[]>([]);
     const [loading, setLoading] = useState(true);
     const searchParams = useSearchParams();
@@ -127,8 +127,8 @@ export function ProjectPage({ projectId, initialTab = "documents" }: Props) {
     const [ownerOnlyAction, setOwnerOnlyAction] = useState<string | null>(null);
     const { user } = useAuth();
     const [uploadVersionDoc, setUploadVersionDoc] =
-        useState<CocoLegalDocument | null>(null);
-    const [viewingDoc, setViewingDoc] = useState<CocoLegalDocument | null>(null);
+        useState<CocoaLegalDocument | null>(null);
+    const [viewingDoc, setViewingDoc] = useState<CocoaLegalDocument | null>(null);
     const [viewingDocVersion, setViewingDocVersion] = useState<{
         id: string;
         label: string;
@@ -150,7 +150,7 @@ export function ProjectPage({ projectId, initialTab = "documents" }: Props) {
         Set<string>
     >(() => new Set());
     const [versionsByDocId, setVersionsByDocId] = useState<
-        Map<string, CocoLegalDocumentVersion[]>
+        Map<string, CocoaLegalDocumentVersion[]>
     >(() => new Map());
     const [loadingVersionDocIds, setLoadingVersionDocIds] = useState<
         Set<string>
@@ -249,12 +249,12 @@ export function ProjectPage({ projectId, initialTab = "documents" }: Props) {
      * latest_version_number) and re-fetch the version list so the history
      * panel shows the new row.
      */
-    function handleUploadNewVersion(doc: CocoLegalDocument) {
+    function handleUploadNewVersion(doc: CocoaLegalDocument) {
         setUploadVersionDoc(doc);
     }
 
     async function submitNewVersion(
-        doc: CocoLegalDocument,
+        doc: CocoaLegalDocument,
         file: File,
         displayName: string,
     ) {
@@ -316,7 +316,7 @@ export function ProjectPage({ projectId, initialTab = "documents" }: Props) {
         }
     }
 
-    async function handleFinalizeClean(doc: CocoLegalDocument) {
+    async function handleFinalizeClean(doc: CocoaLegalDocument) {
         if (finalizingCleanDocIds.has(doc.id)) return;
         setDocumentActionError(null);
         setFinalizingCleanDocIds((prev) => new Set([...prev, doc.id]));
@@ -392,7 +392,7 @@ export function ProjectPage({ projectId, initialTab = "documents" }: Props) {
     useEffect(() => {
         Promise.all([
             getProject(projectId),
-            listProjectChats(projectId).catch(() => [] as CocoLegalChat[]),
+            listProjectChats(projectId).catch(() => [] as CocoaLegalChat[]),
             listTabularReviews(projectId).catch(() => []),
             getProjectBetaPolicy(projectId).catch(() => null),
         ])
@@ -509,7 +509,7 @@ export function ProjectPage({ projectId, initialTab = "documents" }: Props) {
         // Immediately hide the input and show an optimistic folder row
         setCreatingFolderIn(undefined);
         const tempId = `temp-${Date.now()}`;
-        const optimistic: CocoLegalFolder = {
+        const optimistic: CocoaLegalFolder = {
             id: tempId,
             project_id: projectId,
             user_id: "",
@@ -564,7 +564,7 @@ export function ProjectPage({ projectId, initialTab = "documents" }: Props) {
 
     // ── Doc/chat/review handlers ──────────────────────────────────────────────
 
-    function handleDocsSelected(newDocs: CocoLegalDocument[]) {
+    function handleDocsSelected(newDocs: CocoaLegalDocument[]) {
         setProject((prev) =>
             prev ? {
                 ...prev,
@@ -670,7 +670,7 @@ export function ProjectPage({ projectId, initialTab = "documents" }: Props) {
         title: string,
         _projectId?: string,
         documentIds?: string[],
-        columnsConfig?: CocoLegalWorkflow["columns_config"],
+        columnsConfig?: CocoaLegalWorkflow["columns_config"],
     ) {
         setCreatingReview(true);
         try {
@@ -815,7 +815,7 @@ export function ProjectPage({ projectId, initialTab = "documents" }: Props) {
         }
     }
 
-    async function handleDeleteChatRow(chat: CocoLegalChat) {
+    async function handleDeleteChatRow(chat: CocoaLegalChat) {
         if (user?.id && chat.user_id !== user.id) {
             setOwnerOnlyAction("delete this chat");
             return;
@@ -837,7 +837,7 @@ export function ProjectPage({ projectId, initialTab = "documents" }: Props) {
 
     function wouldCreateCycle(movingId: string, targetId: string): boolean {
         // Returns true if targetId is movingId or a descendant of it
-        let cur: CocoLegalFolder | undefined = folders.find((f) => f.id === targetId);
+        let cur: CocoaLegalFolder | undefined = folders.find((f) => f.id === targetId);
         while (cur) {
             if (cur.id === movingId) return true;
             if (!cur.parent_folder_id) break;
@@ -847,7 +847,7 @@ export function ProjectPage({ projectId, initialTab = "documents" }: Props) {
     }
 
     function hasMovePayload(dt: DataTransfer): boolean {
-        return hasCocoLegalDragPayload(dt);
+        return hasCocoaLegalDragPayload(dt);
     }
 
     function hasFilePayload(dt: DataTransfer): boolean {
@@ -872,8 +872,8 @@ export function ProjectPage({ projectId, initialTab = "documents" }: Props) {
 
     async function handleDropOnFolder(targetFolderId: string | null, dt: DataTransfer) {
         if (!hasMovePayload(dt)) return;
-        const docId = getCocoLegalDocDragData(dt);
-        const subFolderId = getCocoLegalFolderDragData(dt);
+        const docId = getCocoaLegalDocDragData(dt);
+        const subFolderId = getCocoaLegalFolderDragData(dt);
         if (docId) {
             const doc = (project?.documents ?? []).find((d) => d.id === docId);
             if (!doc || (doc.folder_id ?? null) === targetFolderId) return;
@@ -1017,7 +1017,7 @@ export function ProjectPage({ projectId, initialTab = "documents" }: Props) {
                                         e.preventDefault();
                                         return;
                                     }
-                                    e.dataTransfer.setData(COCO_LEGAL_DOC_DRAG_TYPE, doc.id);
+                                    e.dataTransfer.setData(COCOA_LEGAL_DOC_DRAG_TYPE, doc.id);
                                     e.dataTransfer.effectAllowed = "move";
                                 }}
                                 onClick={() => {
@@ -1208,7 +1208,7 @@ export function ProjectPage({ projectId, initialTab = "documents" }: Props) {
                                         e.preventDefault();
                                         return;
                                     }
-                                    e.dataTransfer.setData(COCO_LEGAL_FOLDER_DRAG_TYPE, folder.id);
+                                    e.dataTransfer.setData(COCOA_LEGAL_FOLDER_DRAG_TYPE, folder.id);
                                     e.dataTransfer.effectAllowed = "move";
                                     e.stopPropagation();
                                 }}

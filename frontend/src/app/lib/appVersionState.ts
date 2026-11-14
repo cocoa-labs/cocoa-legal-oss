@@ -1,7 +1,7 @@
-export const APP_VERSION_PROTOCOL = "coco-app-version-v1";
+export const APP_VERSION_PROTOCOL = "cocoa-app-version-v1";
 export const APP_VERSION_ENDPOINT = "/api/app-version";
-export const APP_VERSION_RELOAD_KEY = "coco-app-version:reload-target";
-const COMPOSER_DRAFT_PREFIX = "coco-composer-draft:v1:";
+export const APP_VERSION_RELOAD_KEY = "cocoa-app-version:reload-target";
+const COMPOSER_DRAFT_PREFIX = "cocoa-composer-draft:v1:";
 
 type DraftStorage = Pick<Storage, "getItem" | "setItem" | "removeItem">;
 

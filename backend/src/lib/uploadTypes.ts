@@ -1,4 +1,4 @@
-// Centralized upload-type constants for Coco Legal.
+// Centralized upload-type constants for Cocoa Legal.
 //
 // SYNC: keep the document AND audio extension/MIME lists in lockstep with
 // frontend/src/app/lib/uploadTypes.ts. If you add/remove an extension or MIME
@@ -6,7 +6,7 @@
 // picker's accept filter matches what the backend will actually accept.
 
 /**
- * Every file extension Coco Legal accepts as a first-class document.
+ * Every file extension Cocoa Legal accepts as a first-class document.
  *
  * - Tier 1 (full feature set): pdf, docx, doc — tracked changes,
  *   highlights, citation page mapping, etc.

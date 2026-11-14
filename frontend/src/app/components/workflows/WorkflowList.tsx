@@ -18,15 +18,15 @@ import {
     listHiddenWorkflows,
     hideWorkflow,
     unhideWorkflow,
-} from "@/app/lib/cocoLegalApi";
-import type { CocoLegalWorkflow } from "../shared/types";
+} from "@/app/lib/cocoaLegalApi";
+import type { CocoaLegalWorkflow } from "../shared/types";
 import { BUILT_IN_WORKFLOWS, BUILT_IN_IDS } from "./builtinWorkflows";
 import { CRE_GALLERY_ID_SET, UK_COMMERCIAL_LEASE_ID } from "../legal/creShared";
 import { DisplayWorkflowModal } from "./DisplayWorkflowModal";
 import { NewWorkflowModal } from "./NewWorkflowModal";
 import { ToolbarTabs } from "../shared/ToolbarTabs";
 import { RowActions } from "../shared/RowActions";
-import { CocoLegalIcon } from "@/components/chat/coco-legal-icon";
+import { CocoaLegalIcon } from "@/components/chat/cocoa-legal-icon";
 import { useAuth } from "@/contexts/AuthContext";
 import { AppBackButton } from "../shared/AppBackButton";
 
@@ -53,7 +53,7 @@ const HIDDEN_FROM_CRE_SECTION: ReadonlySet<string> = new Set([
 ]);
 
 // One-line, lawyerly descriptions for the built-in CRE workflows. Surfaced as
-// a subtle secondary line under each CRE row's name (the CocoLegalWorkflow shape
+// a subtle secondary line under each CRE row's name (the CocoaLegalWorkflow shape
 // carries no description field, so the gallery supplies these for its own
 // built-ins). Keyed by workflow id.
 const CRE_WORKFLOW_DESCRIPTIONS: Record<string, string> = {
@@ -85,9 +85,9 @@ const TABS: { id: Tab; label: string }[] = [
 export function WorkflowList() {
     const router = useRouter();
     const { user } = useAuth();
-    const [custom, setCustom] = useState<CocoLegalWorkflow[]>([]);
+    const [custom, setCustom] = useState<CocoaLegalWorkflow[]>([]);
     const [loading, setLoading] = useState(true);
-    const [selected, setSelected] = useState<CocoLegalWorkflow | null>(null);
+    const [selected, setSelected] = useState<CocoaLegalWorkflow | null>(null);
     const [activeTab, setActiveTab] = useState<Tab>("all");
     const [newModalOpen, setNewModalOpen] = useState(false);
     const [hiddenBuiltinIds, setHiddenBuiltinIds] = useState<string[]>([]);
@@ -95,7 +95,7 @@ export function WorkflowList() {
     const [actionsOpen, setActionsOpen] = useState(false);
     const [practiceFilter, setPracticeFilter] = useState<string | null>(null);
     const [practiceFilterOpen, setPracticeFilterOpen] = useState(false);
-    const [typeFilter, setTypeFilter] = useState<CocoLegalWorkflow["type"] | null>(
+    const [typeFilter, setTypeFilter] = useState<CocoaLegalWorkflow["type"] | null>(
         null,
     );
     const [typeFilterOpen, setTypeFilterOpen] = useState(false);
@@ -241,7 +241,7 @@ export function WorkflowList() {
         await Promise.all(ids.map((id) => unhideWorkflow(id).catch(() => {})));
     }
 
-    const getTypeMeta = (type: CocoLegalWorkflow["type"]) =>
+    const getTypeMeta = (type: CocoaLegalWorkflow["type"]) =>
         type === "tabular"
             ? { label: "Tabular", Icon: Table2, className: "text-violet-400" }
             : {
@@ -403,7 +403,7 @@ export function WorkflowList() {
         </>
     );
 
-    const renderWorkflowRow = (wf: CocoLegalWorkflow) => {
+    const renderWorkflowRow = (wf: CocoaLegalWorkflow) => {
         const rowBg = selectedIds.includes(wf.id)
             ? "bg-[var(--app-active)]"
             : "bg-[var(--app-shell)]";
@@ -473,8 +473,8 @@ export function WorkflowList() {
                 <div className="w-28 shrink-0">
                     {wf.is_system ? (
                         <span className="inline-flex items-center gap-1.5 text-xs font-medium text-[var(--app-text-muted)]">
-                            <CocoLegalIcon size={14} />
-                            Coco Legal
+                            <CocoaLegalIcon size={14} />
+                            Cocoa Legal
                         </span>
                     ) : wf.user_id === user?.id ? (
                         <span className="inline-flex items-center gap-1.5 text-xs font-medium text-[var(--app-text-muted)]">
@@ -530,7 +530,7 @@ export function WorkflowList() {
     // UK lease pack is excluded from the CRE section for the US demo (it stays
     // defined and falls through to "All Playbooks").
     const grouped = activeTab === "all" || activeTab === "builtin";
-    const isCreSectionRow = (wf: CocoLegalWorkflow) =>
+    const isCreSectionRow = (wf: CocoaLegalWorkflow) =>
         LEGAL_OPERATIONS_IDS.has(wf.id) && !HIDDEN_FROM_CRE_SECTION.has(wf.id);
     const creRows = grouped ? filtered.filter(isCreSectionRow) : [];
     const otherRows = grouped

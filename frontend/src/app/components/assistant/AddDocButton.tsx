@@ -8,13 +8,13 @@ import {
     DropdownMenuItem,
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { uploadStandaloneDocument } from "@/app/lib/cocoLegalApi";
+import { uploadStandaloneDocument } from "@/app/lib/cocoaLegalApi";
 import { cn } from "@/lib/utils";
-import type { CocoLegalDocument } from "../shared/types";
+import type { CocoaLegalDocument } from "../shared/types";
 import { DOCUMENT_ACCEPT_ATTR } from "@/app/lib/uploadTypes";
 
 interface Props {
-    onSelectDoc: (doc: CocoLegalDocument) => void;
+    onSelectDoc: (doc: CocoaLegalDocument) => void;
     onBrowseAll: () => void;
     selectedDocIds?: string[];
     variant?: "default" | "command";
